@@ -1,0 +1,8 @@
+﻿/* styles.css hoặc tương tự */
+
+/* Header styles */
+.black-header {
+    background-color: #000 !important; /* Mã màu đen */
+    color: #fff; /* Mã màu trắng cho chữ */
+    padding: 10px; /* Tăng độ dày nếu cần */
+}
