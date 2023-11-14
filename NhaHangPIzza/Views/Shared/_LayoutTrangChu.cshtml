@@ -74,24 +74,6 @@
 
             <!-- Cột 2 -->
             <div class="col-md-11 p-0 m-0">
-                <header><img src="~/Images/PizzaHeader.png" class="img-fluid no-padding" alt="Pizza Header Image"></header>
-                <ul class="nav nav-tabs">
-                    <li class="nav-item">
-                        <a class="nav-link active" href="#">Hải sản</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Thịt</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Phô mai</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link disabled" href="#">Chay</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link disabled" href="#">Pizaa tự chọn</a>
-                    </li>
-                </ul>
                 <!-- Thêm mã sau vào phần RenderBody() để hiển thị nội dung của mỗi loại pizza -->
                 @Html.Action("BanhPizzaPartial", "Home")
                 @RenderBody()
