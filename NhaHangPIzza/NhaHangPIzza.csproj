@@ -111,7 +111,9 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\BanhPizzaController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\NuocGiaiKhatController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -143,7 +145,11 @@
     <Content Include="Images\Icon\819861.png" />
     <Content Include="Images\Icon\pizza.png" />
     <Content Include="Images\Icon\soda-can.png" />
+    <Content Include="Images\NuocGiaiKhat\BonAqua.jpeg" />
+    <Content Include="Images\NuocGiaiKhat\Burn.jpeg" />
+    <Content Include="Images\NuocGiaiKhat\CocaCola.jpeg" />
     <Content Include="Images\PizzaHeader.png" />
+    <Content Include="Images\Red and Green Natural Italian Pizza Presentation.png" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.esm.js" />
@@ -173,8 +179,9 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_LayoutTrangChu.cshtml" />
-    <Content Include="Views\Home\BanhPizzaPartial.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\BanhPizza\BanhPizza.cshtml" />
+    <Content Include="Views\NuocGiaiKhat\NuocGiaiKhat.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

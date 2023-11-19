@@ -1,0 +1,196 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutTrangChu.cshtml";
+}
+
+<ul class="nav nav-tabs">
+    <li class="nav-item">
+        <a class="nav-link active" href="#">Hải sản</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="#">Thịt</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="#">Phô mai</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link disabled" href="#">Chay</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link disabled" href="#">Pizaa tự chọn</a>
+    </li>
+</ul>
+<div class="container mt-3">
+    <div class="row">
+        <!-- Form Pizza 1 -->
+        <div class="col-md-4 d-flex flex-column align-items-center">
+            <div class="mb-2 mx-auto">
+                <img src="~/Images/BanhPizza/Pizzazahoivaraubina.jpeg" style="width:200px;" alt="Hình Pizza 1" class="img-fluid">
+            </div>
+            <div class="text-center mb-2">
+                <label for="pizzaName1" class="form-label">Tên Bánh</label>
+            </div>
+            <div class="mb-2">
+                <div class="border p-2" id="pizzaName1">Bột mì Ý, sốt cà chua nguyên chất, phô mai mozzarella, cá hồi, cà chua, rau bina, Dorblu, tỏi, chanh, hạt thông, ô liu, lá oregano.</div>
+            </div>
+            <div class="row mb-2">
+                <div class="col-md-6">
+                    <label for="crustType1" class="form-label">Loại vỏ bánh</label>
+                    <input type="text" class="form-control" id="crustType1" value="TO">
+                </div>
+                <div class="col-md-6">
+                    <label for="size1" class="form-label">Kích thước</label>
+                    <input type="text" class="form-control" id="size1" value="nhỏ">
+                </div>
+            </div>
+
+            <div class="row mb-2">
+                <div class="col-md-6">
+                    <label class="form-label justify-content-start" style="white-space: nowrap;">Giá tiền:</label>
+                </div>
+                <div class="col-md-6">
+                    <div class="d-flex justify-content-end">
+                        <div class="input-group ">
+                            <input type="text" class="form-control" id="price1" value="300000" readonly>
+                            <div class="input-group-append">
+                                <span class="input-group-text">VNĐ</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row mb-2">
+                <div class="col-md-6">
+                    <button type="submit" class="btn btn-primary justify-content-start">Chọn</button>
+                </div>
+                <div class="col-md-6">
+                    <div class="d-flex justify-content-end">
+                        <div class="input-group">
+                            <input type="text" class="form-control " id="quantity1" value="10">
+                            <button class="btn btn-outline-secondary" type="button" id="minusBtn">-</button>
+                            <button class="btn btn-outline-secondary" type="button" id="plusBtn">+</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 d-flex flex-column align-items-center">
+            <div class="mb-2 mx-auto">
+                <img src="~/Images/BanhPizza/Pizzazahoivaraubina.jpeg" style="width:200px;" alt="Hình Pizza 1" class="img-fluid">
+            </div>
+            <div class="text-center mb-2">
+                <label for="pizzaName1" class="form-label">Tên Bánh</label>
+            </div>
+            <div class="mb-2">
+                <div class="border p-2" id="pizzaName1">Bột mì Ý, sốt cà chua nguyên chất, phô mai mozzarella, cá hồi, cà chua, rau bina, Dorblu, tỏi, chanh, hạt thông, ô liu, lá oregano.</div>
+            </div>
+            <div class="row mb-2">
+                <div class="col-md-6">
+                    <label for="crustType1" class="form-label">Loại vỏ bánh</label>
+                    <input type="text" class="form-control" id="crustType1" value="TO">
+                </div>
+                <div class="col-md-6">
+                    <label for="size1" class="form-label">Kích thước</label>
+                    <input type="text" class="form-control" id="size1" value="nhỏ">
+                </div>
+            </div>
+
+            <div class="row mb-2">
+                <div class="col-md-6">
+                    <label class="form-label justify-content-start" style="white-space: nowrap;">Giá tiền:</label>
+                </div>
+                <div class="col-md-6">
+                    <div class="d-flex justify-content-end">
+                        <div class="input-group ">
+                            <input type="text" class="form-control" id="price1" value="300000" readonly>
+                            <div class="input-group-append">
+                                <span class="input-group-text">VNĐ</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row mb-2">
+                <div class="col-md-6">
+                    <button type="submit" class="btn btn-primary justify-content-start">Chọn</button>
+                </div>
+                <div class="col-md-6">
+                    <div class="d-flex justify-content-end">
+                        <div class="input-group">
+                            <input type="text" class="form-control " id="quantity1" value="10">
+                            <button class="btn btn-outline-secondary" type="button" id="minusBtn">-</button>
+                            <button class="btn btn-outline-secondary" type="button" id="plusBtn">+</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 d-flex flex-column align-items-center">
+            <div class="mb-2 mx-auto">
+                <img src="~/Images/BanhPizza/Pizzazahoivaraubina.jpeg" style="width:200px;" alt="Hình Pizza 1" class="img-fluid">
+            </div>
+            <div class="text-center mb-2">
+                <label for="pizzaName1" class="form-label">Tên Bánh</label>
+            </div>
+            <div class="mb-2">
+                <div class="border p-2" id="pizzaName1">Bột mì Ý, sốt cà chua nguyên chất, phô mai mozzarella, cá hồi, cà chua, rau bina, Dorblu, tỏi, chanh, hạt thông, ô liu, lá oregano.</div>
+            </div>
+            <div class="row mb-2">
+                <div class="col-md-6">
+                    <label for="crustType1" class="form-label">Loại vỏ bánh</label>
+                    <input type="text" class="form-control" id="crustType1" value="TO">
+                </div>
+                <div class="col-md-6">
+                    <label for="size1" class="form-label">Kích thước</label>
+                    <input type="text" class="form-control" id="size1" value="nhỏ">
+                </div>
+            </div>
+
+            <div class="row mb-2">
+                <div class="col-md-6">
+                    <label class="form-label justify-content-start" style="white-space: nowrap;">Giá tiền:</label>
+                </div>
+                <div class="col-md-6">
+                    <div class="d-flex justify-content-end">
+                        <div class="input-group ">
+                            <input type="text" class="form-control" id="price1" value="300000" readonly>
+                            <div class="input-group-append">
+                                <span class="input-group-text">VNĐ</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row mb-2">
+                <div class="col-md-6">
+                    <button type="submit" class="btn btn-primary justify-content-start">Chọn</button>
+                </div>
+                <div class="col-md-6">
+                    <div class="d-flex justify-content-end">
+                        <div class="input-group">
+                            <input type="text" class="form-control " id="quantity1" value="10">
+                            <button class="btn btn-outline-secondary" type="button" id="minusBtn">-</button>
+                            <button class="btn btn-outline-secondary" type="button" id="plusBtn">+</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function () {
+        $("#plusBtn").click(function () {
+            $("#quantity1").val(function (i, val) {
+                return parseInt(val) + 1;
+            });
+        });
+
+        $("#minusBtn").click(function () {
+            $("#quantity1").val(function (i, val) {
+                return parseInt(val) - 1 > 0 ? parseInt(val) - 1 : 1;
+            });
+        });
+    });
+</script>

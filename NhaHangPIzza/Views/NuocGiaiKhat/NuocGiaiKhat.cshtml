@@ -1,45 +1,18 @@
-﻿<header><img src="~/Images/PizzaHeader.png" class="img-fluid no-padding" alt="Pizza Header Image"></header>
-<ul class="nav nav-tabs">
-    <li class="nav-item">
-        <a class="nav-link active" href="#">Hải sản</a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link" href="#">Thịt</a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link" href="#">Phô mai</a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link disabled" href="#">Chay</a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link disabled" href="#">Pizaa tự chọn</a>
-    </li>
-</ul>
+﻿@{
+    ViewBag.Title = "NuocGiaiKhat";
+    Layout = "~/Views/Shared/_LayoutTrangChu.cshtml";
+}
+
 <div class="container mt-3">
     <div class="row">
-        <!-- Form Pizza 1 -->
-        <div class="col-md-4 d-flex flex-column align-items-center">
+        <!-- Form NuocGiaiKhat 1 -->
+        <div class="col-md-4 d-flex flex-column align-items-center border p-3 mb-3">
             <div class="mb-2 mx-auto">
-                <img src="~/Images/BanhPizza/Pizzazahoivaraubina.jpeg" style="width:200px;" alt="Hình Pizza 1" class="img-fluid">
+                <img src="~/Images/NuocGiaiKhat/CocaCola.jpeg" style="width:100px; min-height:200px; " alt="Hình Pizza 1" class="img-fluid">
             </div>
             <div class="text-center mb-2">
-                <label for="pizzaName1" class="form-label">Tên Bánh</label>
+                <label class="form-label">CocaCola</label>
             </div>
-            <div class="mb-2">
-                <div class="border p-2" id="pizzaName1">Bột mì Ý, sốt cà chua nguyên chất, phô mai mozzarella, cá hồi, cà chua, rau bina, Dorblu, tỏi, chanh, hạt thông, ô liu, lá oregano.</div>
-            </div>
-            <div class="row mb-2">
-                <div class="col-md-6">
-                    <label for="crustType1" class="form-label">Loại vỏ bánh</label>
-                    <input type="text" class="form-control" id="crustType1" value="TO">
-                </div>
-                <div class="col-md-6">
-                    <label for="size1" class="form-label">Kích thước</label>
-                    <input type="text" class="form-control" id="size1" value="nhỏ">
-                </div>
-            </div>
-
             <div class="row mb-2">
                 <div class="col-md-6">
                     <label class="form-label justify-content-start" style="white-space: nowrap;">Giá tiền:</label>
@@ -70,27 +43,14 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-4 d-flex flex-column align-items-center">
+        <!-- Form NuocGiaiKhat 2 -->
+        <div class="col-md-4 d-flex flex-column align-items-center border p-3 mb-3">
             <div class="mb-2 mx-auto">
-                <img src="~/Images/BanhPizza/Pizzazahoivaraubina.jpeg" style="width:200px;" alt="Hình Pizza 1" class="img-fluid">
+                <img src="~/Images/NuocGiaiKhat/Burn.jpeg" style="width: 100px; min-height: 222px; " alt="Hình Pizza 1" class="img-fluid">
             </div>
             <div class="text-center mb-2">
-                <label for="pizzaName1" class="form-label">Tên Bánh</label>
+                <label class="form-label">Burn</label>
             </div>
-            <div class="mb-2">
-                <div class="border p-2" id="pizzaName1">Bột mì Ý, sốt cà chua nguyên chất, phô mai mozzarella, cá hồi, cà chua, rau bina, Dorblu, tỏi, chanh, hạt thông, ô liu, lá oregano.</div>
-            </div>
-            <div class="row mb-2">
-                <div class="col-md-6">
-                    <label for="crustType1" class="form-label">Loại vỏ bánh</label>
-                    <input type="text" class="form-control" id="crustType1" value="TO">
-                </div>
-                <div class="col-md-6">
-                    <label for="size1" class="form-label">Kích thước</label>
-                    <input type="text" class="form-control" id="size1" value="nhỏ">
-                </div>
-            </div>
-
             <div class="row mb-2">
                 <div class="col-md-6">
                     <label class="form-label justify-content-start" style="white-space: nowrap;">Giá tiền:</label>
@@ -121,27 +81,14 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-4 d-flex flex-column align-items-center">
+        <!-- Form NuocGiaiKhat 3 -->
+        <div class="col-md-4 d-flex flex-column align-items-center border p-3 mb-3">
             <div class="mb-2 mx-auto">
-                <img src="~/Images/BanhPizza/Pizzazahoivaraubina.jpeg" style="width:200px;" alt="Hình Pizza 1" class="img-fluid">
+                <img src="~/Images/NuocGiaiKhat/BonAqua.jpeg" style="width: 100px; min-height: 222px; " alt="Hình Pizza 1" class="img-fluid">
             </div>
             <div class="text-center mb-2">
-                <label for="pizzaName1" class="form-label">Tên Bánh</label>
+                <label class="form-label">BonAqua</label>
             </div>
-            <div class="mb-2">
-                <div class="border p-2" id="pizzaName1">Bột mì Ý, sốt cà chua nguyên chất, phô mai mozzarella, cá hồi, cà chua, rau bina, Dorblu, tỏi, chanh, hạt thông, ô liu, lá oregano.</div>
-            </div>
-            <div class="row mb-2">
-                <div class="col-md-6">
-                    <label for="crustType1" class="form-label">Loại vỏ bánh</label>
-                    <input type="text" class="form-control" id="crustType1" value="TO">
-                </div>
-                <div class="col-md-6">
-                    <label for="size1" class="form-label">Kích thước</label>
-                    <input type="text" class="form-control" id="size1" value="nhỏ">
-                </div>
-            </div>
-
             <div class="row mb-2">
                 <div class="col-md-6">
                     <label class="form-label justify-content-start" style="white-space: nowrap;">Giá tiền:</label>

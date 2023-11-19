@@ -6,9 +6,10 @@ using System.Web.Mvc;
 
 namespace NhaHangPIzza.Controllers
 {
-    public class HomeController : Controller
+    public class NuocGiaiKhatController : Controller
     {
-        public ActionResult Index()
+        // GET: NuocGiaiKhat
+        public ActionResult NuocGiaiKhat()
         {
             return View();
         }
