@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="5f89448e4b4d43e3a27616eead40820b" Name="Diagram1">
+        <EntityTypeShape EntityType="QLNHAHANG_PIZZAModel.BAN" Width="1.5" PointX="7.5" PointY="7.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLNHAHANG_PIZZAModel.ChiTietMonAn" Width="1.5" PointX="7.5" PointY="3.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLNHAHANG_PIZZAModel.ChiTietNuocUong" Width="1.5" PointX="7.5" PointY="10.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLNHAHANG_PIZZAModel.ChiTietThanhPhanBanh" Width="1.5" PointX="3" PointY="3.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLNHAHANG_PIZZAModel.Combo" Width="1.5" PointX="5.25" PointY="7.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLNHAHANG_PIZZAModel.ComBo_PhanAn" Width="1.5" PointX="7.5" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLNHAHANG_PIZZAModel.ComBo_PhanUong" Width="1.5" PointX="10.5" PointY="8.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLNHAHANG_PIZZAModel.HoaDon" Width="1.5" PointX="9.75" PointY="3.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLNHAHANG_PIZZAModel.KichThuocBanh" Width="1.5" PointX="3" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLNHAHANG_PIZZAModel.MonAn" Width="1.5" PointX="5.25" PointY="3.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLNHAHANG_PIZZAModel.NhanVien" Width="1.5" PointX="7.5" PointY="13.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLNHAHANG_PIZZAModel.NuocUong" Width="1.5" PointX="5.25" PointY="10.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLNHAHANG_PIZZAModel.sysdiagram" Width="1.5" PointX="0.75" PointY="10.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLNHAHANG_PIZZAModel.TaiKhoan" Width="1.5" PointX="9.75" PointY="13.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLNHAHANG_PIZZAModel.THANHPHANBANH" Width="1.5" PointX="0.75" PointY="4" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLNHAHANG_PIZZAModel.VOBANH" Width="1.5" PointX="3" PointY="7.25" IsExpanded="true" />
+        <AssociationConnector Association="QLNHAHANG_PIZZAModel.pk_BAN_HOADON" ManuallyRouted="false" />
+        <AssociationConnector Association="QLNHAHANG_PIZZAModel.FK_HoaDon_ChiTietMonAn" ManuallyRouted="false" />
+        <AssociationConnector Association="QLNHAHANG_PIZZAModel.pk_CHITIETMONAN_MONAN" ManuallyRouted="false" />
+        <AssociationConnector Association="QLNHAHANG_PIZZAModel.FK_HoaDon_ChiTietNuocUong" ManuallyRouted="false" />
+        <AssociationConnector Association="QLNHAHANG_PIZZAModel.pk_CHITIETNUOCUONG_NUOCUONG" ManuallyRouted="false" />
+        <AssociationConnector Association="QLNHAHANG_PIZZAModel.FK_ChiTietThanhPhanBanh_THANHPHANBANH" ManuallyRouted="false" />
+        <AssociationConnector Association="QLNHAHANG_PIZZAModel.FK_MONAN_ChiTietThanhPhanBanh" ManuallyRouted="false" />
+        <AssociationConnector Association="QLNHAHANG_PIZZAModel.FK_ComBo_PhanAn_Combo" ManuallyRouted="false" />
+        <AssociationConnector Association="QLNHAHANG_PIZZAModel.FK_ComBo_PhanUong_Combo" ManuallyRouted="false" />
+        <AssociationConnector Association="QLNHAHANG_PIZZAModel.FK_ComBo_PhanAn_MonAn" ManuallyRouted="false" />
+        <AssociationConnector Association="QLNHAHANG_PIZZAModel.FK_ComBo_PhanUong_NuocUong" ManuallyRouted="false" />
+        <AssociationConnector Association="QLNHAHANG_PIZZAModel.pk_NHANVIEN_HOADON" ManuallyRouted="false" />
+        <AssociationConnector Association="QLNHAHANG_PIZZAModel.FK_MONAN_KICHTHUOCBANH" ManuallyRouted="false" />
+        <AssociationConnector Association="QLNHAHANG_PIZZAModel.FK_MonAn_VOBANH1" ManuallyRouted="false" />
+        <AssociationConnector Association="QLNHAHANG_PIZZAModel.FK_TaiKhoan_NhanVien1" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

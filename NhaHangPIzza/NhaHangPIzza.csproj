@@ -44,6 +44,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=4.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.4.1.0\lib\net472\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
     </Reference>
@@ -54,6 +60,8 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -119,6 +127,75 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\BAN.cs">
+      <DependentUpon>DbNhaHangPizza.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ChiTietMonAn.cs">
+      <DependentUpon>DbNhaHangPizza.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ChiTietNuocUong.cs">
+      <DependentUpon>DbNhaHangPizza.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ChiTietThanhPhanBanh.cs">
+      <DependentUpon>DbNhaHangPizza.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Combo.cs">
+      <DependentUpon>DbNhaHangPizza.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ComBo_PhanAn.cs">
+      <DependentUpon>DbNhaHangPizza.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ComBo_PhanUong.cs">
+      <DependentUpon>DbNhaHangPizza.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DbNhaHangPizza.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DbNhaHangPizza.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DbNhaHangPizza.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DbNhaHangPizza.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DbNhaHangPizza.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DbNhaHangPizza.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\HoaDon.cs">
+      <DependentUpon>DbNhaHangPizza.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\KichThuocBanh.cs">
+      <DependentUpon>DbNhaHangPizza.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\MonAn.cs">
+      <DependentUpon>DbNhaHangPizza.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\NhanVien.cs">
+      <DependentUpon>DbNhaHangPizza.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\NuocUong.cs">
+      <DependentUpon>DbNhaHangPizza.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sp_helpdiagramdefinition_Result.cs">
+      <DependentUpon>DbNhaHangPizza.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sp_helpdiagrams_Result.cs">
+      <DependentUpon>DbNhaHangPizza.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sysdiagram.cs">
+      <DependentUpon>DbNhaHangPizza.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TaiKhoan.cs">
+      <DependentUpon>DbNhaHangPizza.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\THANHPHANBANH.cs">
+      <DependentUpon>DbNhaHangPizza.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\VOBANH.cs">
+      <DependentUpon>DbNhaHangPizza.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -152,6 +229,16 @@
     <Content Include="Images\NuocGiaiKhat\CocaCola.jpeg" />
     <Content Include="Images\PizzaHeader.png" />
     <Content Include="Images\Red and Green Natural Italian Pizza Presentation.png" />
+    <Content Include="Models\DbNhaHangPizza.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>DbNhaHangPizza.Context.cs</LastGenOutput>
+      <DependentUpon>DbNhaHangPizza.edmx</DependentUpon>
+    </Content>
+    <Content Include="Models\DbNhaHangPizza.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>DbNhaHangPizza.edmx</DependentUpon>
+      <LastGenOutput>DbNhaHangPizza.cs</LastGenOutput>
+    </Content>
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.esm.js" />
@@ -159,6 +246,13 @@
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Areas\NhanVien\Views\web.config" />
+    <EntityDeploy Include="Models\DbNhaHangPizza.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>DbNhaHangPizza.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\DbNhaHangPizza.edmx.diagram">
+      <DependentUpon>DbNhaHangPizza.edmx</DependentUpon>
+    </Content>
     <None Include="Scripts\jquery-3.7.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.7.1.js" />
     <Content Include="Scripts\jquery-3.7.1.min.js" />
@@ -192,7 +286,6 @@
     <Folder Include="Areas\NhanVien\Controllers\" />
     <Folder Include="Areas\NhanVien\Data\" />
     <Folder Include="Areas\NhanVien\Views\Shared\" />
-    <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.rtl.min.css.map" />
@@ -220,6 +313,9 @@
     <Content Include="Scripts\bootstrap.bundle.js.map" />
     <Content Include="Scripts\jquery-3.7.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.7.1.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
