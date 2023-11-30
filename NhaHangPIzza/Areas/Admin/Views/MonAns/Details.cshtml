@@ -1,0 +1,58 @@
+﻿@model NhaHangPIzza.Models.MonAn
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>MonAn</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.TenMonAn)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TenMonAn)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.GiaTien)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.GiaTien)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.X)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.X)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.HinhAnh)
+        </dt>
+
+        <dd>
+            <img src="~/Images/BanhPizza/@Html.DisplayFor(model => model.HinhAnh)" style="max-width: 300px; max-height: 300px;" />
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LoaiBanh.TenLoaiBanh)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LoaiBanh.TenLoaiBanh)
+        </dd>
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.MaMonAn }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

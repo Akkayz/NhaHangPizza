@@ -28,15 +28,17 @@ namespace NhaHangPIzza.Models
         }
     
         public virtual DbSet<BAN> BANs { get; set; }
-        public virtual DbSet<ChiTietMonAn> ChiTietMonAns { get; set; }
-        public virtual DbSet<ChiTietNuocUong> ChiTietNuocUongs { get; set; }
-        public virtual DbSet<ChiTietThanhPhanBanh> ChiTietThanhPhanBanhs { get; set; }
+        public virtual DbSet<ChiTietMonAn_HoaDon> ChiTietMonAn_HoaDon { get; set; }
+        public virtual DbSet<ChiTietNuocUong_HoaDon> ChiTietNuocUong_HoaDon { get; set; }
         public virtual DbSet<Combo> Comboes { get; set; }
         public virtual DbSet<ComBo_PhanAn> ComBo_PhanAn { get; set; }
         public virtual DbSet<ComBo_PhanUong> ComBo_PhanUong { get; set; }
         public virtual DbSet<HoaDon> HoaDons { get; set; }
         public virtual DbSet<KichThuocBanh> KichThuocBanhs { get; set; }
+        public virtual DbSet<LoaiBanh> LoaiBanhs { get; set; }
         public virtual DbSet<MonAn> MonAns { get; set; }
+        public virtual DbSet<MonAn_ChiTiet> MonAn_ChiTiet { get; set; }
+        public virtual DbSet<MonAn_ThanhPhanBanh> MonAn_ThanhPhanBanh { get; set; }
         public virtual DbSet<NhanVien> NhanViens { get; set; }
         public virtual DbSet<NuocUong> NuocUongs { get; set; }
         public virtual DbSet<sysdiagram> sysdiagrams { get; set; }

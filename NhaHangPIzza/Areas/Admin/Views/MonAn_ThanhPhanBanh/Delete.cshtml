@@ -1,0 +1,41 @@
+﻿@model NhaHangPIzza.Models.MonAn_ThanhPhanBanh
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>MonAn_ThanhPhanBanh</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.MonAn.TenMonAn)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MonAn.TenMonAn)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.THANHPHANBANH.TenThanhPhan)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.THANHPHANBANH.TenThanhPhan)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

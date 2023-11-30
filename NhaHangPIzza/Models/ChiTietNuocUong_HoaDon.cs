@@ -12,20 +12,21 @@ namespace NhaHangPIzza.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class ChiTietThanhPhanBanh
+    public partial class ChiTietNuocUong_HoaDon
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public ChiTietThanhPhanBanh()
+        public ChiTietNuocUong_HoaDon()
         {
-            this.MonAns = new HashSet<MonAn>();
+            this.HoaDons = new HashSet<HoaDon>();
         }
     
-        public int IdChiTietThanhPhanBanh { get; set; }
-        public Nullable<int> IdThanhPhan { get; set; }
-        public Nullable<int> MaMonAn { get; set; }
+        public int MaNuocUong { get; set; }
+        public int IdChiTietNuocUong { get; set; }
+        public Nullable<int> SoLuong { get; set; }
+        public Nullable<int> MaHD { get; set; }
     
-        public virtual THANHPHANBANH THANHPHANBANH { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<MonAn> MonAns { get; set; }
+        public virtual ICollection<HoaDon> HoaDons { get; set; }
+        public virtual NuocUong NuocUong { get; set; }
     }
 }

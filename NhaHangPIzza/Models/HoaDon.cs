@@ -14,6 +14,12 @@ namespace NhaHangPIzza.Models
     
     public partial class HoaDon
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public HoaDon()
+        {
+            this.ChiTietMonAn_HoaDon = new HashSet<ChiTietMonAn_HoaDon>();
+        }
+    
         public int MaHD { get; set; }
         public bool TrangThai { get; set; }
         public System.DateTime ThoiGianThanhToan { get; set; }
@@ -24,8 +30,9 @@ namespace NhaHangPIzza.Models
         public Nullable<System.DateTime> ThoiGianDatHang { get; set; }
     
         public virtual BAN BAN { get; set; }
-        public virtual ChiTietMonAn ChiTietMonAn { get; set; }
-        public virtual ChiTietNuocUong ChiTietNuocUong { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<ChiTietMonAn_HoaDon> ChiTietMonAn_HoaDon { get; set; }
+        public virtual ChiTietNuocUong_HoaDon ChiTietNuocUong_HoaDon { get; set; }
         public virtual NhanVien NhanVien { get; set; }
     }
 }

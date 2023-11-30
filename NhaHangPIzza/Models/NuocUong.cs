@@ -17,7 +17,7 @@ namespace NhaHangPIzza.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public NuocUong()
         {
-            this.ChiTietNuocUongs = new HashSet<ChiTietNuocUong>();
+            this.ChiTietNuocUong_HoaDon = new HashSet<ChiTietNuocUong_HoaDon>();
             this.ComBo_PhanUong = new HashSet<ComBo_PhanUong>();
         }
     
@@ -26,7 +26,7 @@ namespace NhaHangPIzza.Models
         public decimal GiaTien { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ChiTietNuocUong> ChiTietNuocUongs { get; set; }
+        public virtual ICollection<ChiTietNuocUong_HoaDon> ChiTietNuocUong_HoaDon { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ComBo_PhanUong> ComBo_PhanUong { get; set; }
     }

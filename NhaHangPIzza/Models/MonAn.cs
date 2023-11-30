@@ -17,24 +17,27 @@ namespace NhaHangPIzza.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public MonAn()
         {
-            this.ChiTietMonAns = new HashSet<ChiTietMonAn>();
+            this.ChiTietMonAn_HoaDon = new HashSet<ChiTietMonAn_HoaDon>();
             this.ComBo_PhanAn = new HashSet<ComBo_PhanAn>();
+            this.MonAn_ChiTiet = new HashSet<MonAn_ChiTiet>();
+            this.MonAn_ThanhPhanBanh = new HashSet<MonAn_ThanhPhanBanh>();
         }
     
         public int MaMonAn { get; set; }
         public string TenMonAn { get; set; }
-        public int IdChiTietThanhPhan { get; set; }
-        public int IdVoBanh { get; set; }
-        public int IDKichThuocBanh { get; set; }
         public decimal GiaTien { get; set; }
-        public string LoaiBanh { get; set; }
+        public Nullable<int> IDLoaiBanh { get; set; }
+        public Nullable<bool> X { get; set; }
+        public string HinhAnh { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ChiTietMonAn> ChiTietMonAns { get; set; }
-        public virtual ChiTietThanhPhanBanh ChiTietThanhPhanBanh { get; set; }
+        public virtual ICollection<ChiTietMonAn_HoaDon> ChiTietMonAn_HoaDon { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ComBo_PhanAn> ComBo_PhanAn { get; set; }
-        public virtual KichThuocBanh KichThuocBanh { get; set; }
-        public virtual VOBANH VOBANH { get; set; }
+        public virtual LoaiBanh LoaiBanh { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<MonAn_ChiTiet> MonAn_ChiTiet { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<MonAn_ThanhPhanBanh> MonAn_ThanhPhanBanh { get; set; }
     }
 }

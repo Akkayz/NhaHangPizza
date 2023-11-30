@@ -1,0 +1,34 @@
+﻿@model List<NhaHangPIzza.Models.MonAn_ThanhPhanBanh>
+
+@{
+    ViewBag.Title = "XemThanhPhanBanh";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Xem Thành Phần Bánh cho @ViewBag.TenMonAn</h2>
+
+@if (Model.Any())
+{
+    <table class="table">
+        <tr>
+            <th>Thành Phần</th>
+            <th>Giá Tiền</th>
+        </tr>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.THANHPHANBANH.TenThanhPhan</td>
+                <td>@item.THANHPHANBANH.Giatien.ToString("C")</td>
+            </tr>
+        }
+    </table>
+}
+else
+{
+    <p>Bánh này chưa có thành phần nào.</p>
+}
+
+<div>
+    @Html.ActionLink("Quay lại", "Index")
+    @Html.ActionLink("Thêm Thành Phần", "Create", "MonAn_ThanhPhanBanh", new { MaMonAn = ViewBag.MaMonAn })
+</div>
