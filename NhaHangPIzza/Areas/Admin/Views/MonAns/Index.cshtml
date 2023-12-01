@@ -13,6 +13,9 @@
 <table class="table">
     <tr>
         <th>
+            @Html.DisplayNameFor(model => model.MaMonAn)
+        </th>
+        <th>
             @Html.DisplayNameFor(model => model.TenMonAn)
         </th>
         <th>
@@ -28,12 +31,15 @@
             @Html.DisplayNameFor(model => model.LoaiBanh.TenLoaiBanh)
         </th>
         <th></th>
-        <th>Thành Phần Bánh</th> <!-- Thêm cột mới -->
+        <th>Thành Phần Bánh</th>
     </tr>
 
     @foreach (var item in Model)
     {
         <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.MaMonAn)
+            </td>
             <td>
                 @Html.DisplayFor(modelItem => item.TenMonAn)
             </td>
@@ -55,7 +61,7 @@
                 @Html.ActionLink("Delete", "Delete", new { id = item.MaMonAn })
             </td>
             <td>
-                @Html.ActionLink("Xem Thành Phần", "Index", "MonAn_ThanhPhanBanh", new { maMonAn = item.MaMonAn }, null)
+                @Html.ActionLink("Xem Thành Phần", "Index", "MonAn_ThanhPhanBanh", new { maMonAn = item.MaMonAn, tenMonAn = item.TenMonAn }, null)
             </td>
         </tr>
     }

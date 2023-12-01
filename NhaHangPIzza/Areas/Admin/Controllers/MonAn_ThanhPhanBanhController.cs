@@ -15,7 +15,6 @@ namespace NhaHangPIzza.Areas.Admin.Controllers
         private QLNHAHANG_PIZZAEntities db = new QLNHAHANG_PIZZAEntities();
 
         // GET: Admin/MonAn_ThanhPhanBanh
-        // GET: Admin/MonAn_ThanhPhanBanh
         public ActionResult Index(int? maMonAn)
         {
             if (maMonAn == null)
@@ -30,6 +29,7 @@ namespace NhaHangPIzza.Areas.Admin.Controllers
                 .ToList();
 
             ViewBag.TenMonAn = db.MonAns.Where(m => m.MaMonAn == maMonAn).Select(m => m.TenMonAn).FirstOrDefault();
+            ViewBag.MaMonAn = maMonAn; // Thêm dòng này để truyền giá trị MaMonAn vào view
 
             return View(monAn_ThanhPhanBanh);
         }
@@ -49,16 +49,31 @@ namespace NhaHangPIzza.Areas.Admin.Controllers
             return View(monAn_ThanhPhanBanh);
         }
 
-        // GET: Admin/MonAn_ThanhPhanBanh/Create
-        public ActionResult Create()
+        [HttpGet]
+        public ActionResult Create(int? maMonAn)
         {
-            // Pass necessary data to the view
-            ViewBag.MaMonAn = new SelectList(db.MonAns, "MaMonAn", "TenMonAn");
+            if (maMonAn == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            // Lấy thông tin Mã và Tên Món Ăn từ database
+            var monAnInfo = db.MonAns.Find(maMonAn);
+            ViewBag.TenMonAn = monAnInfo?.TenMonAn;
+            ViewBag.MaMonAn = maMonAn;
+
+            // Khởi tạo đối tượng MonAn_ThanhPhanBanh với MaMonAn
+            var model = new MonAn_ThanhPhanBanh
+            {
+                MaMonAn = maMonAn
+            };
+
+            // Lấy danh sách IdThanhPhan từ database và đặt vào ViewBag.IdThanhPhan
             ViewBag.IdThanhPhan = new SelectList(db.THANHPHANBANHs, "IdThanhPhan", "TenThanhPhan");
-            return View();
+
+            return View(model);
         }
 
-        // POST: Admin/MonAn_ThanhPhanBanh/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "MaMonAn,IdThanhPhan,ID")] MonAn_ThanhPhanBanh monAn_ThanhPhanBanh)
@@ -67,12 +82,12 @@ namespace NhaHangPIzza.Areas.Admin.Controllers
             {
                 db.MonAn_ThanhPhanBanh.Add(monAn_ThanhPhanBanh);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", new { maMonAn = monAn_ThanhPhanBanh.MaMonAn });
             }
 
-            // Repopulate the dropdown lists if the model is not valid
-            ViewBag.MaMonAn = new SelectList(db.MonAns, "MaMonAn", "TenMonAn", monAn_ThanhPhanBanh.MaMonAn);
+            // Lấy danh sách IdThanhPhan từ database và đặt vào ViewBag.IdThanhPhan
             ViewBag.IdThanhPhan = new SelectList(db.THANHPHANBANHs, "IdThanhPhan", "TenThanhPhan", monAn_ThanhPhanBanh.IdThanhPhan);
+
             return View(monAn_ThanhPhanBanh);
         }
 

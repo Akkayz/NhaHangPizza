@@ -5,29 +5,25 @@
     Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
 }
 
-<h2>Create Thành Phần Bánh</h2>
+<h2>Create for Mã và Tên Món Ăn</h2>
 
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
 
     <div class="form-horizontal">
-        <h4>Chọn Món Ăn và Thành Phần Bánh</h4>
+        <h4>Mã Món Ăn: @ViewBag.MaMonAn</h4>
+
+        <h4>Tên Món Ăn: @ViewBag.TenMonAn</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.MaMonAn, "Món Ăn", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("MaMonAn", null, htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.MaMonAn, "", new { @class = "text-danger" })
-            </div>
-        </div>
+        @Html.HiddenFor(model => model.MaMonAn)
 
         <div class="form-group">
-            @Html.LabelFor(model => model.IdThanhPhan, "Thành Phần Bánh", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.IdThanhPhan, "IdThanhPhan", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownList("IdThanhPhan", null, htmlAttributes: new { @class = "form-control" })
+                @Html.DropDownList("IdThanhPhan", ViewBag.IdThanhPhan as SelectList, htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.IdThanhPhan, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -41,5 +37,5 @@
 }
 
 <div>
-    @Html.ActionLink("Quay lại", "Index")
+    @Html.ActionLink("Back to List", "Index")
 </div>
