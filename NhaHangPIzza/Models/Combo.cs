@@ -19,14 +19,19 @@ namespace NhaHangPIzza.Models
         {
             this.ComBo_PhanAn = new HashSet<ComBo_PhanAn>();
             this.ComBo_PhanUong = new HashSet<ComBo_PhanUong>();
+            this.HoaDons = new HashSet<HoaDon>();
         }
     
         public int MaCombo { get; set; }
         public string TenCombo { get; set; }
+        public Nullable<decimal> GiaTien { get; set; }
+        public string HinhAnh { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ComBo_PhanAn> ComBo_PhanAn { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ComBo_PhanUong> ComBo_PhanUong { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<HoaDon> HoaDons { get; set; }
     }
 }

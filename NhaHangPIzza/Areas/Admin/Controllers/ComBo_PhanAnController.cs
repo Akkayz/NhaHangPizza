@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
-using System.IO;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -11,116 +10,116 @@ using NhaHangPIzza.Models;
 
 namespace NhaHangPIzza.Areas.Admin.Controllers
 {
-    public class NuocUongsController : Controller
+    public class ComBo_PhanAnController : Controller
     {
         private readonly QLNHAHANG_PIZZAEntities db = new QLNHAHANG_PIZZAEntities();
 
-        // GET: Admin/NuocUongs
+        // GET: Admin/ComBo_PhanAn
         public ActionResult Index()
         {
-            return View(db.NuocUongs.ToList());
+            var comBo_PhanAn = db.ComBo_PhanAn.Include(c => c.Combo).Include(c => c.MonAn);
+            return View(comBo_PhanAn.ToList());
         }
 
-        // GET: Admin/NuocUongs/Details/5
+        // GET: Admin/ComBo_PhanAn/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            NuocUong nuocUong = db.NuocUongs.Find(id);
-            if (nuocUong == null)
+            ComBo_PhanAn comBo_PhanAn = db.ComBo_PhanAn.Find(id);
+            if (comBo_PhanAn == null)
             {
                 return HttpNotFound();
             }
-            return View(nuocUong);
+            return View(comBo_PhanAn);
         }
 
-        // GET: Admin/NuocUongs/Create
+        // GET: Admin/ComBo_PhanAn/Create
         public ActionResult Create()
         {
+            ViewBag.MaCombo = new SelectList(db.Comboes, "MaCombo", "TenCombo");
+            ViewBag.MaMonAn = new SelectList(db.MonAns, "MaMonAn", "TenMonAn");
             return View();
         }
 
-        // POST: Admin/NuocUongs/Create
+        // POST: Admin/ComBo_PhanAn/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "MaNuocUong,TenNuocUong,GiaTien,HinhAnh")] NuocUong nuocUong, HttpPostedFileBase HinhAnhUpload)
+        public ActionResult Create([Bind(Include = "MaCombo,MaMonAn,SoLuong,ID")] ComBo_PhanAn comBo_PhanAn)
         {
             if (ModelState.IsValid)
             {
-                if (HinhAnhUpload != null && HinhAnhUpload.ContentLength > 0)
-                {
-                    var fileName = Path.GetFileName(HinhAnhUpload.FileName);
-                    var path = Path.Combine(Server.MapPath("~/Images/NuocGiaiKhat/"), fileName);
-                    HinhAnhUpload.SaveAs(path);
-
-                    // Lưu tên file vào thuộc tính HinhAnh của đối tượng MonAn
-                    nuocUong.HinhAnh = fileName;
-                }
-                db.NuocUongs.Add(nuocUong);
+                db.ComBo_PhanAn.Add(comBo_PhanAn);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(nuocUong);
+            ViewBag.MaCombo = new SelectList(db.Comboes, "MaCombo", "TenCombo", comBo_PhanAn.MaCombo);
+            ViewBag.MaMonAn = new SelectList(db.MonAns, "MaMonAn", "TenMonAn", comBo_PhanAn.MaMonAn);
+            return View(comBo_PhanAn);
         }
 
-        // GET: Admin/NuocUongs/Edit/5
+        // GET: Admin/ComBo_PhanAn/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            NuocUong nuocUong = db.NuocUongs.Find(id);
-            if (nuocUong == null)
+            ComBo_PhanAn comBo_PhanAn = db.ComBo_PhanAn.Find(id);
+            if (comBo_PhanAn == null)
             {
                 return HttpNotFound();
             }
-            return View(nuocUong);
+            ViewBag.MaCombo = new SelectList(db.Comboes, "MaCombo", "TenCombo", comBo_PhanAn.MaCombo);
+            ViewBag.MaMonAn = new SelectList(db.MonAns, "MaMonAn", "TenMonAn", comBo_PhanAn.MaMonAn);
+            return View(comBo_PhanAn);
         }
 
-        // POST: Admin/NuocUongs/Edit/5
+        // POST: Admin/ComBo_PhanAn/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "MaNuocUong,TenNuocUong,GiaTien,HinhAnh")] NuocUong nuocUong)
+        public ActionResult Edit([Bind(Include = "MaCombo,MaMonAn,SoLuong,ID")] ComBo_PhanAn comBo_PhanAn)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(nuocUong).State = EntityState.Modified;
+                db.Entry(comBo_PhanAn).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(nuocUong);
+            ViewBag.MaCombo = new SelectList(db.Comboes, "MaCombo", "TenCombo", comBo_PhanAn.MaCombo);
+            ViewBag.MaMonAn = new SelectList(db.MonAns, "MaMonAn", "TenMonAn", comBo_PhanAn.MaMonAn);
+            return View(comBo_PhanAn);
         }
 
-        // GET: Admin/NuocUongs/Delete/5
+        // GET: Admin/ComBo_PhanAn/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            NuocUong nuocUong = db.NuocUongs.Find(id);
-            if (nuocUong == null)
+            ComBo_PhanAn comBo_PhanAn = db.ComBo_PhanAn.Find(id);
+            if (comBo_PhanAn == null)
             {
                 return HttpNotFound();
             }
-            return View(nuocUong);
+            return View(comBo_PhanAn);
         }
 
-        // POST: Admin/NuocUongs/Delete/5
+        // POST: Admin/ComBo_PhanAn/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            NuocUong nuocUong = db.NuocUongs.Find(id);
-            db.NuocUongs.Remove(nuocUong);
+            ComBo_PhanAn comBo_PhanAn = db.ComBo_PhanAn.Find(id);
+            db.ComBo_PhanAn.Remove(comBo_PhanAn);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

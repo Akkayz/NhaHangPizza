@@ -94,9 +94,9 @@
                             <div class="col-md-6">
                                 <div class="d-flex justify-content-end">
                                     <div class="input-group">
-                                        <input type="text" class="form-control " id="quantity1" value="10">
-                                        <button class="btn btn-outline-secondary" type="button" id="minusBtn">-</button>
-                                        <button class="btn btn-outline-secondary" type="button" id="plusBtn">+</button>
+                                        <input type="text" class="form-control quantityInput" value="10">
+                                        <button class="btn btn-outline-secondary minusBtn" type="button">-</button>
+                                        <button class="btn btn-outline-secondary plusBtn" type="button">+</button>
                                     </div>
                                 </div>
                             </div>
@@ -109,15 +109,17 @@
 </div>
 <script>
     $(document).ready(function () {
-        $("#plusBtn").click(function () {
-            $("#quantity1").val(function (i, val) {
-                return parseInt(val) + 1;
+        $(".plusBtn").click(function () {
+            var quantityInput = $(this).siblings(".quantityInput");
+            quantityInput.val(function (index, value) {
+                return +value + 1;
             });
         });
 
-        $("#minusBtn").click(function () {
-            $("#quantity1").val(function (i, val) {
-                return parseInt(val) - 1 > 0 ? parseInt(val) - 1 : 1;
+        $(".minusBtn").click(function () {
+            var quantityInput = $(this).siblings(".quantityInput");
+            quantityInput.val(function (index, value) {
+                return Math.max(+value - 1, 1);
             });
         });
     });

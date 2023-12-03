@@ -40,6 +40,7 @@
         <AssociationConnector Association="QLNHAHANG_PIZZAModel.FK_MonAn_ChiTiet_VOBANH" />
         <AssociationConnector Association="QLNHAHANG_PIZZAModel.FK_MonAn_ThanhPhanBanh_THANHPHANBANH1" />
         <AssociationConnector Association="QLNHAHANG_PIZZAModel.FK_TaiKhoan_NhanVien1" />
+        <AssociationConnector Association="QLNHAHANG_PIZZAModel.FK_HoaDon_Combo" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

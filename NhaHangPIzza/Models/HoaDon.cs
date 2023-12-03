@@ -28,11 +28,13 @@ namespace NhaHangPIzza.Models
         public int IdChiTietMonAn { get; set; }
         public Nullable<int> IdChiTietNuocUong { get; set; }
         public Nullable<System.DateTime> ThoiGianDatHang { get; set; }
+        public Nullable<int> MaComBo { get; set; }
     
         public virtual BAN BAN { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ChiTietMonAn_HoaDon> ChiTietMonAn_HoaDon { get; set; }
         public virtual ChiTietNuocUong_HoaDon ChiTietNuocUong_HoaDon { get; set; }
         public virtual NhanVien NhanVien { get; set; }
+        public virtual Combo Combo { get; set; }
     }
 }

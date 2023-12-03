@@ -1,18 +1,18 @@
 ﻿@{
-    ViewBag.Title = "NuocGiaiKhat";
+    ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_LayoutTrangChu.cshtml";
 }
 
 <div class="container mt-3">
     <div class="row">
-        @foreach (var nuocUong in ViewBag.DanhSachNuocUong)
+        @foreach (var comBo in ViewBag.DanhSachComBo)
         {
             <div class="col-md-4 d-flex flex-column align-items-center border p-3 mb-3">
                 <div class="mb-2 mx-auto">
-                    <img src="~/Images/NuocGiaiKhat/@nuocUong.HinhAnh" style="width:100px; min-height:300px;" alt="@nuocUong.TenNuocUong" class="img-fluid">
+                    <img src="~/Images/ComBo/@comBo.HinhAnh" style="width:300px; min-height:300px;" alt="@comBo.TenCombo" class="img-fluid">
                 </div>
                 <div class="text-center mb-2">
-                    <label class="form-label">@nuocUong.TenNuocUong</label>
+                    <label class="form-label">@comBo.TenCombo</label>
                 </div>
                 <div class="row mb-2">
                     <div class="col-md-6">
@@ -21,7 +21,7 @@
                     <div class="col-md-6">
                         <div class="d-flex justify-content-end">
                             <div class="input-group ">
-                                <input type="text" class="form-control" id="price1" value="@nuocUong.GiaTien" readonly>
+                                <input type="text" class="form-control" id="price1" value="@comBo.GiaTien" readonly>
                                 <div class="input-group-append">
                                     <span class="input-group-text">VNĐ</span>
                                 </div>
