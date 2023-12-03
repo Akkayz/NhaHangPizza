@@ -1,4 +1,6 @@
-﻿@{
+﻿@using NhaHangPIzza.Models
+
+@{
     ViewBag.Title = "Đơn hàng";
     Layout = "~/Views/Shared/_LayoutTrangChu.cshtml";
 }
@@ -7,10 +9,19 @@
     <h2>Thông tin đơn hàng</h2>
 
     <!-- Phần Mã Hoá Đơn -->
-    <div class="mb-4 border p-3">
-        <h5>Mã Hoá Đơn: <span class="text-primary">Số hoá đơn 123456</span></h5>
+    <div class="mb-4">
+        <label for="ddlBan" class="form-label">Tên bàn:</label>
+        <select id="ddlBan" class="form-select" onchange="checkPassword()">
+            @{
+                // Hiển thị danh sách bàn từ ViewBag.DanhSachBan
+                List<BAN> danhSachBan = ViewBag.DanhSachBan;
+                foreach (var ban in danhSachBan)
+                {
+                    <option value="@ban.Maban">@ban.TenBan</option>
+                }
+            }
+        </select>
     </div>
-
     <!-- Phần Bánh Pizza -->
     <div class="mb-4 border p-3">
         <h4>Bánh Pizza</h4>
@@ -112,27 +123,46 @@
     <div>
         <button class="btn btn-primary" onclick="placeOrder()">Đặt Hoá Đơn</button>
     </div>
+</div>
+<script>
+    // Khởi tạo biến isDropdownEnabled
+    var isDropdownEnabled = true;
 
-    <script>
-        function incrementQuantity(button) {
-            var quantityElement = $(button).parent().siblings('.col-md-2').find('.quantity');
-            var quantity = parseInt(quantityElement.text());
-            quantity++;
+    function checkPassword() {
+        if (!isDropdownEnabled) {
+            alert("Vui lòng nhập lại mật khẩu.");
+            return;
+        }
+
+        var password = prompt("Nhập mật khẩu để chọn bàn:");
+
+        // Kiểm tra mật khẩu
+        if (password === "1234") {
+            // Mật khẩu đúng, không cần làm gì cả
+        } else {
+            // Mật khẩu sai, không cho phép chọn bàn và reset dropdown về giá trị mặc định
+            document.getElementById("ddlBan").selectedIndex = 0;
+            alert("Mật khẩu không đúng. Vui lòng thử lại.");
+        }
+    }
+    function incrementQuantity(button) {
+        var quantityElement = $(button).parent().siblings('.col-md-2').find('.quantity');
+        var quantity = parseInt(quantityElement.text());
+        quantity++;
+        quantityElement.text(quantity);
+    }
+
+    function decrementQuantity(button) {
+        var quantityElement = $(button).parent().siblings('.col-md-2').find('.quantity');
+        var quantity = parseInt(quantityElement.text());
+
+        if (quantity > 1) {
+            quantity--;
             quantityElement.text(quantity);
         }
+    }
 
-        function decrementQuantity(button) {
-            var quantityElement = $(button).parent().siblings('.col-md-2').find('.quantity');
-            var quantity = parseInt(quantityElement.text());
-
-            if (quantity > 1) {
-                quantity--;
-                quantityElement.text(quantity);
-            }
-        }
-
-        function placeOrder() {
-            alert('Đã đặt hoá đơn thành công!');
-        }
-    </script>
-</div>
+    function placeOrder() {
+        alert('Đã đặt hoá đơn thành công!');
+    }
+</script>

@@ -114,65 +114,23 @@ namespace NhaHangPIzza.Areas.Admin.Controllers
             return View(monAn_ThanhPhanBanh);
         }
 
-        // GET: Admin/MonAn_ThanhPhanBanh/Edit/5
-        public ActionResult Edit(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            MonAn_ThanhPhanBanh monAn_ThanhPhanBanh = db.MonAn_ThanhPhanBanh.Find(id);
-            if (monAn_ThanhPhanBanh == null)
-            {
-                return HttpNotFound();
-            }
-            ViewBag.MaMonAn = new SelectList(db.MonAns, "MaMonAn", "TenMonAn", monAn_ThanhPhanBanh.MaMonAn);
-            ViewBag.IdThanhPhan = new SelectList(db.THANHPHANBANHs, "IdThanhPhan", "TenThanhPhan", monAn_ThanhPhanBanh.IdThanhPhan);
-            return View(monAn_ThanhPhanBanh);
-        }
-
-        // POST: Admin/MonAn_ThanhPhanBanh/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "MaMonAn,IdThanhPhan,ID")] MonAn_ThanhPhanBanh monAn_ThanhPhanBanh)
+        public ActionResult DeleteThanhPhan(int maMonAn, int idThanhPhan)
         {
-            if (ModelState.IsValid)
+            // Tìm và xoá thành phần từ database
+            var monAn_ThanhPhanBanh = db.MonAn_ThanhPhanBanh
+                .Where(m => m.MaMonAn == maMonAn && m.IdThanhPhan == idThanhPhan)
+                .FirstOrDefault();
+
+            if (monAn_ThanhPhanBanh != null)
             {
-                db.Entry(monAn_ThanhPhanBanh).State = EntityState.Modified;
+                db.MonAn_ThanhPhanBanh.Remove(monAn_ThanhPhanBanh);
                 db.SaveChanges();
-                return RedirectToAction("Index");
             }
-            ViewBag.MaMonAn = new SelectList(db.MonAns, "MaMonAn", "TenMonAn", monAn_ThanhPhanBanh.MaMonAn);
-            ViewBag.IdThanhPhan = new SelectList(db.THANHPHANBANHs, "IdThanhPhan", "TenThanhPhan", monAn_ThanhPhanBanh.IdThanhPhan);
-            return View(monAn_ThanhPhanBanh);
-        }
 
-        // GET: Admin/MonAn_ThanhPhanBanh/Delete/5
-        public ActionResult Delete(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            MonAn_ThanhPhanBanh monAn_ThanhPhanBanh = db.MonAn_ThanhPhanBanh.Find(id);
-            if (monAn_ThanhPhanBanh == null)
-            {
-                return HttpNotFound();
-            }
-            return View(monAn_ThanhPhanBanh);
-        }
-
-        // POST: Admin/MonAn_ThanhPhanBanh/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
-        {
-            MonAn_ThanhPhanBanh monAn_ThanhPhanBanh = db.MonAn_ThanhPhanBanh.Find(id);
-            db.MonAn_ThanhPhanBanh.Remove(monAn_ThanhPhanBanh);
-            db.SaveChanges();
-            return RedirectToAction("Index");
+            // Chuyển hướng về trang Index
+            return RedirectToAction("Index", new { maMonAn });
         }
 
         protected override void Dispose(bool disposing)

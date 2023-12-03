@@ -132,6 +132,7 @@
           <Property Name="MaNuocUong" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="TenNuocUong" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="GiaTien" Type="money" Nullable="false" />
+          <Property Name="HinhAnh" Type="varchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
@@ -782,6 +783,7 @@
           <Property Name="GiaTien" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
           <NavigationProperty Name="ChiTietNuocUong_HoaDon" Relationship="QLNHAHANG_PIZZAModel.pk_CHITIETNUOCUONG_NUOCUONG" FromRole="NuocUong" ToRole="ChiTietNuocUong_HoaDon" />
           <NavigationProperty Name="ComBo_PhanUong" Relationship="QLNHAHANG_PIZZAModel.FK_ComBo_PhanUong_NuocUong" FromRole="NuocUong" ToRole="ComBo_PhanUong" />
+          <Property Name="HinhAnh" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="sysdiagram">
           <Key>
@@ -1191,6 +1193,7 @@
           <EntitySetMapping Name="NuocUongs">
             <EntityTypeMapping TypeName="QLNHAHANG_PIZZAModel.NuocUong">
               <MappingFragment StoreEntitySet="NuocUong">
+                <ScalarProperty Name="HinhAnh" ColumnName="HinhAnh" />
                 <ScalarProperty Name="GiaTien" ColumnName="GiaTien" />
                 <ScalarProperty Name="TenNuocUong" ColumnName="TenNuocUong" />
                 <ScalarProperty Name="MaNuocUong" ColumnName="MaNuocUong" />

@@ -28,6 +28,15 @@
                         @item.THANHPHANBANH.Giatien.ToString("C")
                     }
                 </td>
+                <td>
+                    @using (Html.BeginForm("DeleteThanhPhan", "MonAn_ThanhPhanBanh", FormMethod.Post))
+                    {
+                        @Html.AntiForgeryToken()
+                        @Html.Hidden("maMonAn", item.MaMonAn)
+                        @Html.Hidden("idThanhPhan", item.IdThanhPhan)
+                        <button type="submit">Xoá</button>
+                    }
+                </td>
             </tr>
         }
     </table>

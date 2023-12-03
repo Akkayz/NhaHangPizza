@@ -11,7 +11,8 @@ namespace NhaHangPIzza.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.Globalization;
+    using System.Linq;
     public partial class MonAn
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -39,5 +40,23 @@ namespace NhaHangPIzza.Models
         public virtual ICollection<MonAn_ChiTiet> MonAn_ChiTiet { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<MonAn_ThanhPhanBanh> MonAn_ThanhPhanBanh { get; set; }
+
+        public string TinhTongGiaTienFormatted()
+        {
+            decimal tongGiaTien = this.GiaTien;
+
+            if (this.MonAn_ThanhPhanBanh != null && this.MonAn_ThanhPhanBanh.Any())
+            {
+                foreach (var tpb in this.MonAn_ThanhPhanBanh)
+                {
+                    if (tpb.THANHPHANBANH != null)
+                    {
+                        tongGiaTien += tpb.THANHPHANBANH.Giatien;
+                    }
+                }
+            }
+
+            return tongGiaTien.ToString("N0", CultureInfo.CurrentCulture);
+        }
     }
 }

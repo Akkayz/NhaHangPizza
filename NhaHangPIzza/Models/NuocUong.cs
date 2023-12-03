@@ -24,6 +24,7 @@ namespace NhaHangPIzza.Models
         public int MaNuocUong { get; set; }
         public string TenNuocUong { get; set; }
         public decimal GiaTien { get; set; }
+        public string HinhAnh { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ChiTietNuocUong_HoaDon> ChiTietNuocUong_HoaDon { get; set; }

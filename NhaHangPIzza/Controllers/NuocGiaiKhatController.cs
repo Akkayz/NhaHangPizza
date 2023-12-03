@@ -9,7 +9,7 @@ namespace NhaHangPIzza.Controllers
     public class NuocGiaiKhatController : Controller
     {
         // GET: NuocGiaiKhat
-        public ActionResult NuocGiaiKhat()
+        public ActionResult Index()
         {
             return View();
         }

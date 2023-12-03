@@ -121,11 +121,13 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
-    <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
+    <Compile Include="Areas\Admin\Controllers\BANsController.cs" />
+    <Compile Include="Areas\Admin\Controllers\HomeAdminController.cs" />
     <Compile Include="Areas\Admin\Controllers\KichThuocBanhsController.cs" />
     <Compile Include="Areas\Admin\Controllers\LoaiBanhsController.cs" />
     <Compile Include="Areas\Admin\Controllers\MonAnsController.cs" />
     <Compile Include="Areas\Admin\Controllers\MonAn_ThanhPhanBanhController.cs" />
+    <Compile Include="Areas\Admin\Controllers\NuocUongsController.cs" />
     <Compile Include="Areas\Admin\Controllers\THANHPHANBANHsController.cs" />
     <Compile Include="Areas\NhanVien\NhanVienAreaRegistration.cs" />
     <Compile Include="Controllers\BanhPizzaController.cs" />
@@ -233,15 +235,19 @@
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
-    <Content Include="Images\BanhPizza\Pizzaphomaicaocap.jpeg" />
-    <Content Include="Images\BanhPizza\Pizzazahoivaraubina.jpeg" />
+    <Content Include="Images\Cat1.jpg" />
     <Content Include="Images\Icon\819861.png" />
     <Content Include="Images\Icon\pizza.png" />
     <Content Include="Images\Icon\soda-can.png" />
     <Content Include="Images\NuocGiaiKhat\BonAqua.jpeg" />
     <Content Include="Images\NuocGiaiKhat\Burn.jpeg" />
     <Content Include="Images\NuocGiaiKhat\CocaCola.jpeg" />
+    <Content Include="Images\PizzaCaHoiVaRauChanVit.jpeg" />
+    <Content Include="Images\PizzaGaVoiDua.jpeg" />
     <Content Include="Images\PizzaHeader.png" />
+    <Content Include="Images\Pizzaphomaicaocap.jpeg" />
+    <Content Include="Images\PizzaTom.jpeg" />
+    <Content Include="Images\Pizzazahoivaraubina.jpeg" />
     <Content Include="Images\Red and Green Natural Italian Pizza Presentation.png" />
     <Content Include="Models\DbNhaHangPizza.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
@@ -262,7 +268,6 @@
     <Content Include="Areas\NhanVien\Views\web.config" />
     <Content Include="Areas\Admin\Views\web.config" />
     <Content Include="Areas\Admin\Views\Shared\_LayoutAdmin.cshtml" />
-    <Content Include="Areas\Admin\Views\Home\Index.cshtml" />
     <Content Include="Areas\Admin\Views\THANHPHANBANHs\Create.cshtml" />
     <Content Include="Areas\Admin\Views\THANHPHANBANHs\Delete.cshtml" />
     <Content Include="Areas\Admin\Views\THANHPHANBANHs\Details.cshtml" />
@@ -296,10 +301,18 @@
     <Content Include="Areas\Admin\Views\LoaiBanhs\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\LoaiBanhs\Index.cshtml" />
     <Content Include="Areas\Admin\Views\MonAn_ThanhPhanBanh\Create.cshtml" />
-    <Content Include="Areas\Admin\Views\MonAn_ThanhPhanBanh\Delete.cshtml" />
-    <Content Include="Areas\Admin\Views\MonAn_ThanhPhanBanh\Details.cshtml" />
-    <Content Include="Areas\Admin\Views\MonAn_ThanhPhanBanh\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\MonAn_ThanhPhanBanh\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\HomeAdmin\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\BANs\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\BANs\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\BANs\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\BANs\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\BANs\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\NuocUongs\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\NuocUongs\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\NuocUongs\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\NuocUongs\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\NuocUongs\Index.cshtml" />
     <None Include="Scripts\jquery-3.7.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.7.1.js" />
     <Content Include="Scripts\jquery-3.7.1.min.js" />
@@ -323,10 +336,10 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_LayoutTrangChu.cshtml" />
-    <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\BanhPizza\BanhPizza.cshtml" />
-    <Content Include="Views\NuocGiaiKhat\NuocGiaiKhat.cshtml" />
+    <Content Include="Views\BanhPizza\Index.cshtml" />
+    <Content Include="Views\NuocGiaiKhat\Index.cshtml" />
     <Content Include="Views\HoaDon\Index.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

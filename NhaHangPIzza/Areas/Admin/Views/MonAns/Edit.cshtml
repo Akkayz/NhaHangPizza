@@ -54,7 +54,14 @@
         <div class="form-group">
             @Html.LabelFor(model => model.HinhAnh, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                <img src="~/Images/BanhPizza/@Html.EditorFor(model => model.HinhAnh, new { htmlAttributes = new { @class = "form-control" } })" style="max-width: 300px; max-height: 300px;" />
+                @if (!string.IsNullOrEmpty(Model.HinhAnh))
+                {
+                    <img src="~/Images/BanhPizza/@Model.HinhAnh" style="max-width: 300px; max-height: 300px;" />
+                }
+                else
+                {
+                    <p>No image available</p>
+                }
 
                 @Html.ValidationMessageFor(model => model.HinhAnh, "", new { @class = "text-danger" })
             </div>
