@@ -6,7 +6,6 @@
 }
 
 <h2>Xem Thành Phần Bánh cho: @ViewBag.TenMonAn MaMonAn: @ViewBag.MaMonAn</h2>
-
 @if (Model.Any())
 {
     <table class="table">
@@ -17,8 +16,18 @@
         @foreach (var item in Model)
         {
             <tr>
-                <td>@item.THANHPHANBANH.TenThanhPhan</td>
-                <td>@item.THANHPHANBANH.Giatien.ToString("C")</td>
+                <td>
+                    @if (item.THANHPHANBANH != null)
+                    {
+                        @item.THANHPHANBANH.TenThanhPhan
+                    }
+                </td>
+                <td>
+                    @if (item.THANHPHANBANH != null && item.THANHPHANBANH.Giatien != null)
+                    {
+                        @item.THANHPHANBANH.Giatien.ToString("C")
+                    }
+                </td>
             </tr>
         }
     </table>

@@ -13,7 +13,6 @@
 
     <div class="form-horizontal">
         <h4>Mã Món Ăn: @ViewBag.MaMonAn</h4>
-
         <h4>Tên Món Ăn: @ViewBag.TenMonAn</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
@@ -21,10 +20,18 @@
         @Html.HiddenFor(model => model.MaMonAn)
 
         <div class="form-group">
-            @Html.LabelFor(model => model.IdThanhPhan, "IdThanhPhan", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.SelectedThanhPhans, "Chọn Thành Phần", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownList("IdThanhPhan", ViewBag.IdThanhPhan as SelectList, htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.IdThanhPhan, "", new { @class = "text-danger" })
+                @foreach (var thanhPhan in ViewBag.ThanhPhanList)
+                {
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox" name="SelectedThanhPhans" value="@thanhPhan.Value">
+                            @thanhPhan.Text
+                        </label>
+                    </div>
+                }
+                @Html.ValidationMessageFor(model => model.SelectedThanhPhans, "", new { @class = "text-danger" })
             </div>
         </div>
 

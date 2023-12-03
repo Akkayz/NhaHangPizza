@@ -12,7 +12,7 @@ namespace NhaHangPIzza.Areas.Admin.Controllers
 {
     public class MonAn_ThanhPhanBanhController : Controller
     {
-        private QLNHAHANG_PIZZAEntities db = new QLNHAHANG_PIZZAEntities();
+        private readonly QLNHAHANG_PIZZAEntities db = new QLNHAHANG_PIZZAEntities();
 
         // GET: Admin/MonAn_ThanhPhanBanh
         public ActionResult Index(int? maMonAn)
@@ -62,31 +62,54 @@ namespace NhaHangPIzza.Areas.Admin.Controllers
             ViewBag.TenMonAn = monAnInfo?.TenMonAn;
             ViewBag.MaMonAn = maMonAn;
 
-            // Khởi tạo đối tượng MonAn_ThanhPhanBanh với MaMonAn
+            // Lấy danh sách IdThanhPhan từ database và đặt vào ViewBag.ThanhPhanList
+            ViewBag.ThanhPhanList = db.THANHPHANBANHs.Select(t => new SelectListItem
+            {
+                Value = t.IdThanhPhan.ToString(),
+                Text = t.TenThanhPhan
+            });
+
+            // Khởi tạo đối tượng MonAn_ThanhPhanBanh với MaMonAn và SelectedThanhPhans là một List rỗng
             var model = new MonAn_ThanhPhanBanh
             {
-                MaMonAn = maMonAn
+                MaMonAn = maMonAn,
+                SelectedThanhPhans = new List<int>()
             };
-
-            // Lấy danh sách IdThanhPhan từ database và đặt vào ViewBag.IdThanhPhan
-            ViewBag.IdThanhPhan = new SelectList(db.THANHPHANBANHs, "IdThanhPhan", "TenThanhPhan");
 
             return View(model);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "MaMonAn,IdThanhPhan,ID")] MonAn_ThanhPhanBanh monAn_ThanhPhanBanh)
+        public ActionResult Create(MonAn_ThanhPhanBanh monAn_ThanhPhanBanh)
         {
             if (ModelState.IsValid)
             {
-                db.MonAn_ThanhPhanBanh.Add(monAn_ThanhPhanBanh);
-                db.SaveChanges();
+                // Bỏ qua giữa nếu SelectedThanhPhans là null hoặc không có giá trị
+                if (monAn_ThanhPhanBanh.SelectedThanhPhans != null && monAn_ThanhPhanBanh.SelectedThanhPhans.Any())
+                {
+                    foreach (var thanhPhanId in monAn_ThanhPhanBanh.SelectedThanhPhans)
+                    {
+                        var monAn_ThanhPhan = new MonAn_ThanhPhanBanh
+                        {
+                            MaMonAn = monAn_ThanhPhanBanh.MaMonAn,
+                            IdThanhPhan = thanhPhanId
+                        };
+
+                        db.MonAn_ThanhPhanBanh.Add(monAn_ThanhPhan);
+                    }
+
+                    db.SaveChanges();
+                }
+
                 return RedirectToAction("Index", new { maMonAn = monAn_ThanhPhanBanh.MaMonAn });
             }
 
-            // Lấy danh sách IdThanhPhan từ database và đặt vào ViewBag.IdThanhPhan
-            ViewBag.IdThanhPhan = new SelectList(db.THANHPHANBANHs, "IdThanhPhan", "TenThanhPhan", monAn_ThanhPhanBanh.IdThanhPhan);
+            ViewBag.ThanhPhanList = db.THANHPHANBANHs.Select(t => new SelectListItem
+            {
+                Value = t.IdThanhPhan.ToString(),
+                Text = t.TenThanhPhan
+            });
 
             return View(monAn_ThanhPhanBanh);
         }

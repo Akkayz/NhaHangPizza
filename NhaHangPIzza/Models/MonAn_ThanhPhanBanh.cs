@@ -17,7 +17,8 @@ namespace NhaHangPIzza.Models
         public Nullable<int> MaMonAn { get; set; }
         public Nullable<int> IdThanhPhan { get; set; }
         public int ID { get; set; }
-    
+        public List<int> SelectedThanhPhans { get; set; }
+
         public virtual MonAn MonAn { get; set; }
         public virtual THANHPHANBANH THANHPHANBANH { get; set; }
     }
