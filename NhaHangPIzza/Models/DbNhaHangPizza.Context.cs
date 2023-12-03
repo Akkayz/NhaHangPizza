@@ -28,6 +28,7 @@ namespace NhaHangPIzza.Models
         }
     
         public virtual DbSet<BAN> BANs { get; set; }
+        public virtual DbSet<ChiTietCombo> ChiTietComboes { get; set; }
         public virtual DbSet<ChiTietMonAn_HoaDon> ChiTietMonAn_HoaDon { get; set; }
         public virtual DbSet<ChiTietNuocUong_HoaDon> ChiTietNuocUong_HoaDon { get; set; }
         public virtual DbSet<Combo> Comboes { get; set; }

@@ -13,6 +13,7 @@ namespace NhaHangPIzza.Models
     using System.Collections.Generic;
     using System.Globalization;
     using System.Linq;
+
     public partial class MonAn
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -23,14 +24,14 @@ namespace NhaHangPIzza.Models
             this.MonAn_ChiTiet = new HashSet<MonAn_ChiTiet>();
             this.MonAn_ThanhPhanBanh = new HashSet<MonAn_ThanhPhanBanh>();
         }
-
+    
         public int MaMonAn { get; set; }
         public string TenMonAn { get; set; }
         public decimal GiaTien { get; set; }
         public Nullable<int> IDLoaiBanh { get; set; }
         public Nullable<bool> X { get; set; }
         public string HinhAnh { get; set; }
-
+    
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ChiTietMonAn_HoaDon> ChiTietMonAn_HoaDon { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

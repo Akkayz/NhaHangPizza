@@ -5,25 +5,28 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="9338fa1ba8e64f4b91aeecec89d89958" Name="Diagram1" ZoomLevel="88">
-        <EntityTypeShape EntityType="QLNHAHANG_PIZZAModel.BAN" Width="1.5" PointX="3.75" PointY="21" />
-        <EntityTypeShape EntityType="QLNHAHANG_PIZZAModel.ChiTietMonAn_HoaDon" Width="1.5" PointX="8.25" PointY="7.25" />
-        <EntityTypeShape EntityType="QLNHAHANG_PIZZAModel.ChiTietNuocUong_HoaDon" Width="1.5" PointX="3.75" PointY="18" />
-        <EntityTypeShape EntityType="QLNHAHANG_PIZZAModel.Combo" Width="1.5" PointX="3" PointY="3.5" />
-        <EntityTypeShape EntityType="QLNHAHANG_PIZZAModel.ComBo_PhanAn" Width="1.5" PointX="5.25" PointY="4.25" />
-        <EntityTypeShape EntityType="QLNHAHANG_PIZZAModel.ComBo_PhanUong" Width="1.5" PointX="6.25" PointY="13.75" />
-        <EntityTypeShape EntityType="QLNHAHANG_PIZZAModel.HoaDon" Width="1.5" PointX="6" PointY="16.75" />
-        <EntityTypeShape EntityType="QLNHAHANG_PIZZAModel.KichThuocBanh" Width="1.5" PointX="3" PointY="24.25" />
-        <EntityTypeShape EntityType="QLNHAHANG_PIZZAModel.LoaiBanh" Width="1.5" PointX="0.75" PointY="7.625" />
-        <EntityTypeShape EntityType="QLNHAHANG_PIZZAModel.MonAn" Width="1.5" PointX="3" PointY="6.75" />
-        <EntityTypeShape EntityType="QLNHAHANG_PIZZAModel.MonAn_ChiTiet" Width="1.5" PointX="5.25" PointY="10.25" />
-        <EntityTypeShape EntityType="QLNHAHANG_PIZZAModel.MonAn_ThanhPhanBanh" Width="1.5" PointX="5.25" PointY="7.375" />
-        <EntityTypeShape EntityType="QLNHAHANG_PIZZAModel.NhanVien" Width="1.5" PointX="3.75" PointY="14.125" />
-        <EntityTypeShape EntityType="QLNHAHANG_PIZZAModel.NuocUong" Width="1.5" PointX="1.5" PointY="18.125" />
-        <EntityTypeShape EntityType="QLNHAHANG_PIZZAModel.sysdiagram" Width="1.5" PointX="7.75" PointY="2.25" />
-        <EntityTypeShape EntityType="QLNHAHANG_PIZZAModel.TaiKhoan" Width="1.5" PointX="6" PointY="21.75" />
-        <EntityTypeShape EntityType="QLNHAHANG_PIZZAModel.THANHPHANBANH" Width="1.5" PointX="3" PointY="11.5" />
-        <EntityTypeShape EntityType="QLNHAHANG_PIZZAModel.VOBANH" Width="1.5" PointX="3" PointY="0.75" />
+        <EntityTypeShape EntityType="QLNHAHANG_PIZZAModel.BAN" Width="1.5" PointX="0.75" PointY="21.875" />
+        <EntityTypeShape EntityType="QLNHAHANG_PIZZAModel.ChiTietCombo" Width="1.5" PointX="0.75" PointY="30.125" />
+        <EntityTypeShape EntityType="QLNHAHANG_PIZZAModel.ChiTietMonAn_HoaDon" Width="1.5" PointX="5.25" PointY="9.5" />
+        <EntityTypeShape EntityType="QLNHAHANG_PIZZAModel.ChiTietNuocUong_HoaDon" Width="1.5" PointX="0.75" PointY="24.25" />
+        <EntityTypeShape EntityType="QLNHAHANG_PIZZAModel.Combo" Width="1.5" PointX="3" PointY="14.5" />
+        <EntityTypeShape EntityType="QLNHAHANG_PIZZAModel.ComBo_PhanAn" Width="1.5" PointX="5.25" PointY="6.5" />
+        <EntityTypeShape EntityType="QLNHAHANG_PIZZAModel.ComBo_PhanUong" Width="1.5" PointX="5.25" PointY="20.875" />
+        <EntityTypeShape EntityType="QLNHAHANG_PIZZAModel.HoaDon" Width="1.5" PointX="3" PointY="21.75" />
+        <EntityTypeShape EntityType="QLNHAHANG_PIZZAModel.KichThuocBanh" Width="1.5" PointX="3" PointY="2.5" />
+        <EntityTypeShape EntityType="QLNHAHANG_PIZZAModel.LoaiBanh" Width="1.5" PointX="0.75" PointY="6.875" />
+        <EntityTypeShape EntityType="QLNHAHANG_PIZZAModel.MonAn" Width="1.5" PointX="3" PointY="6.125" />
+        <EntityTypeShape EntityType="QLNHAHANG_PIZZAModel.MonAn_ChiTiet" Width="1.5" PointX="5.25" PointY="3.5" />
+        <EntityTypeShape EntityType="QLNHAHANG_PIZZAModel.MonAn_ThanhPhanBanh" Width="1.5" PointX="8.25" PointY="6.625" />
+        <EntityTypeShape EntityType="QLNHAHANG_PIZZAModel.NhanVien" Width="1.5" PointX="0.75" PointY="18" />
+        <EntityTypeShape EntityType="QLNHAHANG_PIZZAModel.NuocUong" Width="1.5" PointX="1.5" PointY="27.25" />
+        <EntityTypeShape EntityType="QLNHAHANG_PIZZAModel.sysdiagram" Width="1.5" PointX="7.75" PointY="3.5" />
+        <EntityTypeShape EntityType="QLNHAHANG_PIZZAModel.TaiKhoan" Width="1.5" PointX="3" PointY="18.5" />
+        <EntityTypeShape EntityType="QLNHAHANG_PIZZAModel.THANHPHANBANH" Width="1.5" PointX="6" PointY="0.75" />
+        <EntityTypeShape EntityType="QLNHAHANG_PIZZAModel.VOBANH" Width="1.5" PointX="3" PointY="10" />
         <AssociationConnector Association="QLNHAHANG_PIZZAModel.pk_BAN_HOADON" />
+        <AssociationConnector Association="QLNHAHANG_PIZZAModel.FK_ChiTietCombo_Combo" />
+        <AssociationConnector Association="QLNHAHANG_PIZZAModel.FK_HoaDon_ChiTietCombo" />
         <AssociationConnector Association="QLNHAHANG_PIZZAModel.FK_ChiTietMonAn_HoaDon_HoaDon" />
         <AssociationConnector Association="QLNHAHANG_PIZZAModel.pk_CHITIETMONAN_MONAN" />
         <AssociationConnector Association="QLNHAHANG_PIZZAModel.FK_HoaDon_ChiTietNuocUong" />
@@ -40,7 +43,6 @@
         <AssociationConnector Association="QLNHAHANG_PIZZAModel.FK_MonAn_ChiTiet_VOBANH" />
         <AssociationConnector Association="QLNHAHANG_PIZZAModel.FK_MonAn_ThanhPhanBanh_THANHPHANBANH1" />
         <AssociationConnector Association="QLNHAHANG_PIZZAModel.FK_TaiKhoan_NhanVien1" />
-        <AssociationConnector Association="QLNHAHANG_PIZZAModel.FK_HoaDon_Combo" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

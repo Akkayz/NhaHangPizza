@@ -144,6 +144,9 @@
     <Compile Include="Models\BAN.cs">
       <DependentUpon>DbNhaHangPizza.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\ChiTietCombo.cs">
+      <DependentUpon>DbNhaHangPizza.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\ChiTietMonAn_HoaDon.cs">
       <DependentUpon>DbNhaHangPizza.tt</DependentUpon>
     </Compile>

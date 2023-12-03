@@ -17,9 +17,9 @@ namespace NhaHangPIzza.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Combo()
         {
+            this.ChiTietComboes = new HashSet<ChiTietCombo>();
             this.ComBo_PhanAn = new HashSet<ComBo_PhanAn>();
             this.ComBo_PhanUong = new HashSet<ComBo_PhanUong>();
-            this.HoaDons = new HashSet<HoaDon>();
         }
     
         public int MaCombo { get; set; }
@@ -28,10 +28,10 @@ namespace NhaHangPIzza.Models
         public string HinhAnh { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<ChiTietCombo> ChiTietComboes { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ComBo_PhanAn> ComBo_PhanAn { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ComBo_PhanUong> ComBo_PhanUong { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<HoaDon> HoaDons { get; set; }
     }
 }
