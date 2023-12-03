@@ -5,120 +5,46 @@
 
 <div class="container mt-3">
     <div class="row">
-        <!-- Form NuocGiaiKhat 1 -->
-        <div class="col-md-4 d-flex flex-column align-items-center border p-3 mb-3">
-            <div class="mb-2 mx-auto">
-                <img src="~/Images/NuocGiaiKhat/CocaCola.jpeg" style="width:100px; min-height:200px; " alt="Hình Pizza 1" class="img-fluid">
-            </div>
-            <div class="text-center mb-2">
-                <label class="form-label">CocaCola</label>
-            </div>
-            <div class="row mb-2">
-                <div class="col-md-6">
-                    <label class="form-label justify-content-start" style="white-space: nowrap;">Giá tiền:</label>
+        @foreach (var nuocUong in ViewBag.DanhSachNuocUong)
+        {
+            <div class="col-md-4 d-flex flex-column align-items-center border p-3 mb-3">
+                <div class="mb-2 mx-auto">
+                    <img src="~/Images/NuocGiaiKhat/@nuocUong.HinhAnh" style="width:100px; min-height:300px;" alt="@nuocUong.TenNuocUong" class="img-fluid">
                 </div>
-                <div class="col-md-6">
-                    <div class="d-flex justify-content-end">
-                        <div class="input-group ">
-                            <input type="text" class="form-control" id="price1" value="300000" readonly>
-                            <div class="input-group-append">
-                                <span class="input-group-text">VNĐ</span>
+                <div class="text-center mb-2">
+                    <label class="form-label">@nuocUong.TenNuocUong</label>
+                </div>
+                <div class="row mb-2">
+                    <div class="col-md-6">
+                        <label class="form-label justify-content-start" style="white-space: nowrap;">Giá tiền:</label>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="d-flex justify-content-end">
+                            <div class="input-group ">
+                                <input type="text" class="form-control" id="price1" value="@nuocUong.GiaTien" readonly>
+                                <div class="input-group-append">
+                                    <span class="input-group-text">VNĐ</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row mb-2">
+                    <div class="col-md-6">
+                        <button type="submit" class="btn btn-primary justify-content-start">Chọn</button>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="d-flex justify-content-end">
+                            <div class="input-group">
+                                <input type="text" class="form-control " id="quantity1" value="10">
+                                <button class="btn btn-outline-secondary" type="button" id="minusBtn">-</button>
+                                <button class="btn btn-outline-secondary" type="button" id="plusBtn">+</button>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="row mb-2">
-                <div class="col-md-6">
-                    <button type="submit" class="btn btn-primary justify-content-start">Chọn</button>
-                </div>
-                <div class="col-md-6">
-                    <div class="d-flex justify-content-end">
-                        <div class="input-group">
-                            <input type="text" class="form-control " id="quantity1" value="10">
-                            <button class="btn btn-outline-secondary" type="button" id="minusBtn">-</button>
-                            <button class="btn btn-outline-secondary" type="button" id="plusBtn">+</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Form NuocGiaiKhat 2 -->
-        <div class="col-md-4 d-flex flex-column align-items-center border p-3 mb-3">
-            <div class="mb-2 mx-auto">
-                <img src="~/Images/NuocGiaiKhat/Burn.jpeg" style="width: 100px; min-height: 222px; " alt="Hình Pizza 1" class="img-fluid">
-            </div>
-            <div class="text-center mb-2">
-                <label class="form-label">Burn</label>
-            </div>
-            <div class="row mb-2">
-                <div class="col-md-6">
-                    <label class="form-label justify-content-start" style="white-space: nowrap;">Giá tiền:</label>
-                </div>
-                <div class="col-md-6">
-                    <div class="d-flex justify-content-end">
-                        <div class="input-group ">
-                            <input type="text" class="form-control" id="price1" value="300000" readonly>
-                            <div class="input-group-append">
-                                <span class="input-group-text">VNĐ</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row mb-2">
-                <div class="col-md-6">
-                    <button type="submit" class="btn btn-primary justify-content-start">Chọn</button>
-                </div>
-                <div class="col-md-6">
-                    <div class="d-flex justify-content-end">
-                        <div class="input-group">
-                            <input type="text" class="form-control " id="quantity1" value="10">
-                            <button class="btn btn-outline-secondary" type="button" id="minusBtn">-</button>
-                            <button class="btn btn-outline-secondary" type="button" id="plusBtn">+</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Form NuocGiaiKhat 3 -->
-        <div class="col-md-4 d-flex flex-column align-items-center border p-3 mb-3">
-            <div class="mb-2 mx-auto">
-                <img src="~/Images/NuocGiaiKhat/BonAqua.jpeg" style="width: 100px; min-height: 222px; " alt="Hình Pizza 1" class="img-fluid">
-            </div>
-            <div class="text-center mb-2">
-                <label class="form-label">BonAqua</label>
-            </div>
-            <div class="row mb-2">
-                <div class="col-md-6">
-                    <label class="form-label justify-content-start" style="white-space: nowrap;">Giá tiền:</label>
-                </div>
-                <div class="col-md-6">
-                    <div class="d-flex justify-content-end">
-                        <div class="input-group ">
-                            <input type="text" class="form-control" id="price1" value="300000" readonly>
-                            <div class="input-group-append">
-                                <span class="input-group-text">VNĐ</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row mb-2">
-                <div class="col-md-6">
-                    <button type="submit" class="btn btn-primary justify-content-start">Chọn</button>
-                </div>
-                <div class="col-md-6">
-                    <div class="d-flex justify-content-end">
-                        <div class="input-group">
-                            <input type="text" class="form-control " id="quantity1" value="10">
-                            <button class="btn btn-outline-secondary" type="button" id="minusBtn">-</button>
-                            <button class="btn btn-outline-secondary" type="button" id="plusBtn">+</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+        }
     </div>
 </div>
 

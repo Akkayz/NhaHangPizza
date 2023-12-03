@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -42,14 +43,23 @@ namespace NhaHangPIzza.Areas.Admin.Controllers
         }
 
         // POST: Admin/NuocUongs/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
+        // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "MaNuocUong,TenNuocUong,GiaTien")] NuocUong nuocUong)
+        public ActionResult Create([Bind(Include = "MaNuocUong,TenNuocUong,GiaTien,HinhAnh")] NuocUong nuocUong, HttpPostedFileBase HinhAnhUpload)
         {
             if (ModelState.IsValid)
             {
+                if (HinhAnhUpload != null && HinhAnhUpload.ContentLength > 0)
+                {
+                    var fileName = Path.GetFileName(HinhAnhUpload.FileName);
+                    var path = Path.Combine(Server.MapPath("~/Images/NuocGiaiKhat/"), fileName);
+                    HinhAnhUpload.SaveAs(path);
+
+                    // Lưu tên file vào thuộc tính HinhAnh của đối tượng MonAn
+                    nuocUong.HinhAnh = fileName;
+                }
                 db.NuocUongs.Add(nuocUong);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -74,11 +84,11 @@ namespace NhaHangPIzza.Areas.Admin.Controllers
         }
 
         // POST: Admin/NuocUongs/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
+        // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "MaNuocUong,TenNuocUong,GiaTien")] NuocUong nuocUong)
+        public ActionResult Edit([Bind(Include = "MaNuocUong,TenNuocUong,GiaTien,HinhAnh")] NuocUong nuocUong)
         {
             if (ModelState.IsValid)
             {
