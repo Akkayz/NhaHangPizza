@@ -19,9 +19,11 @@ namespace NhaHangPIzza.Models
         public int iIDLoaiBanh { get; set; }
         public string sLoaiBanh { get; set; }
 
+        public int iVoBanh { get; set; }
         public int iIdVoBanh { get; set; }
         public string sDoDay { get; set; }
 
+        public int iKichThuocBanh { get; set; }
         public int iIDKichThuocBanh { get; set; }
         public string sKichThuoc { get; set; }
 
@@ -32,7 +34,7 @@ namespace NhaHangPIzza.Models
             get { return iSoLuong * (int)dGiaTien; }
         }
 
-        public GioHang(int idMonAn, int iIDKichThuocBanh, int idVoBanh, int soLuong)
+        public GioHang(int idMonAn, int iIDKichThuocBanh, int idVoBanh, int soLuong, decimal GiaTien)
         {
             iMaMonAn = idMonAn;
 
@@ -41,12 +43,14 @@ namespace NhaHangPIzza.Models
             sHinhAnh = ma.HinhAnh;
             sLoaiBanh = ma.LoaiBanh.TenLoaiBanh;
 
-            VOBANH vb = db.VOBANHs.Single(v => v.IdVoBanh == idVoBanh);
+            iVoBanh = idVoBanh;
+            VOBANH vb = db.VOBANHs.Single(v => v.IdVoBanh == iVoBanh);
             sDoDay = vb.DoDay;
 
-            KichThuocBanh kt = db.KichThuocBanhs.Single(k => k.IDKichThuocBanh == iIDKichThuocBanh);
+            iKichThuocBanh = iIDKichThuocBanh;
+            KichThuocBanh kt = db.KichThuocBanhs.Single(k => k.IDKichThuocBanh == iKichThuocBanh);
             sKichThuoc = kt.KichThuoc;
-
+            dGiaTien = GiaTien;
             iSoLuong = soLuong;
         }
     }

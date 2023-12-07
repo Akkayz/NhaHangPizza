@@ -23,7 +23,7 @@ namespace NhaHangPIzza.Controllers
         }
 
         [HttpPost]
-        public ActionResult ThemMonAn(int idMonAn, int iIDKichThuocBanh, int idVoBanh, int soLuong)
+        public ActionResult ThemMonAn(int idMonAn, int iIDKichThuocBanh, int idVoBanh, int soLuong, string GiaTien)
         {
             // Lấy thông tin giỏ hàng từ Session
             List<GioHang> gioHang = Session["GioHang"] as List<GioHang>;
@@ -32,25 +32,36 @@ namespace NhaHangPIzza.Controllers
                 gioHang = new List<GioHang>();
             }
 
-            // Kiểm tra xem sản phẩm đã tồn tại trong giỏ hàng chưa
-            GioHang monAnTrongGioHang = gioHang.FirstOrDefault(item => item.iMaMonAn == idMonAn && item.iIDKichThuocBanh == iIDKichThuocBanh && item.iIdVoBanh == idVoBanh);
-            if (monAnTrongGioHang == null)
+            // Chuyển đổi chuỗi GiaTien sang decimal
+            if (decimal.TryParse(GiaTien, out decimal giaTienDecimal))
             {
-                // Nếu chưa có, thêm sản phẩm mới vào giỏ hàng
-                GioHang monAnMoi = new GioHang(idMonAn, iIDKichThuocBanh, idVoBanh, soLuong);
-                gioHang.Add(monAnMoi);
+                // Kiểm tra xem sản phẩm đã tồn tại trong giỏ hàng chưa
+                GioHang monAnTrongGioHang = gioHang.FirstOrDefault(item => item.iMaMonAn == idMonAn);
+                if (monAnTrongGioHang == null)
+                {
+                    // Nếu chưa có, thêm sản phẩm mới vào giỏ hàng
+                    GioHang monAnMoi = new GioHang(idMonAn, iIDKichThuocBanh, idVoBanh, soLuong, giaTienDecimal);
+                    gioHang.Add(monAnMoi);
+                }
+                else
+                {
+                    // Nếu đã có, cập nhật số lượng
+                    monAnTrongGioHang.iSoLuong += soLuong;
+                }
+
+                // Lưu thông tin giỏ hàng vào Session
+                Session["GioHang"] = gioHang;
+
+                // Chuyển hướng về trang Index
+                return RedirectToAction("Index");
             }
             else
             {
-                // Nếu đã có, cập nhật số lượng
-                monAnTrongGioHang.iSoLuong += soLuong;
+                // Xử lý trường hợp không thể chuyển đổi chuỗi sang decimal
+                // Có thể trả về một thông báo lỗi hoặc thực hiện xử lý khác tùy ý
+                // Ví dụ: ModelState.AddModelError("GiaTien", "Giá tiền không hợp lệ");
+                return RedirectToAction("Index");
             }
-
-            // Lưu thông tin giỏ hàng vào Session
-            Session["GioHang"] = gioHang;
-
-            // Chuyển hướng về trang Index
-            return RedirectToAction("Index");
         }
 
         public ActionResult XoaMonAn(int idMonAn, int iIDKichThuocBanh, int idVoBanh)
