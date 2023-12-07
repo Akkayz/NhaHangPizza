@@ -135,6 +135,7 @@
     <Compile Include="Areas\NhanVien\NhanVienAreaRegistration.cs" />
     <Compile Include="Controllers\BanhPizzaController.cs" />
     <Compile Include="Controllers\ComboController.cs" />
+    <Compile Include="Controllers\GioHangController.cs" />
     <Compile Include="Controllers\HoaDonController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\NuocGiaiKhatController.cs" />
@@ -177,6 +178,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DbNhaHangPizza.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Models\GioHang.cs" />
     <Compile Include="Models\HoaDon.cs">
       <DependentUpon>DbNhaHangPizza.tt</DependentUpon>
     </Compile>
@@ -216,6 +218,7 @@
     <Compile Include="Models\THANHPHANBANH.cs">
       <DependentUpon>DbNhaHangPizza.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\TinhTongTien.cs" />
     <Compile Include="Models\VOBANH.cs">
       <DependentUpon>DbNhaHangPizza.tt</DependentUpon>
     </Compile>
@@ -380,6 +383,7 @@
     <Content Include="Views\HoaDon\Index.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Combo\Index.cshtml" />
+    <Content Include="Views\GioHang\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -1,9 +1,23 @@
 ﻿@using NhaHangPIzza.Models
+
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_LayoutTrangChu.cshtml";
 }
-<!-- Loại bánh -->
+
+<style>
+    .mon-an-container {
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+
+    .mon-an-form {
+        height: 100%;
+    }
+</style>
+
 <!-- Loại bánh -->
 <ul class="nav nav-tabs">
     @foreach (var loaiBanh in Model)
@@ -23,90 +37,97 @@
             <div class="row">
                 @foreach (var monAn in danhSachMonAn)
                 {
-                    <!-- Form Pizza 1 -->
-                    <div class="col-md-4 d-flex flex-column align-items-center border p-1">
-                        <div class="mb-2 mx-auto">
-                            <img src="~/Images/BanhPizza/@monAn.HinhAnh" style="width:200px;" alt="Hình Pizza 1" class="img-fluid">
-                        </div>
-                        <div class="text-center mb-2">
-                            <label for="pizzaName1" class="form-label">@monAn.TenMonAn</label>
-                        </div>
-                        <!-- Thành phần món ăn -->
-                        <div class="mb-2">
-                            <div class="border p-2 d-flex flex-wrap" id="pizzaName1">
-                                @{
-                                    var thanhPhanBanhList = ((HashSet<MonAn_ThanhPhanBanh>)monAn.MonAn_ThanhPhanBanh).Select(tpb => tpb.THANHPHANBANH).ToList();
-                                    for (int i = 0; i < thanhPhanBanhList.Count; i++)
-                                    {
-                                        <div>@thanhPhanBanhList[i].TenThanhPhan</div>
-                                        if (i < thanhPhanBanhList.Count - 1)
-                                        {
-                                            <div>,</div>
-                                            <div>&nbsp;</div>
+                    <div class="col-md-4" style="width: 350px;">
+                        <!-- Form Pizza 1 -->
+                        <form action="@Url.Action("ThemMonAn", "GioHang")" method="post" class="mon-an-form">
+                            @Html.Hidden("idMonAn", (int)monAn.MaMonAn)
+
+                            <div class="d-flex flex-column align-items-center border p-1 mon-an-container">
+                                <div class="mb-2">
+                                    <img src="~/Images/BanhPizza/@monAn.HinhAnh" style="width:200px;" alt="Hình Pizza 1" class="img-fluid">
+                                </div>
+                                <div class="text-center mb-2">
+                                    <label class="form-label">@monAn.TenMonAn</label>
+                                </div>
+                                <div class="mb-2">
+                                    <div class="border p-2 d-flex flex-wrap" id="pizzaName1">
+                                        @{
+                                            var thanhPhanBanhList = ((HashSet<MonAn_ThanhPhanBanh>)monAn.MonAn_ThanhPhanBanh).Select(tpb => tpb.THANHPHANBANH).ToList();
+                                            for (int i = 0; i < thanhPhanBanhList.Count; i++)
+                                            {
+                                                <div>@thanhPhanBanhList[i].TenThanhPhan</div>
+                                                if (i < thanhPhanBanhList.Count - 1)
+                                                {
+                                                    <div>,</div>
+                                                    <div>&nbsp;</div>
+                                                }
+                                            }
                                         }
-                                    }
-                                }
-                            </div>
-                        </div>
-
-                        <div class="row mb-2">
-                            <div class="col-md-6 float-start">
-                                <label for="crustType1" class="form-label">Loại vỏ bánh</label>
-                                <!-- Use a dropdown list for KichThuocBanh -->
-                                <select class="form-control" id="crustType1" name="crustType1">
-                                    @foreach (var kichThuocBanh in ViewBag.DanhSachKichThuoc)
-                                    {
-                                        <option value="@kichThuocBanh.IDKichThuocBanh">@kichThuocBanh.KichThuoc</option>
-                                    }
-                                </select>
-                            </div>
-                            <div class="col-md-6 float-end">
-                                <label for="size1" class="form-label">Kích thước</label>
-                                <!-- Use a dropdown list for VoBanh -->
-                                <select class="form-control" id="size1" name="size1">
-                                    @foreach (var voBanh in ViewBag.DanhSachVoBanh)
-                                    {
-                                        <option value="@voBanh.IdVoBanh">@voBanh.DoDay</option>
-                                    }
-                                </select>
-                            </div>
-                        </div>
-
-                        <div class="row mb-2">
-                            <div class="col-md-6">
-                                <label class="form-label justify-content-start" style="white-space: nowrap;">Giá tiền:</label>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="d-flex justify-content-end">
-                                    <div class="input-group ">
-                                        <input type="text" class="form-control" id="price1" value="@monAn.TinhTongGiaTienFormatted()" readonly>
-                                        <div class="input-group-append">
-                                            <span class="input-group-text">VNĐ</span>
+                                    </div>
+                                </div>
+                                <div class="row mb-2">
+                                    <div class="col-md-12">
+                                        <label class="form-label">Loại vỏ bánh</label>
+                                        <!-- Use a dropdown list for VoBanh -->
+                                        <select class="form-control" id="idVoBanh" name="idVoBanh">
+                                            @foreach (var voBanh in ViewBag.DanhSachVoBanh)
+                                            {
+                                                <option value="@voBanh.IdVoBanh">@voBanh.DoDay</option>
+                                            }
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="row mb-2">
+                                    <div class="col-md-12">
+                                        <label class="form-label">Kích thước</label>
+                                        <!-- Use a dropdown list for KichThuocBanh -->
+                                        <select class="form-control" id="iIDKichThuocBanh" name="iIDKichThuocBanh">
+                                            @foreach (var kichThuocBanh in ViewBag.DanhSachKichThuoc)
+                                            {
+                                                <option value="@kichThuocBanh.IDKichThuocBanh">@kichThuocBanh.KichThuoc</option>
+                                            }
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="row mb-2">
+                                    <div class="col-md-12">
+                                        <label class="form-label justify-content-start" style="white-space: nowrap;">Giá tiền:</label>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="d-flex justify-content-end">
+                                            <div class="input-group ">
+                                                <input type="text" class="form-control" id="price1" value="@TinhTongTien.TinhTongGiaTienFormatted(monAn)" readonly>
+                                                <div class="input-group-append">
+                                                    <span class="input-group-text">VNĐ</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row mb-2">
+                                    <div class="col-md-7">
+                                        <button type="submit" class="btn btn-primary justify-content-start">Chọn</button>
+                                    </div>
+                                    <div class="col-md-5">
+                                        <div class="d-flex justify-content-end">
+                                            <div class="input-group">
+                                                <input type="text" class="form-control quantityInput" value="1" name="soLuong">
+                                                <button class="btn btn-outline-secondary minusBtn" type="button">-</button>
+                                                <button class="btn btn-outline-secondary plusBtn" type="button">+</button>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="row mb-2">
-                            <div class="col-md-6">
-                                <button type="submit" class="btn btn-primary justify-content-start">Chọn</button>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="d-flex justify-content-end">
-                                    <div class="input-group">
-                                        <input type="text" class="form-control quantityInput" value="10">
-                                        <button class="btn btn-outline-secondary minusBtn" type="button">-</button>
-                                        <button class="btn btn-outline-secondary plusBtn" type="button">+</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        </form>
                     </div>
                 }
             </div>
+            <div class="clearfix"></div>
         </div>
     }
 </div>
+
 <script>
     $(document).ready(function () {
         $(".plusBtn").click(function () {

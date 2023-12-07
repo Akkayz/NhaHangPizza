@@ -1,0 +1,47 @@
+﻿@model List<NhaHangPIzza.Models.GioHang>
+
+@{
+    ViewBag.Title = "Giỏ Hàng";
+    Layout = "~/Views/Shared/_LayoutTrangChu.cshtml";
+}
+
+<h2>Giỏ Hàng</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Hình Ảnh</th>
+            <th>Tên Món Ăn</th>
+            <th>Loại Bánh</th>
+            <th>Loại Vỏ Bánh</th>
+            <th>Kích Thước</th>
+            <th>Đơn Giá</th>
+            <th>Số Lượng</th>
+            <th>Thành Tiền</th>
+            <th>Xoá</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td><img src="~/Images/BanhPizza/@item.sHinhAnh" style="width:50px;" alt="@item.sTenMonAn"></td>
+                <td>@item.sTenMonAn</td>
+                <td>@item.sLoaiBanh</td>
+                <td>@item.sDoDay</td>
+                <td>@item.sKichThuoc</td>
+                <td>@item.dGiaTien</td>
+                <td>@item.iSoLuong</td>
+                <td>@item.dThanhTien</td>
+                <td>
+                    @Html.ActionLink("Xoá", "XoaMonAn", new { idMonAn = item.iMaMonAn, iIDKichThuocBanh = item.iIDKichThuocBanh, idVoBanh = item.iIdVoBanh })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<div class="text-center">
+    <a href="@Url.Action("Index", "BanhPizza")" class="btn btn-primary">Tiếp tục chọn món</a>
+    <a href="#" class="btn btn-success">Thanh toán</a>
+</div>
