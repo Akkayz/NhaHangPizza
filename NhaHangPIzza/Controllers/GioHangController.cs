@@ -36,7 +36,7 @@ namespace NhaHangPIzza.Controllers
             if (decimal.TryParse(GiaTien, out decimal giaTienDecimal))
             {
                 // Kiểm tra xem sản phẩm đã tồn tại trong giỏ hàng chưa
-                GioHang monAnTrongGioHang = gioHang.FirstOrDefault(item => item.iMaMonAn == idMonAn);
+                GioHang monAnTrongGioHang = gioHang.FirstOrDefault(item => item.iMaMonAn == idMonAn && item.iKichThuocBanh == iIDKichThuocBanh && item.iVoBanh == idVoBanh);
                 if (monAnTrongGioHang == null)
                 {
                     // Nếu chưa có, thêm sản phẩm mới vào giỏ hàng
