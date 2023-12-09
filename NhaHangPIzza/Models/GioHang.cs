@@ -10,6 +10,9 @@ namespace NhaHangPIzza.Models
     public class GioHang
     {
         private readonly QLNHAHANG_PIZZAEntities db = new QLNHAHANG_PIZZAEntities();
+
+        public List<NuocUong> GioHangNuocUong { get; set; }
+
         public int iMaMonAn { get; set; }
         public string sTenMonAn { get; set; }
 
@@ -52,6 +55,8 @@ namespace NhaHangPIzza.Models
             sKichThuoc = kt.KichThuoc;
             dGiaTien = GiaTien;
             iSoLuong = soLuong;
+
+            GioHangNuocUong = new List<NuocUong>();
         }
     }
 }
