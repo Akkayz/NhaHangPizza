@@ -6,22 +6,33 @@
     Layout = "~/Views/Shared/_LayoutTrangChu.cshtml";
 }
 
+<div class="mb-4">
+    <label for="ddlBan" class="form-label">Tên bàn:</label>
+    <select id="ddlBan" class="form-select" onchange="checkPassword()">
+        @{
+            List<BAN> danhSachBan = ViewBag.DanhSachBan;
+            foreach (var ban in danhSachBan)
+            {
+                <option value="@ban.Maban">@ban.TenBan</option>
+            }
+        }
+    </select>
+</div>
+
 <div class="container mt-3">
     <h2>Giỏ Hàng Món Ăn</h2>
-    <table class="table">
-        <thead>
+    <table class="table table-bordered table-hover">
+        <thead class="table-light">
             <tr>
-            <tr>
-                <th>Hình Ảnh</th>
-                <th>Tên Món Ăn</th>
-                <th>Loại Bánh</th>
-                <th>Loại Vỏ Bánh</th>
-                <th>Kích Thước</th>
-                <th>Đơn Giá</th>
-                <th>Số Lượng</th>
-                <th>Thành Tiền</th>
-                <th>Xoá</th>
-            </tr>
+                <th scope="col">Hình Ảnh</th>
+                <th scope="col">Tên Món Ăn</th>
+                <th scope="col">Loại Bánh</th>
+                <th scope="col">Loại Vỏ Bánh</th>
+                <th scope="col">Kích Thước</th>
+                <th scope="col">Đơn Giá</th>
+                <th scope="col">Số Lượng</th>
+                <th scope="col">Thành Tiền</th>
+                <th></th>
             </tr>
         </thead>
         <tbody>
@@ -37,7 +48,7 @@
                     <td>@item.iSoLuong</td>
                     <td>@string.Format("{0:N0}", item.dThanhTien)</td>
                     <td>
-                        @Html.ActionLink("Xoá", "XoaMonAn", new { idMonAn = item.iMaMonAn, iIDKichThuocBanh = item.iIDKichThuocBanh, idVoBanh = item.iIdVoBanh })
+                        @Html.ActionLink("Xoá", "XoaMonAn", new { idMonAn = item.iMaMonAn, iIDKichThuocBanh = item.iIDKichThuocBanh, idVoBanh = item.iIdVoBanh }, new { @class = "btn btn-danger btn-sm" })
                     </td>
                 </tr>
             }
@@ -45,14 +56,14 @@
     </table>
 
     <h2>Giỏ Hàng Nước Uống</h2>
-    <table class="table">
-        <thead>
+    <table class="table table-bordered table-hover">
+        <thead class="table-light">
             <tr>
-                <th>Hình ảnh</th>
-                <th>Tên Nước Uống</th>
-                <th>Đơn giá</th>
-                <th>Số lượng</th>
-                <th>Thành tiền</th>
+                <th scope="col">Hình ảnh</th>
+                <th scope="col">Tên Nước Uống</th>
+                <th scope="col">Đơn giá</th>
+                <th scope="col">Số lượng</th>
+                <th scope="col">Thành tiền</th>
                 <th></th>
             </tr>
         </thead>
@@ -66,10 +77,59 @@
                     <td>@item.iSoLuong</td>
                     <td>@string.Format("{0:N0}", item.dThanhTien)</td>
                     <td>
-                        <a href="@Url.Action("XoaNuocUong", "GioHang", new { idNuocUong = item.iMaNuocUong })">Xóa</a>
+                        <a href="@Url.Action("XoaNuocUong", "GioHang", new { idNuocUong = item.iMaNuocUong })" class="btn btn-danger btn-sm">Xóa</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <h2>Giỏ Hàng Combo</h2>
+    <table class="table table-bordered table-hover">
+        <thead class="table-light">
+            <tr>
+                <th scope="col">Hình ảnh</th>
+                <th scope="col">Tên Combo</th>
+                <th scope="col">Đơn giá</th>
+                <th scope="col">Số lượng</th>
+                <th scope="col">Thành tiền</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in ViewBag.GioHangCombo as List<GioHangCombo>)
+            {
+                <tr>
+                    <td><img src="~/Images/ComBo/@item.sHinhAnh" style="width:50px;" alt="@item.sTenCombo"></td>
+                    <td>@item.sTenCombo</td>
+                    <td>@string.Format("{0:N0}", item.dGiaTien)</td>
+                    <td>@item.iSoLuong</td>
+                    <td>@string.Format("{0:N0}", item.dThanhTien)</td>
+                    <td>
+                        <a href="@Url.Action("XoaCombo", "GioHang", new { idCombo = item.iMaCombo })" class="btn btn-danger btn-sm">Xóa</a>
                     </td>
                 </tr>
             }
         </tbody>
     </table>
 </div>
+
+<script>
+    var isDropdownEnabled = true;
+
+    function checkPassword() {
+        if (!isDropdownEnabled) {
+            alert("Vui lòng nhập lại mật khẩu.");
+            return;
+        }
+
+        var password = prompt("Nhập mật khẩu để chọn bàn:");
+
+        if (password === "1234") {
+            // Mật khẩu đúng, không cần làm gì cả
+        } else {
+            document.getElementById("ddlBan").selectedIndex = 0;
+            alert("Mật khẩu không đúng. Vui lòng thử lại.");
+        }
+    }
+</script>

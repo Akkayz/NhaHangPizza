@@ -178,6 +178,7 @@
       <DependentUpon>DbNhaHangPizza.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\GioHang.cs" />
+    <Compile Include="Models\GioHangCombo.cs" />
     <Compile Include="Models\GioHangNuocUong.cs" />
     <Compile Include="Models\HoaDon.cs">
       <DependentUpon>DbNhaHangPizza.tt</DependentUpon>

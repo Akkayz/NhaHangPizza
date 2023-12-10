@@ -3,46 +3,41 @@
     Layout = "~/Views/Shared/_LayoutTrangChu.cshtml";
 }
 
+<style>
+    .card-img-top {
+        object-fit: cover; /* Ensure the image covers the entire container */
+        height: 300px; /* Set a fixed height for consistent appearance */
+    }
+</style>
+
 <div class="container mt-3">
     <div class="row">
-        @foreach (var comBo in ViewBag.DanhSachComBo)
+        @foreach (var combo in ViewBag.DanhSachComBo)
         {
-            <div class="col-md-4 d-flex flex-column align-items-center border p-3 mb-3">
-                <div class="mb-2 mx-auto">
-                    <img src="~/Images/ComBo/@comBo.HinhAnh" style="width:300px; min-height:300px;" alt="@comBo.TenCombo" class="img-fluid">
-                </div>
-                <div class="text-center mb-2">
-                    <label class="form-label">@comBo.TenCombo</label>
-                </div>
-                <div class="row mb-2">
-                    <div class="col-md-6">
-                        <label class="form-label justify-content-start" style="white-space: nowrap;">Giá tiền:</label>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="d-flex justify-content-end">
-                            <div class="input-group ">
-                                <input type="text" class="form-control" id="price1" value="@comBo.GiaTien" readonly>
-                                <div class="input-group-append">
-                                    <span class="input-group-text">VNĐ</span>
-                                </div>
-                            </div>
+            <div class="col-md-4 mb-3">
+                <form action="@Url.Action("ThemCombo", "GioHang")" method="post" class="mon-an-form">
+                    @Html.Hidden("idCombo", (int)combo.MaCombo)
+                    <div class="card">
+                        <img src="~/Images/ComBo/@combo.HinhAnh" alt="@combo.TenCombo" class="card-img-top">
+                        <div class="card-body text-center">
+                            <h5 class="card-title">@combo.TenCombo</h5>
+                            <p class="card-text">
+                                <strong>Giá tiền:</strong>
+                                <span class="price">@string.Format("{0:N0}", combo.GiaTien)</span> VNĐ
+                            </p>
                         </div>
-                    </div>
-                </div>
-                <div class="row mb-2">
-                    <div class="col-md-6">
-                        <button type="submit" class="btn btn-primary justify-content-start">Chọn</button>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="d-flex justify-content-end">
+                        <div class="d-flex justify-content-between p-3">
+                            <div>
+                                <button type="submit" class="btn btn-primary">Chọn</button>
+                            </div>
                             <div class="input-group">
-                                <input type="text" class="form-control quantityInput" value="10">
+                                <input type="text" class="form-control quantityInput" value="1" name="soLuong">
                                 <button class="btn btn-outline-secondary minusBtn" type="button">-</button>
                                 <button class="btn btn-outline-secondary plusBtn" type="button">+</button>
                             </div>
                         </div>
                     </div>
-                </div>
+                </form>
             </div>
         }
     </div>

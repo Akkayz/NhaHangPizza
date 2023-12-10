@@ -7,48 +7,38 @@
     <div class="row">
         @foreach (var nuocUong in ViewBag.DanhSachNuocUong)
         {
-            <form action="@Url.Action("ThemNuocUong", "GioHang")" method="post" class="mon-an-form">
-                @Html.Hidden("idNuocUong", (int)nuocUong.MaNuocUong)
+            <div class="col-md-4 mb-3">
+                <form action="@Url.Action("ThemNuocUong", "GioHang")" method="post" class="mon-an-form">
+                    @Html.Hidden("idNuocUong", (int)nuocUong.MaNuocUong)
 
-                <div class="col-md-4 d-flex flex-column align-items-center border p-3 mb-3">
-                    <div class="mb-2 mx-auto">
-                        <img src="~/Images/NuocGiaiKhat/@nuocUong.HinhAnh" style="width:100px; min-height:300px;" alt="@nuocUong.TenNuocUong" class="img-fluid">
-                    </div>
-                    <div class="text-center mb-2">
-                        <label class="form-label">@nuocUong.TenNuocUong</label>
-                    </div>
-                    <div class="row mb-2">
-                        <div class="col-md-6">
-                            <label class="form-label justify-content-start" style="white-space: nowrap;">Giá tiền:</label>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="d-flex justify-content-end">
-                                <div class="input-group">
-                                    <input type="text" class="form-control" id="price1" value="@string.Format("{0:N0}", nuocUong.GiaTien)" readonly>
-                                    <div class="input-group-append">
-                                        <span class="input-group-text">VNĐ</span>
-                                    </div>
+                    <div class="card">
+                        <img src="~/Images/NuocGiaiKhat/@nuocUong.HinhAnh" alt="@nuocUong.TenNuocUong" class="card-img-top" style="max-height: 200px; width: 100%; object-fit: contain;">
+                        <div class="card-body text-center">
+                            <h5 class="card-title">@nuocUong.TenNuocUong</h5>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div>
+                                    <p class="card-text">
+                                        <strong>Giá tiền:</strong>
+                                    </p>
+                                </div>
+                                <div class="price">
+                                    <span>@string.Format("{0:N0}", nuocUong.GiaTien)</span> VNĐ
                                 </div>
                             </div>
                         </div>
-                    </div>
-
-                    <div class="row mb-2">
-                        <div class="col-md-6">
-                            <button type="submit" class="btn btn-primary justify-content-start">Chọn</button>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="d-flex justify-content-end">
-                                <div class="input-group">
-                                    <input type="text" class="form-control quantityInput" value="1" name="soLuong">
-                                    <button class="btn btn-outline-secondary minusBtn" type="button">-</button>
-                                    <button class="btn btn-outline-secondary plusBtn" type="button">+</button>
-                                </div>
+                        <div class="d-flex justify-content-between p-1">
+                            <div>
+                                <button type="submit" class="btn btn-primary">Chọn</button>
+                            </div>
+                            <div class="input-group">
+                                <input type="text" class="form-control quantityInput" value="1" name="soLuong">
+                                <button class="btn btn-outline-secondary minusBtn" type="button">-</button>
+                                <button class="btn btn-outline-secondary plusBtn" type="button">+</button>
                             </div>
                         </div>
                     </div>
-                </div>
-            </form>
+                </form>
+            </div>
         }
     </div>
 </div>

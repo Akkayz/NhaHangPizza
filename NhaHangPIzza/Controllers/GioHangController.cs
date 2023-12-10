@@ -18,8 +18,6 @@ namespace NhaHangPIzza.Controllers
             {
                 gioHangMonAn = new List<GioHang>();
             }
-
-            // Lưu thông tin giỏ hàng món ăn vào ViewBag
             ViewBag.GioHangMonAn = gioHangMonAn;
 
             // Lấy thông tin giỏ hàng từ Session cho nước uống
@@ -28,9 +26,18 @@ namespace NhaHangPIzza.Controllers
             {
                 gioHangNuocUong = new List<GioHangNuocUong>();
             }
-
-            // Lưu thông tin giỏ hàng nước uống vào ViewBag
             ViewBag.GioHangNuocUong = gioHangNuocUong;
+
+            List<GioHangCombo> gioHangCombo = Session["GioHangCombo"] as List<GioHangCombo>;
+            if (gioHangCombo == null)
+            {
+                gioHangCombo = new List<GioHangCombo>();
+            }
+
+            ViewBag.GioHangCombo = gioHangCombo;
+
+            List<BAN> danhSachBan = db.BANs.ToList();
+            ViewBag.DanhSachBan = danhSachBan;
 
             return View();
         }
@@ -138,6 +145,96 @@ namespace NhaHangPIzza.Controllers
                 // Có thể thêm logic xử lý lỗi tùy ý
                 return RedirectToAction("Index");
             }
+        }
+
+        public ActionResult XoaNuocUong(int idNuocUong)
+        {
+            // Lấy thông tin giỏ hàng từ Session
+            List<GioHangNuocUong> gioHangNuocUong = Session["GioHangNuocUong"] as List<GioHangNuocUong>;
+            if (gioHangNuocUong == null)
+            {
+                gioHangNuocUong = new List<GioHangNuocUong>();
+            }
+
+            // Tìm sản phẩm cần xóa
+            GioHangNuocUong nuocUongCanXoa = gioHangNuocUong.Find(item => item.iMaNuocUong == idNuocUong);
+            if (nuocUongCanXoa != null)
+            {
+                // Nếu sản phẩm tồn tại, xóa khỏi giỏ hàng
+                gioHangNuocUong.Remove(nuocUongCanXoa);
+            }
+
+            // Lưu thông tin giỏ hàng vào Session
+            Session["GioHang"] = gioHangNuocUong;
+
+            // Chuyển hướng về trang Index
+            return RedirectToAction("Index");
+        }
+
+        // Phần Combo
+        [HttpPost]
+        public ActionResult ThemCombo(int idCombo, string soLuong)
+        {
+            // Chuyển đổi giá trị soLuong sang kiểu số nguyên
+            if (int.TryParse(soLuong, out int soLuongInt))
+            {
+                // Lấy thông tin giỏ hàng từ Session
+                List<GioHangCombo> gioHangCombo = Session["GioHangCombo"] as List<GioHangCombo>;
+                if (gioHangCombo == null)
+                {
+                    gioHangCombo = new List<GioHangCombo>();
+                }
+
+                // Kiểm tra xem nước uống đã tồn tại trong giỏ hàng chưa
+                GioHangCombo comboTrongGioHang = gioHangCombo.Find(item => item.iMaCombo == idCombo);
+                if (comboTrongGioHang == null)
+                {
+                    // Nếu chưa có, thêm nước uống mới vào giỏ hàng nước uống
+                    GioHangCombo comboMoi = new GioHangCombo(idCombo, soLuongInt);
+                    gioHangCombo.Add(comboMoi);
+                }
+                else
+                {
+                    // Nếu đã có, cập nhật số lượng
+                    comboTrongGioHang.iSoLuong += soLuongInt;
+                }
+
+                // Lưu thông tin giỏ hàng nước uống vào Session
+                Session["GioHangCombo"] = gioHangCombo;
+
+                // Chuyển hướng về trang Index
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                // Xử lý trường hợp không thể chuyển đổi chuỗi sang số nguyên
+                // Có thể thêm logic xử lý lỗi tùy ý
+                return RedirectToAction("Index");
+            }
+        }
+
+        public ActionResult XoaCombo(int idCombo)
+        {
+            // Lấy thông tin giỏ hàng từ Session
+            List<GioHangCombo> gioHangCombo = Session["GioHangCombo"] as List<GioHangCombo>;
+            if (gioHangCombo == null)
+            {
+                gioHangCombo = new List<GioHangCombo>();
+            }
+
+            // Tìm sản phẩm cần xóa
+            GioHangCombo comboCanXoa = gioHangCombo.Find(item => item.iMaCombo == idCombo);
+            if (comboCanXoa != null)
+            {
+                // Nếu sản phẩm tồn tại, xóa khỏi giỏ hàng
+                gioHangCombo.Remove(comboCanXoa);
+            }
+
+            // Lưu thông tin giỏ hàng vào Session
+            Session["GioHang"] = gioHangCombo;
+
+            // Chuyển hướng về trang Index
+            return RedirectToAction("Index");
         }
     }
 }
