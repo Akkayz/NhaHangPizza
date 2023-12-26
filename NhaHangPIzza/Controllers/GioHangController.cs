@@ -278,7 +278,6 @@ namespace NhaHangPIzza.Controllers
 
                         db.ChiTietMonAn_HoaDon.Add(chiTietMonAn);
                         db.SaveChanges(); // Lưu để có thể lấy được Id
-                        hoaDon.IdChiTietMonAn = chiTietMonAn.IdChiTietMonAn;
                     }
                 }
 
@@ -298,7 +297,6 @@ namespace NhaHangPIzza.Controllers
 
                         db.ChiTietNuocUong_HoaDon.Add(chiTietNuocUong);
                         db.SaveChanges(); // Lưu để có thể lấy được Id
-                        hoaDon.IdChiTietNuocUong = chiTietNuocUong.IdChiTietNuocUong;
                     }
                 }
 
@@ -318,7 +316,6 @@ namespace NhaHangPIzza.Controllers
 
                         db.ChiTietComboes.Add(chiTietCombo);
                         db.SaveChanges(); // Lưu để có thể lấy được Id
-                        hoaDon.IDChiTietComBo = chiTietCombo.IDChiTietComBo;
                     }
                 }
 
@@ -352,21 +349,21 @@ namespace NhaHangPIzza.Controllers
             var chiTietMonAnList = db.ChiTietMonAn_HoaDon.Where(ct => ct.MaHD == maHoaDon).ToList();
             foreach (var chiTietMonAn in chiTietMonAnList)
             {
-                totalAmount += chiTietMonAn.GiaTien ?? 0;
+                totalAmount += (chiTietMonAn.GiaTien ?? 0) * chiTietMonAn.SoLuong ?? 1;
             }
 
             // Tính tổng tiền từ chi tiết hóa đơn (nước uống)
             var chiTietNuocUongList = db.ChiTietNuocUong_HoaDon.Where(ct => ct.MaHD == maHoaDon).ToList();
             foreach (var chiTietNuocUong in chiTietNuocUongList)
             {
-                totalAmount += chiTietNuocUong.GiaTien ?? 0;
+                totalAmount += (chiTietNuocUong.GiaTien ?? 0) * chiTietNuocUong.SoLuong ?? 1;
             }
 
             // Tính tổng tiền từ chi tiết hóa đơn (combo)
             var chiTietComboList = db.ChiTietComboes.Where(ct => ct.MaHD == maHoaDon).ToList();
             foreach (var chiTietCombo in chiTietComboList)
             {
-                totalAmount += chiTietCombo.GiaTien ?? 0;
+                totalAmount += (chiTietCombo.GiaTien ?? 0) * chiTietCombo.SoLuong ?? 1;
             }
 
             return totalAmount;

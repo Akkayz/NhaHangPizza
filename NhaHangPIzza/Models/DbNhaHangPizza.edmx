@@ -18,8 +18,8 @@
           </Key>
           <Property Name="IDChiTietComBo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="MaComBo" Type="int" />
-          <Property Name="SoLuong" Type="int" />
           <Property Name="MaHD" Type="int" />
+          <Property Name="SoLuong" Type="int" />
           <Property Name="GiaTien" Type="money" />
         </EntityType>
         <EntityType Name="ChiTietMonAn_HoaDon">
@@ -28,10 +28,10 @@
           </Key>
           <Property Name="IdChiTietMonAn" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="MaMonAn" Type="int" Nullable="false" />
-          <Property Name="SoLuong" Type="int" />
           <Property Name="MaHD" Type="int" />
           <Property Name="IdVoBanh" Type="int" />
           <Property Name="IDKichThuocBanh" Type="int" />
+          <Property Name="SoLuong" Type="int" />
           <Property Name="GiaTien" Type="money" />
         </EntityType>
         <EntityType Name="ChiTietNuocUong_HoaDon">
@@ -79,10 +79,7 @@
           <Property Name="TrangThai" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="ThoiGianThanhToan" Type="datetime2" Precision="0" Nullable="false" />
           <Property Name="MaBan" Type="int" Nullable="false" />
-          <Property Name="IdChiTietMonAn" Type="int" Nullable="false" />
-          <Property Name="IdChiTietNuocUong" Type="int" />
           <Property Name="ThoiGianDatHang" Type="datetime2" Precision="0" />
-          <Property Name="IDChiTietComBo" Type="int" />
           <Property Name="TongTien" Type="money" />
         </EntityType>
         <EntityType Name="KichThuocBanh">
@@ -179,6 +176,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_ChiTietCombo_HoaDon">
+          <End Role="HoaDon" Type="Self.HoaDon" Multiplicity="0..1" />
+          <End Role="ChiTietCombo" Type="Self.ChiTietCombo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HoaDon">
+              <PropertyRef Name="MaHD" />
+            </Principal>
+            <Dependent Role="ChiTietCombo">
+              <PropertyRef Name="MaHD" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_ChiTietMonAn_HoaDon_HoaDon">
           <End Role="HoaDon" Type="Self.HoaDon" Multiplicity="0..1" />
           <End Role="ChiTietMonAn_HoaDon" Type="Self.ChiTietMonAn_HoaDon" Multiplicity="*" />
@@ -212,6 +221,18 @@
             </Principal>
             <Dependent Role="ChiTietMonAn_HoaDon">
               <PropertyRef Name="IdVoBanh" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ChiTietNuocUong_HoaDon_HoaDon">
+          <End Role="HoaDon" Type="Self.HoaDon" Multiplicity="0..1" />
+          <End Role="ChiTietNuocUong_HoaDon" Type="Self.ChiTietNuocUong_HoaDon" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HoaDon">
+              <PropertyRef Name="MaHD" />
+            </Principal>
+            <Dependent Role="ChiTietNuocUong_HoaDon">
+              <PropertyRef Name="MaHD" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -260,30 +281,6 @@
             </Principal>
             <Dependent Role="ComBo_PhanUong">
               <PropertyRef Name="MaNuocUong" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_HoaDon_ChiTietCombo">
-          <End Role="ChiTietCombo" Type="Self.ChiTietCombo" Multiplicity="0..1" />
-          <End Role="HoaDon" Type="Self.HoaDon" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="ChiTietCombo">
-              <PropertyRef Name="IDChiTietComBo" />
-            </Principal>
-            <Dependent Role="HoaDon">
-              <PropertyRef Name="IDChiTietComBo" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_HoaDon_ChiTietNuocUong">
-          <End Role="ChiTietNuocUong_HoaDon" Type="Self.ChiTietNuocUong_HoaDon" Multiplicity="0..1" />
-          <End Role="HoaDon" Type="Self.HoaDon" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="ChiTietNuocUong_HoaDon">
-              <PropertyRef Name="IdChiTietNuocUong" />
-            </Principal>
-            <Dependent Role="HoaDon">
-              <PropertyRef Name="IdChiTietNuocUong" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -424,6 +421,10 @@
             <End Role="Combo" EntitySet="Combo" />
             <End Role="ChiTietCombo" EntitySet="ChiTietCombo" />
           </AssociationSet>
+          <AssociationSet Name="FK_ChiTietCombo_HoaDon" Association="Self.FK_ChiTietCombo_HoaDon">
+            <End Role="HoaDon" EntitySet="HoaDon" />
+            <End Role="ChiTietCombo" EntitySet="ChiTietCombo" />
+          </AssociationSet>
           <AssociationSet Name="FK_ChiTietMonAn_HoaDon_HoaDon" Association="Self.FK_ChiTietMonAn_HoaDon_HoaDon">
             <End Role="HoaDon" EntitySet="HoaDon" />
             <End Role="ChiTietMonAn_HoaDon" EntitySet="ChiTietMonAn_HoaDon" />
@@ -435,6 +436,10 @@
           <AssociationSet Name="FK_ChiTietMonAn_HoaDon_VOBANH" Association="Self.FK_ChiTietMonAn_HoaDon_VOBANH">
             <End Role="VOBANH" EntitySet="VOBANH" />
             <End Role="ChiTietMonAn_HoaDon" EntitySet="ChiTietMonAn_HoaDon" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ChiTietNuocUong_HoaDon_HoaDon" Association="Self.FK_ChiTietNuocUong_HoaDon_HoaDon">
+            <End Role="HoaDon" EntitySet="HoaDon" />
+            <End Role="ChiTietNuocUong_HoaDon" EntitySet="ChiTietNuocUong_HoaDon" />
           </AssociationSet>
           <AssociationSet Name="FK_ComBo_PhanAn_Combo" Association="Self.FK_ComBo_PhanAn_Combo">
             <End Role="Combo" EntitySet="Combo" />
@@ -451,14 +456,6 @@
           <AssociationSet Name="FK_ComBo_PhanUong_NuocUong" Association="Self.FK_ComBo_PhanUong_NuocUong">
             <End Role="NuocUong" EntitySet="NuocUong" />
             <End Role="ComBo_PhanUong" EntitySet="ComBo_PhanUong" />
-          </AssociationSet>
-          <AssociationSet Name="FK_HoaDon_ChiTietCombo" Association="Self.FK_HoaDon_ChiTietCombo">
-            <End Role="ChiTietCombo" EntitySet="ChiTietCombo" />
-            <End Role="HoaDon" EntitySet="HoaDon" />
-          </AssociationSet>
-          <AssociationSet Name="FK_HoaDon_ChiTietNuocUong" Association="Self.FK_HoaDon_ChiTietNuocUong">
-            <End Role="ChiTietNuocUong_HoaDon" EntitySet="ChiTietNuocUong_HoaDon" />
-            <End Role="HoaDon" EntitySet="HoaDon" />
           </AssociationSet>
           <AssociationSet Name="FK_MonAn_LoaiBanh" Association="Self.FK_MonAn_LoaiBanh">
             <End Role="LoaiBanh" EntitySet="LoaiBanh" />
@@ -549,9 +546,9 @@
             <End Role="Combo" EntitySet="Comboes" />
             <End Role="ChiTietCombo" EntitySet="ChiTietComboes" />
           </AssociationSet>
-          <AssociationSet Name="FK_HoaDon_ChiTietCombo" Association="QLNHAHANG_PIZZAModel.FK_HoaDon_ChiTietCombo">
-            <End Role="ChiTietCombo" EntitySet="ChiTietComboes" />
+          <AssociationSet Name="FK_ChiTietCombo_HoaDon" Association="QLNHAHANG_PIZZAModel.FK_ChiTietCombo_HoaDon">
             <End Role="HoaDon" EntitySet="HoaDons" />
+            <End Role="ChiTietCombo" EntitySet="ChiTietComboes" />
           </AssociationSet>
           <AssociationSet Name="FK_ChiTietMonAn_HoaDon_HoaDon" Association="QLNHAHANG_PIZZAModel.FK_ChiTietMonAn_HoaDon_HoaDon">
             <End Role="HoaDon" EntitySet="HoaDons" />
@@ -569,9 +566,9 @@
             <End Role="MonAn" EntitySet="MonAns" />
             <End Role="ChiTietMonAn_HoaDon" EntitySet="ChiTietMonAn_HoaDon" />
           </AssociationSet>
-          <AssociationSet Name="FK_HoaDon_ChiTietNuocUong" Association="QLNHAHANG_PIZZAModel.FK_HoaDon_ChiTietNuocUong">
-            <End Role="ChiTietNuocUong_HoaDon" EntitySet="ChiTietNuocUong_HoaDon" />
+          <AssociationSet Name="FK_ChiTietNuocUong_HoaDon_HoaDon" Association="QLNHAHANG_PIZZAModel.FK_ChiTietNuocUong_HoaDon_HoaDon">
             <End Role="HoaDon" EntitySet="HoaDons" />
+            <End Role="ChiTietNuocUong_HoaDon" EntitySet="ChiTietNuocUong_HoaDon" />
           </AssociationSet>
           <AssociationSet Name="pk_CHITIETNUOCUONG_NUOCUONG" Association="QLNHAHANG_PIZZAModel.pk_CHITIETNUOCUONG_NUOCUONG">
             <End Role="NuocUong" EntitySet="NuocUongs" />
@@ -635,11 +632,11 @@
           </Key>
           <Property Name="IDChiTietComBo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="MaComBo" Type="Int32" />
-          <Property Name="SoLuong" Type="Int32" />
           <Property Name="MaHD" Type="Int32" />
+          <Property Name="SoLuong" Type="Int32" />
           <Property Name="GiaTien" Type="Decimal" Precision="19" Scale="4" />
           <NavigationProperty Name="Combo" Relationship="QLNHAHANG_PIZZAModel.FK_ChiTietCombo_Combo" FromRole="ChiTietCombo" ToRole="Combo" />
-          <NavigationProperty Name="HoaDons" Relationship="QLNHAHANG_PIZZAModel.FK_HoaDon_ChiTietCombo" FromRole="ChiTietCombo" ToRole="HoaDon" />
+          <NavigationProperty Name="HoaDon" Relationship="QLNHAHANG_PIZZAModel.FK_ChiTietCombo_HoaDon" FromRole="ChiTietCombo" ToRole="HoaDon" />
         </EntityType>
         <EntityType Name="ChiTietMonAn_HoaDon">
           <Key>
@@ -647,10 +644,10 @@
           </Key>
           <Property Name="IdChiTietMonAn" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="MaMonAn" Type="Int32" Nullable="false" />
-          <Property Name="SoLuong" Type="Int32" />
           <Property Name="MaHD" Type="Int32" />
           <Property Name="IdVoBanh" Type="Int32" />
           <Property Name="IDKichThuocBanh" Type="Int32" />
+          <Property Name="SoLuong" Type="Int32" />
           <Property Name="GiaTien" Type="Decimal" Precision="19" Scale="4" />
           <NavigationProperty Name="HoaDon" Relationship="QLNHAHANG_PIZZAModel.FK_ChiTietMonAn_HoaDon_HoaDon" FromRole="ChiTietMonAn_HoaDon" ToRole="HoaDon" />
           <NavigationProperty Name="KichThuocBanh" Relationship="QLNHAHANG_PIZZAModel.FK_ChiTietMonAn_HoaDon_KichThuocBanh" FromRole="ChiTietMonAn_HoaDon" ToRole="KichThuocBanh" />
@@ -666,7 +663,7 @@
           <Property Name="SoLuong" Type="Int32" />
           <Property Name="MaHD" Type="Int32" />
           <Property Name="GiaTien" Type="Decimal" Precision="19" Scale="4" />
-          <NavigationProperty Name="HoaDons" Relationship="QLNHAHANG_PIZZAModel.FK_HoaDon_ChiTietNuocUong" FromRole="ChiTietNuocUong_HoaDon" ToRole="HoaDon" />
+          <NavigationProperty Name="HoaDon" Relationship="QLNHAHANG_PIZZAModel.FK_ChiTietNuocUong_HoaDon_HoaDon" FromRole="ChiTietNuocUong_HoaDon" ToRole="HoaDon" />
           <NavigationProperty Name="NuocUong" Relationship="QLNHAHANG_PIZZAModel.pk_CHITIETNUOCUONG_NUOCUONG" FromRole="ChiTietNuocUong_HoaDon" ToRole="NuocUong" />
         </EntityType>
         <EntityType Name="Combo">
@@ -711,15 +708,12 @@
           <Property Name="TrangThai" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="ThoiGianThanhToan" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="MaBan" Type="Int32" Nullable="false" />
-          <Property Name="IdChiTietMonAn" Type="Int32" Nullable="false" />
-          <Property Name="IdChiTietNuocUong" Type="Int32" />
           <Property Name="ThoiGianDatHang" Type="DateTime" Precision="0" />
-          <Property Name="IDChiTietComBo" Type="Int32" />
           <Property Name="TongTien" Type="Decimal" Precision="19" Scale="4" />
           <NavigationProperty Name="BAN" Relationship="QLNHAHANG_PIZZAModel.pk_BAN_HOADON" FromRole="HoaDon" ToRole="BAN" />
-          <NavigationProperty Name="ChiTietCombo" Relationship="QLNHAHANG_PIZZAModel.FK_HoaDon_ChiTietCombo" FromRole="HoaDon" ToRole="ChiTietCombo" />
+          <NavigationProperty Name="ChiTietComboes" Relationship="QLNHAHANG_PIZZAModel.FK_ChiTietCombo_HoaDon" FromRole="HoaDon" ToRole="ChiTietCombo" />
           <NavigationProperty Name="ChiTietMonAn_HoaDon" Relationship="QLNHAHANG_PIZZAModel.FK_ChiTietMonAn_HoaDon_HoaDon" FromRole="HoaDon" ToRole="ChiTietMonAn_HoaDon" />
-          <NavigationProperty Name="ChiTietNuocUong_HoaDon" Relationship="QLNHAHANG_PIZZAModel.FK_HoaDon_ChiTietNuocUong" FromRole="HoaDon" ToRole="ChiTietNuocUong_HoaDon" />
+          <NavigationProperty Name="ChiTietNuocUong_HoaDon" Relationship="QLNHAHANG_PIZZAModel.FK_ChiTietNuocUong_HoaDon_HoaDon" FromRole="HoaDon" ToRole="ChiTietNuocUong_HoaDon" />
         </EntityType>
         <EntityType Name="KichThuocBanh">
           <Key>
@@ -841,15 +835,15 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_HoaDon_ChiTietCombo">
-          <End Type="QLNHAHANG_PIZZAModel.ChiTietCombo" Role="ChiTietCombo" Multiplicity="0..1" />
-          <End Type="QLNHAHANG_PIZZAModel.HoaDon" Role="HoaDon" Multiplicity="*" />
+        <Association Name="FK_ChiTietCombo_HoaDon">
+          <End Type="QLNHAHANG_PIZZAModel.HoaDon" Role="HoaDon" Multiplicity="0..1" />
+          <End Type="QLNHAHANG_PIZZAModel.ChiTietCombo" Role="ChiTietCombo" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="ChiTietCombo">
-              <PropertyRef Name="IDChiTietComBo" />
+            <Principal Role="HoaDon">
+              <PropertyRef Name="MaHD" />
             </Principal>
-            <Dependent Role="HoaDon">
-              <PropertyRef Name="IDChiTietComBo" />
+            <Dependent Role="ChiTietCombo">
+              <PropertyRef Name="MaHD" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -901,15 +895,15 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_HoaDon_ChiTietNuocUong">
-          <End Type="QLNHAHANG_PIZZAModel.ChiTietNuocUong_HoaDon" Role="ChiTietNuocUong_HoaDon" Multiplicity="0..1" />
-          <End Type="QLNHAHANG_PIZZAModel.HoaDon" Role="HoaDon" Multiplicity="*" />
+        <Association Name="FK_ChiTietNuocUong_HoaDon_HoaDon">
+          <End Type="QLNHAHANG_PIZZAModel.HoaDon" Role="HoaDon" Multiplicity="0..1" />
+          <End Type="QLNHAHANG_PIZZAModel.ChiTietNuocUong_HoaDon" Role="ChiTietNuocUong_HoaDon" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="ChiTietNuocUong_HoaDon">
-              <PropertyRef Name="IdChiTietNuocUong" />
+            <Principal Role="HoaDon">
+              <PropertyRef Name="MaHD" />
             </Principal>
-            <Dependent Role="HoaDon">
-              <PropertyRef Name="IdChiTietNuocUong" />
+            <Dependent Role="ChiTietNuocUong_HoaDon">
+              <PropertyRef Name="MaHD" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1063,8 +1057,8 @@
             <EntityTypeMapping TypeName="QLNHAHANG_PIZZAModel.ChiTietCombo">
               <MappingFragment StoreEntitySet="ChiTietCombo">
                 <ScalarProperty Name="GiaTien" ColumnName="GiaTien" />
-                <ScalarProperty Name="MaHD" ColumnName="MaHD" />
                 <ScalarProperty Name="SoLuong" ColumnName="SoLuong" />
+                <ScalarProperty Name="MaHD" ColumnName="MaHD" />
                 <ScalarProperty Name="MaComBo" ColumnName="MaComBo" />
                 <ScalarProperty Name="IDChiTietComBo" ColumnName="IDChiTietComBo" />
               </MappingFragment>
@@ -1074,10 +1068,10 @@
             <EntityTypeMapping TypeName="QLNHAHANG_PIZZAModel.ChiTietMonAn_HoaDon">
               <MappingFragment StoreEntitySet="ChiTietMonAn_HoaDon">
                 <ScalarProperty Name="GiaTien" ColumnName="GiaTien" />
+                <ScalarProperty Name="SoLuong" ColumnName="SoLuong" />
                 <ScalarProperty Name="IDKichThuocBanh" ColumnName="IDKichThuocBanh" />
                 <ScalarProperty Name="IdVoBanh" ColumnName="IdVoBanh" />
                 <ScalarProperty Name="MaHD" ColumnName="MaHD" />
-                <ScalarProperty Name="SoLuong" ColumnName="SoLuong" />
                 <ScalarProperty Name="MaMonAn" ColumnName="MaMonAn" />
                 <ScalarProperty Name="IdChiTietMonAn" ColumnName="IdChiTietMonAn" />
               </MappingFragment>
@@ -1128,10 +1122,7 @@
             <EntityTypeMapping TypeName="QLNHAHANG_PIZZAModel.HoaDon">
               <MappingFragment StoreEntitySet="HoaDon">
                 <ScalarProperty Name="TongTien" ColumnName="TongTien" />
-                <ScalarProperty Name="IDChiTietComBo" ColumnName="IDChiTietComBo" />
                 <ScalarProperty Name="ThoiGianDatHang" ColumnName="ThoiGianDatHang" />
-                <ScalarProperty Name="IdChiTietNuocUong" ColumnName="IdChiTietNuocUong" />
-                <ScalarProperty Name="IdChiTietMonAn" ColumnName="IdChiTietMonAn" />
                 <ScalarProperty Name="MaBan" ColumnName="MaBan" />
                 <ScalarProperty Name="ThoiGianThanhToan" ColumnName="ThoiGianThanhToan" />
                 <ScalarProperty Name="TrangThai" ColumnName="TrangThai" />

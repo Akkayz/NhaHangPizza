@@ -16,10 +16,10 @@ namespace NhaHangPIzza.Models
     {
         public int IdChiTietMonAn { get; set; }
         public int MaMonAn { get; set; }
-        public Nullable<int> SoLuong { get; set; }
         public Nullable<int> MaHD { get; set; }
         public Nullable<int> IdVoBanh { get; set; }
         public Nullable<int> IDKichThuocBanh { get; set; }
+        public Nullable<int> SoLuong { get; set; }
         public Nullable<decimal> GiaTien { get; set; }
     
         public virtual HoaDon HoaDon { get; set; }

@@ -14,20 +14,13 @@ namespace NhaHangPIzza.Models
     
     public partial class ChiTietCombo
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public ChiTietCombo()
-        {
-            this.HoaDons = new HashSet<HoaDon>();
-        }
-    
         public int IDChiTietComBo { get; set; }
         public Nullable<int> MaComBo { get; set; }
-        public Nullable<int> SoLuong { get; set; }
         public Nullable<int> MaHD { get; set; }
+        public Nullable<int> SoLuong { get; set; }
         public Nullable<decimal> GiaTien { get; set; }
     
         public virtual Combo Combo { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<HoaDon> HoaDons { get; set; }
+        public virtual HoaDon HoaDon { get; set; }
     }
 }

@@ -17,23 +17,24 @@ namespace NhaHangPIzza.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public HoaDon()
         {
+            this.ChiTietComboes = new HashSet<ChiTietCombo>();
             this.ChiTietMonAn_HoaDon = new HashSet<ChiTietMonAn_HoaDon>();
+            this.ChiTietNuocUong_HoaDon = new HashSet<ChiTietNuocUong_HoaDon>();
         }
     
         public int MaHD { get; set; }
         public string TrangThai { get; set; }
         public System.DateTime ThoiGianThanhToan { get; set; }
         public int MaBan { get; set; }
-        public int IdChiTietMonAn { get; set; }
-        public Nullable<int> IdChiTietNuocUong { get; set; }
         public Nullable<System.DateTime> ThoiGianDatHang { get; set; }
-        public Nullable<int> IDChiTietComBo { get; set; }
         public Nullable<decimal> TongTien { get; set; }
     
         public virtual BAN BAN { get; set; }
-        public virtual ChiTietCombo ChiTietCombo { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<ChiTietCombo> ChiTietComboes { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ChiTietMonAn_HoaDon> ChiTietMonAn_HoaDon { get; set; }
-        public virtual ChiTietNuocUong_HoaDon ChiTietNuocUong_HoaDon { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<ChiTietNuocUong_HoaDon> ChiTietNuocUong_HoaDon { get; set; }
     }
 }
