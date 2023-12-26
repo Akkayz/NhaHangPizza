@@ -120,7 +120,8 @@
                 @ViewBag.ThongBao
             </div>
         }
-        <button type="submit" class="btn btn-primary">Xác nhận đặt hàng</button>
+        <button type="button" class="btn btn-primary" onclick="confirmOrder()">Xác nhận đặt hàng</button>
+        <input type="submit" id="btnSubmit" style="display: none;" />
     </div>
 }
 <script>
@@ -139,6 +140,12 @@
         } else {
             document.getElementById("ddlBan").selectedIndex = 0;
             alert("Mật khẩu không đúng. Vui lòng thử lại.");
+        }
+    }
+    function confirmOrder() {
+        var r = confirm("Bạn có chắc muốn đặt hàng?");
+        if (r == true) {
+            document.getElementById("btnSubmit").click();
         }
     }
 </script>

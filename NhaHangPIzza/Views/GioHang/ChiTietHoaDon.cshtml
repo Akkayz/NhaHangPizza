@@ -1,0 +1,130 @@
+﻿@model NhaHangPIzza.Models.HoaDon
+@using NhaHangPIzza.Models
+
+@{
+    ViewBag.Title = "Chi Tiết Hoá Đơn";
+    Layout = "~/Views/Shared/_LayoutTrangChu.cshtml";
+}
+<style>
+    .progress-lg {
+        height: 2rem; /* Điều chỉnh chiều cao theo ý muốn */
+        font-size: 1rem; /* Điều chỉnh kích thước chữ theo ý muốn */
+    }
+
+    .progress-bar strong {
+        font-weight: bold;
+    }
+</style>
+@{
+    ViewBag.Title = "Chi Tiết Hoá Đơn";
+    Layout = "~/Views/Shared/_LayoutTrangChu.cshtml";
+
+    int progressPercentage = 25;
+    string statusClass = "bg-success"; // Default to "Đã đặt"
+
+    if (ViewBag.HoaDon.TrangThai == "Đầu bếp đã nhận")
+    {
+        progressPercentage = 50;
+        statusClass = "bg-warning";
+    }
+    else if (ViewBag.HoaDon.TrangThai == "Đầu bếp đang làm")
+    {
+        progressPercentage = 75;
+        statusClass = "bg-primary";
+    }
+    else if (ViewBag.HoaDon.TrangThai == "Đã làm xong")
+    {
+        progressPercentage = 100;
+        statusClass = "bg-info";
+    }
+
+}
+<div class="container mt-3">
+    <h2>Thông Tin Hoá Đơn</h2>
+
+    <p><strong>Mã Hoá Đơn:</strong> @ViewBag.HoaDon.MaHD</p>
+    <p><strong>Trạng Thái:</strong> @ViewBag.HoaDon.TrangThai</p>
+    <p><strong>Tổng Tiền:</strong> @string.Format("{0:N0}", ViewBag.HoaDon.TongTien) VNĐ</p>
+
+    <!-- Các thông tin khác của hoá đơn -->
+    <div class="progress progress-lg">
+        <div class="progress-bar @statusClass text-dark " role="progressbar" style="width: @progressPercentage%;" aria-valuenow="@progressPercentage" aria-valuemin="0" aria-valuemax="100">@ViewBag.HoaDon.TrangThai</div>
+    </div>
+
+    <h3>Chi Tiết Đặt Hàng</h3>
+
+    <h4>Món Ăn</h4>
+    <table class="table table-bordered table-hover">
+        <thead class="table-light">
+            <tr>
+                <th scope="col">Hình Ảnh</th>
+                <th scope="col">Tên Món Ăn</th>
+                <th scope="col">Số Lượng</th>
+                <th scope="col">Đơn Giá</th>
+                <th scope="col">Thành Tiền</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var chiTietMonAn in ViewBag.ChiTietMonAnList as List<ChiTietMonAn_HoaDon>)
+            {
+                <tr>
+                    <td><img src="~/Images/BanhPizza/@chiTietMonAn.MonAn.HinhAnh" style="width:50px;" alt="@chiTietMonAn.MonAn.TenMonAn"></td>
+                    <td>@chiTietMonAn.MonAn.TenMonAn</td>
+                    <td>@chiTietMonAn.SoLuong</td>
+                    <td>@string.Format("{0:N0}", chiTietMonAn.GiaTien)</td>
+                    <td>@string.Format("{0:N0}", chiTietMonAn.SoLuong * chiTietMonAn.GiaTien)</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <h4>Nước Uống</h4>
+    <table class="table table-bordered table-hover">
+        <thead class="table-light">
+            <tr>
+                <th scope="col">Hình Ảnh</th>
+                <th scope="col">Tên Nước Uống</th>
+                <th scope="col">Số Lượng</th>
+                <th scope="col">Đơn Giá</th>
+                <th scope="col">Thành Tiền</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var chiTietNuocUong in ViewBag.ChiTietNuocUongList as List<ChiTietNuocUong_HoaDon>)
+            {
+                <tr>
+                    <td><img src="~/Images/NuocGiaiKhat/@chiTietNuocUong.NuocUong.HinhAnh" style="width:50px;" alt="@chiTietNuocUong.NuocUong.TenNuocUong"></td>
+                    <td>@chiTietNuocUong.NuocUong.TenNuocUong</td>
+                    <td>@chiTietNuocUong.SoLuong</td>
+                    <td>@string.Format("{0:N0}", chiTietNuocUong.GiaTien)</td>
+                    <td>@string.Format("{0:N0}", chiTietNuocUong.SoLuong * chiTietNuocUong.GiaTien)</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <h4>Combo</h4>
+    <table class="table table-bordered table-hover">
+        <thead class="table-light">
+            <tr>
+                <th scope="col">Hình Ảnh</th>
+                <th scope="col">Tên Combo</th>
+                <th scope="col">Số Lượng</th>
+                <th scope="col">Đơn Giá</th>
+                <th scope="col">Thành Tiền</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var chiTietCombo in ViewBag.ChiTietComboList as List<ChiTietCombo>)
+            {
+                <tr>
+                    <td><img src="~/Images/ComBo/@chiTietCombo.Combo.HinhAnh" style="width:50px;" alt="@chiTietCombo.Combo.TenCombo"></td>
+                    <td>@chiTietCombo.Combo.TenCombo</td>
+                    <td>@chiTietCombo.SoLuong</td>
+                    <td>@string.Format("{0:N0}", chiTietCombo.GiaTien)</td>
+                    <td>@string.Format("{0:N0}", chiTietCombo.SoLuong * chiTietCombo.GiaTien)</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

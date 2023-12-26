@@ -330,7 +330,7 @@ namespace NhaHangPIzza.Controllers
 
                 TempData["ThongBao"] = "Đặt hàng thành công!";
                 // Chuyển hướng về trang Index hoặc trang cảm ơn
-                return RedirectToAction("Index", "GioHang");
+                return RedirectToAction("ChiTietHoaDon", new { maHoaDon = hoaDon.MaHD });
             }
             else
             {
@@ -338,6 +338,24 @@ namespace NhaHangPIzza.Controllers
                 // Giỏ hàng trống, xử lý tùy ý (ví dụ: hiển thị thông báo)
                 return RedirectToAction("Index");
             }
+        }
+
+        public ActionResult ChiTietHoaDon(int maHoaDon)
+        {
+            // Lấy thông tin hóa đơn từ cơ sở dữ liệu
+            var hoaDon = db.HoaDons.Find(maHoaDon);
+
+            // Lấy thông tin chi tiết hóa đơn từ cơ sở dữ liệu
+            var chiTietMonAnList = db.ChiTietMonAn_HoaDon.Where(ct => ct.MaHD == maHoaDon).ToList();
+            var chiTietNuocUongList = db.ChiTietNuocUong_HoaDon.Where(ct => ct.MaHD == maHoaDon).ToList();
+            var chiTietComboList = db.ChiTietComboes.Where(ct => ct.MaHD == maHoaDon).ToList();
+
+            ViewBag.HoaDon = hoaDon;
+            ViewBag.ChiTietMonAnList = chiTietMonAnList;
+            ViewBag.ChiTietNuocUongList = chiTietNuocUongList;
+            ViewBag.ChiTietComboList = chiTietComboList;
+
+            return View();
         }
 
         // Hàm tính tổng tiền của hóa đơn
