@@ -38,7 +38,7 @@ namespace NhaHangPIzza.Controllers
 
             List<BAN> danhSachBan = db.BANs.ToList();
             ViewBag.DanhSachBan = danhSachBan;
-
+            ViewBag.ThongBao = TempData["ThongBao"];
             return View();
         }
 
@@ -235,6 +235,141 @@ namespace NhaHangPIzza.Controllers
 
             // Chuyển hướng về trang Index
             return RedirectToAction("Index");
+        }
+
+        [HttpPost]
+        public ActionResult XacNhanDatHang(int ddlBan)
+        {
+            // Lấy thông tin giỏ hàng từ Session
+            List<GioHang> gioHang = Session["GioHang"] as List<GioHang>;
+            List<GioHangNuocUong> gioHangNuocUong = Session["GioHangNuocUong"] as List<GioHangNuocUong>;
+            List<GioHangCombo> gioHangCombo = Session["GioHangCombo"] as List<GioHangCombo>;
+
+            // Kiểm tra xem giỏ hàng có sản phẩm nào không
+            if (gioHang != null || gioHangNuocUong != null || gioHangCombo != null)
+            {
+                // Tạo đối tượng HoaDon
+                HoaDon hoaDon = new HoaDon
+                {
+                    TrangThai = "Chưa thanh toán",
+                    ThoiGianDatHang = DateTime.Now,
+                    MaBan = ddlBan
+                };
+
+                // Lưu thông tin hóa đơn vào cơ sở dữ liệu
+                db.HoaDons.Add(hoaDon);
+                db.SaveChanges();
+
+                // Lưu thông tin chi tiết hóa đơn (món ăn, nước uống, combo) vào cơ sở dữ liệu
+                if (gioHang != null)
+                {
+                    foreach (var item in gioHang)
+                    {
+                        ChiTietMonAn_HoaDon chiTietMonAn = new ChiTietMonAn_HoaDon
+                        {
+                            MaHD = hoaDon.MaHD,
+                            MaMonAn = item.iMaMonAn,
+                            SoLuong = item.iSoLuong,
+                            IdVoBanh = item.iVoBanh,
+                            IDKichThuocBanh = item.iKichThuocBanh,
+                            GiaTien = item.dGiaTien
+                            // Các thông tin khác của chi tiết hóa đơn món ăn
+                        };
+
+                        db.ChiTietMonAn_HoaDon.Add(chiTietMonAn);
+                        db.SaveChanges(); // Lưu để có thể lấy được Id
+                        hoaDon.IdChiTietMonAn = chiTietMonAn.IdChiTietMonAn;
+                    }
+                }
+
+                // Lưu thông tin chi tiết hóa đơn (nước uống) vào cơ sở dữ liệu
+                if (gioHangNuocUong != null)
+                {
+                    foreach (var item in gioHangNuocUong)
+                    {
+                        ChiTietNuocUong_HoaDon chiTietNuocUong = new ChiTietNuocUong_HoaDon
+                        {
+                            MaHD = hoaDon.MaHD,
+                            MaNuocUong = item.iMaNuocUong,
+                            SoLuong = item.iSoLuong,
+                            GiaTien = item.dGiaTien
+                            // Các thông tin khác của chi tiết hóa đơn nước uống
+                        };
+
+                        db.ChiTietNuocUong_HoaDon.Add(chiTietNuocUong);
+                        db.SaveChanges(); // Lưu để có thể lấy được Id
+                        hoaDon.IdChiTietNuocUong = chiTietNuocUong.IdChiTietNuocUong;
+                    }
+                }
+
+                // Lưu thông tin chi tiết hóa đơn (combo) vào cơ sở dữ liệu
+                if (gioHangCombo != null)
+                {
+                    foreach (var item in gioHangCombo)
+                    {
+                        ChiTietCombo chiTietCombo = new ChiTietCombo
+                        {
+                            MaHD = hoaDon.MaHD,
+                            MaComBo = item.iMaCombo,
+                            SoLuong = item.iSoLuong,
+                            GiaTien = item.dGiaTien
+                            // Các thông tin khác của chi tiết hóa đơn combo
+                        };
+
+                        db.ChiTietComboes.Add(chiTietCombo);
+                        db.SaveChanges(); // Lưu để có thể lấy được Id
+                        hoaDon.IDChiTietComBo = chiTietCombo.IDChiTietComBo;
+                    }
+                }
+
+                // Tính tổng tiền của hóa đơn và cập nhật vào cơ sở dữ liệu
+                hoaDon.TongTien = CalculateTotalAmount(hoaDon.MaHD);
+                db.SaveChanges();
+
+                // Xóa thông tin giỏ hàng từ Session
+                Session["GioHang"] = null;
+                Session["GioHangNuocUong"] = null;
+                Session["GioHangCombo"] = null;
+
+                TempData["ThongBao"] = "Đặt hàng thành công!";
+                // Chuyển hướng về trang Index hoặc trang cảm ơn
+                return RedirectToAction("Index", "GioHang");
+            }
+            else
+            {
+                TempData["ThongBao"] = "Giỏ hàng trống!";
+                // Giỏ hàng trống, xử lý tùy ý (ví dụ: hiển thị thông báo)
+                return RedirectToAction("Index");
+            }
+        }
+
+        // Hàm tính tổng tiền của hóa đơn
+        private decimal CalculateTotalAmount(int maHoaDon)
+        {
+            decimal totalAmount = 0;
+
+            // Tính tổng tiền từ chi tiết hóa đơn (món ăn)
+            var chiTietMonAnList = db.ChiTietMonAn_HoaDon.Where(ct => ct.MaHD == maHoaDon).ToList();
+            foreach (var chiTietMonAn in chiTietMonAnList)
+            {
+                totalAmount += chiTietMonAn.GiaTien ?? 0;
+            }
+
+            // Tính tổng tiền từ chi tiết hóa đơn (nước uống)
+            var chiTietNuocUongList = db.ChiTietNuocUong_HoaDon.Where(ct => ct.MaHD == maHoaDon).ToList();
+            foreach (var chiTietNuocUong in chiTietNuocUongList)
+            {
+                totalAmount += chiTietNuocUong.GiaTien ?? 0;
+            }
+
+            // Tính tổng tiền từ chi tiết hóa đơn (combo)
+            var chiTietComboList = db.ChiTietComboes.Where(ct => ct.MaHD == maHoaDon).ToList();
+            foreach (var chiTietCombo in chiTietComboList)
+            {
+                totalAmount += chiTietCombo.GiaTien ?? 0;
+            }
+
+            return totalAmount;
         }
     }
 }

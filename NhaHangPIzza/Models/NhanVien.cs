@@ -17,7 +17,6 @@ namespace NhaHangPIzza.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public NhanVien()
         {
-            this.HoaDons = new HashSet<HoaDon>();
             this.TaiKhoans = new HashSet<TaiKhoan>();
         }
     
@@ -31,8 +30,6 @@ namespace NhaHangPIzza.Models
         public string Email { get; set; }
         public int MaTK { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<HoaDon> HoaDons { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TaiKhoan> TaiKhoans { get; set; }
     }

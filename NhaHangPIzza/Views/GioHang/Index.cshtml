@@ -5,115 +5,124 @@
     ViewBag.Title = "Giỏ Hàng";
     Layout = "~/Views/Shared/_LayoutTrangChu.cshtml";
 }
-
-<div class="mb-4">
-    <label for="ddlBan" class="form-label">Tên bàn:</label>
-    <select id="ddlBan" class="form-select" onchange="checkPassword()">
-        @{
-            List<BAN> danhSachBan = ViewBag.DanhSachBan;
-            foreach (var ban in danhSachBan)
-            {
-                <option value="@ban.Maban">@ban.TenBan</option>
+@using (Html.BeginForm("XacNhanDatHang", "GioHang", FormMethod.Post))
+{
+    <div class="mb-4">
+        <label for="ddlBan" class="form-label">Tên bàn:</label>
+        <select id="ddlBan" name="ddlBan" class="form-select">
+            @{
+                List<BAN> danhSachBan = ViewBag.DanhSachBan;
+                foreach (var ban in danhSachBan)
+                {
+                    <option value="@ban.Maban">@ban.TenBan</option>
+                }
             }
+        </select>
+        <input type="hidden" id="hdnMaBan" name="ddlBan" />
+    </div>
+
+    <div class="container mt-3">
+        <h2>Giỏ Hàng Món Ăn</h2>
+        <table class="table table-bordered table-hover">
+            <thead class="table-light">
+                <tr>
+                    <th scope="col">Hình Ảnh</th>
+                    <th scope="col">Tên Món Ăn</th>
+                    <th scope="col">Loại Bánh</th>
+                    <th scope="col">Loại Vỏ Bánh</th>
+                    <th scope="col">Kích Thước</th>
+                    <th scope="col">Đơn Giá</th>
+                    <th scope="col">Số Lượng</th>
+                    <th scope="col">Thành Tiền</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in ViewBag.GioHangMonAn as List<GioHang>)
+                {
+                    <tr>
+                        <td><img src="~/Images/BanhPizza/@item.sHinhAnh" style="width:50px;" alt="@item.sTenMonAn"></td>
+                        <td>@item.sTenMonAn</td>
+                        <td>@item.sLoaiBanh</td>
+                        <td>@item.sDoDay</td>
+                        <td>@item.sKichThuoc</td>
+                        <td>@string.Format("{0:N0}", item.dGiaTien)</td>
+                        <td>@item.iSoLuong</td>
+                        <td>@string.Format("{0:N0}", item.dThanhTien)</td>
+                        <td>
+                            @Html.ActionLink("Xoá", "XoaMonAn", new { idMonAn = item.iMaMonAn, iIDKichThuocBanh = item.iIDKichThuocBanh, idVoBanh = item.iIdVoBanh }, new { @class = "btn btn-danger btn-sm" })
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+        <h2>Giỏ Hàng Nước Uống</h2>
+        <table class="table table-bordered table-hover">
+            <thead class="table-light">
+                <tr>
+                    <th scope="col">Hình ảnh</th>
+                    <th scope="col">Tên Nước Uống</th>
+                    <th scope="col">Đơn giá</th>
+                    <th scope="col">Số lượng</th>
+                    <th scope="col">Thành tiền</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in ViewBag.GioHangNuocUong as List<GioHangNuocUong>)
+                {
+                    <tr>
+                        <td><img src="~/Images/NuocGiaiKhat/@item.sHinhAnh" style="width:50px;" alt="@item.sTenNuocUong"></td>
+                        <td>@item.sTenNuocUong</td>
+                        <td>@string.Format("{0:N0}", item.dGiaTien)</td>
+                        <td>@item.iSoLuong</td>
+                        <td>@string.Format("{0:N0}", item.dThanhTien)</td>
+                        <td>
+                            <a href="@Url.Action("XoaNuocUong", "GioHang", new { idNuocUong = item.iMaNuocUong })" class="btn btn-danger btn-sm">Xóa</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+        <h2>Giỏ Hàng Combo</h2>
+        <table class="table table-bordered table-hover">
+            <thead class="table-light">
+                <tr>
+                    <th scope="col">Hình ảnh</th>
+                    <th scope="col">Tên Combo</th>
+                    <th scope="col">Đơn giá</th>
+                    <th scope="col">Số lượng</th>
+                    <th scope="col">Thành tiền</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in ViewBag.GioHangCombo as List<GioHangCombo>)
+                {
+                    <tr>
+                        <td><img src="~/Images/ComBo/@item.sHinhAnh" style="width:50px;" alt="@item.sTenCombo"></td>
+                        <td>@item.sTenCombo</td>
+                        <td>@string.Format("{0:N0}", item.dGiaTien)</td>
+                        <td>@item.iSoLuong</td>
+                        <td>@string.Format("{0:N0}", item.dThanhTien)</td>
+                        <td>
+                            <a href="@Url.Action("XoaCombo", "GioHang", new { idCombo = item.iMaCombo })" class="btn btn-danger btn-sm">Xóa</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+        @if (!string.IsNullOrEmpty(ViewBag.ThongBao))
+        {
+            <div class="alert alert-success" role="alert">
+                @ViewBag.ThongBao
+            </div>
         }
-    </select>
-</div>
-
-<div class="container mt-3">
-    <h2>Giỏ Hàng Món Ăn</h2>
-    <table class="table table-bordered table-hover">
-        <thead class="table-light">
-            <tr>
-                <th scope="col">Hình Ảnh</th>
-                <th scope="col">Tên Món Ăn</th>
-                <th scope="col">Loại Bánh</th>
-                <th scope="col">Loại Vỏ Bánh</th>
-                <th scope="col">Kích Thước</th>
-                <th scope="col">Đơn Giá</th>
-                <th scope="col">Số Lượng</th>
-                <th scope="col">Thành Tiền</th>
-                <th></th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var item in ViewBag.GioHangMonAn as List<GioHang>)
-            {
-                <tr>
-                    <td><img src="~/Images/BanhPizza/@item.sHinhAnh" style="width:50px;" alt="@item.sTenMonAn"></td>
-                    <td>@item.sTenMonAn</td>
-                    <td>@item.sLoaiBanh</td>
-                    <td>@item.sDoDay</td>
-                    <td>@item.sKichThuoc</td>
-                    <td>@string.Format("{0:N0}", item.dGiaTien)</td>
-                    <td>@item.iSoLuong</td>
-                    <td>@string.Format("{0:N0}", item.dThanhTien)</td>
-                    <td>
-                        @Html.ActionLink("Xoá", "XoaMonAn", new { idMonAn = item.iMaMonAn, iIDKichThuocBanh = item.iIDKichThuocBanh, idVoBanh = item.iIdVoBanh }, new { @class = "btn btn-danger btn-sm" })
-                    </td>
-                </tr>
-            }
-        </tbody>
-    </table>
-
-    <h2>Giỏ Hàng Nước Uống</h2>
-    <table class="table table-bordered table-hover">
-        <thead class="table-light">
-            <tr>
-                <th scope="col">Hình ảnh</th>
-                <th scope="col">Tên Nước Uống</th>
-                <th scope="col">Đơn giá</th>
-                <th scope="col">Số lượng</th>
-                <th scope="col">Thành tiền</th>
-                <th></th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var item in ViewBag.GioHangNuocUong as List<GioHangNuocUong>)
-            {
-                <tr>
-                    <td><img src="~/Images/NuocGiaiKhat/@item.sHinhAnh" style="width:50px;" alt="@item.sTenNuocUong"></td>
-                    <td>@item.sTenNuocUong</td>
-                    <td>@string.Format("{0:N0}", item.dGiaTien)</td>
-                    <td>@item.iSoLuong</td>
-                    <td>@string.Format("{0:N0}", item.dThanhTien)</td>
-                    <td>
-                        <a href="@Url.Action("XoaNuocUong", "GioHang", new { idNuocUong = item.iMaNuocUong })" class="btn btn-danger btn-sm">Xóa</a>
-                    </td>
-                </tr>
-            }
-        </tbody>
-    </table>
-
-    <h2>Giỏ Hàng Combo</h2>
-    <table class="table table-bordered table-hover">
-        <thead class="table-light">
-            <tr>
-                <th scope="col">Hình ảnh</th>
-                <th scope="col">Tên Combo</th>
-                <th scope="col">Đơn giá</th>
-                <th scope="col">Số lượng</th>
-                <th scope="col">Thành tiền</th>
-                <th></th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var item in ViewBag.GioHangCombo as List<GioHangCombo>)
-            {
-                <tr>
-                    <td><img src="~/Images/ComBo/@item.sHinhAnh" style="width:50px;" alt="@item.sTenCombo"></td>
-                    <td>@item.sTenCombo</td>
-                    <td>@string.Format("{0:N0}", item.dGiaTien)</td>
-                    <td>@item.iSoLuong</td>
-                    <td>@string.Format("{0:N0}", item.dThanhTien)</td>
-                    <td>
-                        <a href="@Url.Action("XoaCombo", "GioHang", new { idCombo = item.iMaCombo })" class="btn btn-danger btn-sm">Xóa</a>
-                    </td>
-                </tr>
-            }
-        </tbody>
-    </table>
-</div>
-
+        <button type="submit" class="btn btn-primary">Xác nhận đặt hàng</button>
+    </div>
+}
 <script>
     var isDropdownEnabled = true;
 

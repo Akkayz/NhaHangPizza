@@ -38,11 +38,9 @@ namespace NhaHangPIzza.Models
         public virtual DbSet<KichThuocBanh> KichThuocBanhs { get; set; }
         public virtual DbSet<LoaiBanh> LoaiBanhs { get; set; }
         public virtual DbSet<MonAn> MonAns { get; set; }
-        public virtual DbSet<MonAn_ChiTiet> MonAn_ChiTiet { get; set; }
         public virtual DbSet<MonAn_ThanhPhanBanh> MonAn_ThanhPhanBanh { get; set; }
         public virtual DbSet<NhanVien> NhanViens { get; set; }
         public virtual DbSet<NuocUong> NuocUongs { get; set; }
-        public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
         public virtual DbSet<TaiKhoan> TaiKhoans { get; set; }
         public virtual DbSet<THANHPHANBANH> THANHPHANBANHs { get; set; }
         public virtual DbSet<VOBANH> VOBANHs { get; set; }

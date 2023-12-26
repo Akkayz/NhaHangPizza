@@ -24,6 +24,7 @@ namespace NhaHangPIzza.Models
         public int IdChiTietNuocUong { get; set; }
         public Nullable<int> SoLuong { get; set; }
         public Nullable<int> MaHD { get; set; }
+        public Nullable<decimal> GiaTien { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<HoaDon> HoaDons { get; set; }

@@ -17,7 +17,7 @@ namespace NhaHangPIzza.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public KichThuocBanh()
         {
-            this.MonAn_ChiTiet = new HashSet<MonAn_ChiTiet>();
+            this.ChiTietMonAn_HoaDon = new HashSet<ChiTietMonAn_HoaDon>();
         }
     
         public int IDKichThuocBanh { get; set; }
@@ -25,6 +25,6 @@ namespace NhaHangPIzza.Models
         public decimal GiaTien { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<MonAn_ChiTiet> MonAn_ChiTiet { get; set; }
+        public virtual ICollection<ChiTietMonAn_HoaDon> ChiTietMonAn_HoaDon { get; set; }
     }
 }

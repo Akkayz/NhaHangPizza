@@ -24,6 +24,7 @@ namespace NhaHangPIzza.Models
         public Nullable<int> MaComBo { get; set; }
         public Nullable<int> SoLuong { get; set; }
         public Nullable<int> MaHD { get; set; }
+        public Nullable<decimal> GiaTien { get; set; }
     
         public virtual Combo Combo { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
