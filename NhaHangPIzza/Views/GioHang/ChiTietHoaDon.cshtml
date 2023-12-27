@@ -39,7 +39,8 @@
     }
 
 }
-<div class="container mt-3">
+<div class="container mt-3" id="print-section">
+    <!-- Thêm id cho div này -->
     <h2>Thông Tin Hoá Đơn</h2>
 
     <p><strong>Mã Hoá Đơn:</strong> @ViewBag.HoaDon.MaHD</p>
@@ -128,3 +129,16 @@
         </tbody>
     </table>
 </div>
+
+<button id="btnPrint" class="btn btn-primary">In Hoá Đơn</button>
+<script>
+    $(document).ready(function () {
+        $("#btnPrint").on("click", function () {
+            var printContents = document.getElementById("print-section").innerHTML;
+            var originalContents = document.body.innerHTML;
+            document.body.innerHTML = printContents;
+            window.print();
+            document.body.innerHTML = originalContents;
+        });
+    });
+</script>
