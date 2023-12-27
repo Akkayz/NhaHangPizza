@@ -139,6 +139,16 @@
           <Property Name="GiaTien" Type="money" Nullable="false" />
           <Property Name="HinhAnh" Type="varchar" MaxLength="50" />
         </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
         <EntityType Name="TaiKhoan">
           <Key>
             <PropertyRef Name="MaTK" />
@@ -414,6 +424,7 @@
           <EntitySet Name="MonAn_ThanhPhanBanh" EntityType="Self.MonAn_ThanhPhanBanh" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="NhanVien" EntityType="Self.NhanVien" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="NuocUong" EntityType="Self.NuocUong" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TaiKhoan" EntityType="Self.TaiKhoan" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="THANHPHANBANH" EntityType="Self.THANHPHANBANH" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="VOBANH" EntityType="Self.VOBANH" Schema="dbo" store:Type="Tables" />
@@ -535,6 +546,7 @@
           <EntitySet Name="MonAn_ThanhPhanBanh" EntityType="QLNHAHANG_PIZZAModel.MonAn_ThanhPhanBanh" />
           <EntitySet Name="NhanViens" EntityType="QLNHAHANG_PIZZAModel.NhanVien" />
           <EntitySet Name="NuocUongs" EntityType="QLNHAHANG_PIZZAModel.NuocUong" />
+          <EntitySet Name="sysdiagrams" EntityType="QLNHAHANG_PIZZAModel.sysdiagram" />
           <EntitySet Name="TaiKhoans" EntityType="QLNHAHANG_PIZZAModel.TaiKhoan" />
           <EntitySet Name="THANHPHANBANHs" EntityType="QLNHAHANG_PIZZAModel.THANHPHANBANH" />
           <EntitySet Name="VOBANHs" EntityType="QLNHAHANG_PIZZAModel.VOBANH" />
@@ -782,6 +794,16 @@
           <Property Name="HinhAnh" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="ChiTietNuocUong_HoaDon" Relationship="QLNHAHANG_PIZZAModel.pk_CHITIETNUOCUONG_NUOCUONG" FromRole="NuocUong" ToRole="ChiTietNuocUong_HoaDon" />
           <NavigationProperty Name="ComBo_PhanUong" Relationship="QLNHAHANG_PIZZAModel.FK_ComBo_PhanUong_NuocUong" FromRole="NuocUong" ToRole="ComBo_PhanUong" />
+        </EntityType>
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
         </EntityType>
         <EntityType Name="TaiKhoan">
           <Key>
@@ -1190,6 +1212,17 @@
                 <ScalarProperty Name="GiaTien" ColumnName="GiaTien" />
                 <ScalarProperty Name="TenNuocUong" ColumnName="TenNuocUong" />
                 <ScalarProperty Name="MaNuocUong" ColumnName="MaNuocUong" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="QLNHAHANG_PIZZAModel.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="definition" ColumnName="definition" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="name" ColumnName="name" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

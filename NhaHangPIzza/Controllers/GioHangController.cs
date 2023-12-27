@@ -251,7 +251,7 @@ namespace NhaHangPIzza.Controllers
                 // Tạo đối tượng HoaDon
                 HoaDon hoaDon = new HoaDon
                 {
-                    TrangThai = "Chưa thanh toán",
+                    TrangThai = "Đã đặt",
                     ThoiGianDatHang = DateTime.Now,
                     MaBan = ddlBan
                 };
@@ -344,6 +344,12 @@ namespace NhaHangPIzza.Controllers
         {
             // Lấy thông tin hóa đơn từ cơ sở dữ liệu
             var hoaDon = db.HoaDons.Find(maHoaDon);
+
+            if (hoaDon != null && hoaDon.TrangThai == "Đã thanh toán")
+            {
+                // Nếu trạng thái là "Đã thanh toán", chuyển hướng về trang chủ
+                return RedirectToAction("Index", "Home");
+            }
 
             // Lấy thông tin chi tiết hóa đơn từ cơ sở dữ liệu
             var chiTietMonAnList = db.ChiTietMonAn_HoaDon.Where(ct => ct.MaHD == maHoaDon).ToList();
