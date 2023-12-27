@@ -46,7 +46,7 @@
                         <td>@item.sLoaiBanh</td>
                         <td>@item.sDoDay</td>
                         <td>@item.sKichThuoc</td>
-                        <td>@string.Format("{0:N0}", item.dGiaTien)</td>
+                        <td>@string.Format("{0:N0}", item.dGiaTien + @item.giaTienKichThuocBanh + @item.giaTienVoBanh) </td>
                         <td>@item.iSoLuong</td>
                         <td>@string.Format("{0:N0}", item.dThanhTien)</td>
                         <td>

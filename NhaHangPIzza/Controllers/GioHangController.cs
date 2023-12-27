@@ -272,7 +272,7 @@ namespace NhaHangPIzza.Controllers
                             SoLuong = item.iSoLuong,
                             IdVoBanh = item.iVoBanh,
                             IDKichThuocBanh = item.iKichThuocBanh,
-                            GiaTien = item.dGiaTien
+                            GiaTien = (decimal?)item.dGiaTien + @item.giaTienKichThuocBanh + @item.giaTienVoBanh
                             // Các thông tin khác của chi tiết hóa đơn món ăn
                         };
 

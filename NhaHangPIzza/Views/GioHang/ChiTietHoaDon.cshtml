@@ -19,23 +19,28 @@
     ViewBag.Title = "Chi Tiết Hoá Đơn";
     Layout = "~/Views/Shared/_LayoutTrangChu.cshtml";
 
-    int progressPercentage = 25;
+    int progressPercentage = 205;
     string statusClass = "bg-success"; // Default to "Đã đặt"
 
     if (ViewBag.HoaDon.TrangThai == "Đầu bếp đã nhận")
     {
-        progressPercentage = 50;
+        progressPercentage = 25;
         statusClass = "bg-warning";
     }
     else if (ViewBag.HoaDon.TrangThai == "Đầu bếp đang làm")
     {
-        progressPercentage = 75;
+        progressPercentage = 50;
         statusClass = "bg-primary";
     }
     else if (ViewBag.HoaDon.TrangThai == "Đã làm xong")
     {
-        progressPercentage = 100;
+        progressPercentage = 75;
         statusClass = "bg-info";
+    }
+    else if (ViewBag.HoaDon.TrangThai == "Đã thanh toán")
+    {
+        progressPercentage = 100;
+        statusClass = "bg-danger";
     }
 
 }

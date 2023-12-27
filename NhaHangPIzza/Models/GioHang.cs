@@ -25,16 +25,18 @@ namespace NhaHangPIzza.Models
         public int iVoBanh { get; set; }
         public int iIdVoBanh { get; set; }
         public string sDoDay { get; set; }
+        public decimal giaTienVoBanh { get; set; }
 
         public int iKichThuocBanh { get; set; }
         public int iIDKichThuocBanh { get; set; }
         public string sKichThuoc { get; set; }
+        public decimal giaTienKichThuocBanh { get; set; }
 
         public int iSoLuong { get; set; }
 
         public double dThanhTien
         {
-            get { return iSoLuong * (int)dGiaTien; }
+            get { return iSoLuong * ((int)dGiaTien + (int)giaTienVoBanh + (int)giaTienKichThuocBanh); }
         }
 
         public GioHang(int idMonAn, int iIDKichThuocBanh, int idVoBanh, int soLuong, decimal GiaTien)
@@ -49,10 +51,13 @@ namespace NhaHangPIzza.Models
             iVoBanh = idVoBanh;
             VOBANH vb = db.VOBANHs.Single(v => v.IdVoBanh == iVoBanh);
             sDoDay = vb.DoDay;
+            giaTienVoBanh = vb.GiaTien;
 
             iKichThuocBanh = iIDKichThuocBanh;
             KichThuocBanh kt = db.KichThuocBanhs.Single(k => k.IDKichThuocBanh == iKichThuocBanh);
             sKichThuoc = kt.KichThuoc;
+            giaTienKichThuocBanh = kt.GiaTien;
+
             dGiaTien = GiaTien;
             iSoLuong = soLuong;
 
