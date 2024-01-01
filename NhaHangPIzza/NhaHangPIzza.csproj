@@ -245,6 +245,7 @@
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="Images\Anhmacdinh.jpg" />
+    <Content Include="Images\BanhPizza\Anhmacdinh.jpg" />
     <Content Include="Images\BanhPizza\Cat1.jpg" />
     <Content Include="Images\BanhPizza\PizzaCaHoiVaRauChanVit.jpeg" />
     <Content Include="Images\BanhPizza\PizzaGaVoiDua.jpeg" />

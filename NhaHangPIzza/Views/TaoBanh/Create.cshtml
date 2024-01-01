@@ -44,5 +44,10 @@
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    <a href="@Url.Action("Index", "BanhPizza")">Quay lại</a>
 </div>
+<script>
+    var selectedBan = sessionStorage.getItem("selectedBan");
+    var url = "@Url.Action("Index", "BanhPizzaKhachHangLam")?selectedBan=" + selectedBan;
+    document.getElementById("banhPizzaLink").href = url;
+</script>

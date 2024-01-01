@@ -16,26 +16,27 @@
         height: 100%;
     }
 </style>
-
-<div class="mb-4">
-    <label for="ddlBan" class="form-label">Tên bàn:</label>
-    <select id="ddlBan" name="ddlBan" class="form-select" onchange="checkPassword()">
-        @{
-            List<BAN> danhSachBan = ViewBag.DanhSachBan;
-            foreach (var ban in danhSachBan)
-            {
-                <option value="@ban.Maban" @(ViewBag.SelectedBan == ban.Maban ? "selected" : "")>@ban.TenBan</option>
+@using (Html.BeginForm("TaoBanh", "TaoBanh", FormMethod.Post))
+{
+    <div class="mb-4">
+        <label for="ddlBan" class="form-label">Tên bàn:</label>
+        <select id="ddlBan" name="ddlBan" class="form-select" onchange="checkPassword()">
+            @{
+                List<BAN> danhSachBan = ViewBag.DanhSachBan;
+                foreach (var ban in danhSachBan)
+                {
+                    <option value="@ban.Maban" @(ViewBag.SelectedBan == ban.Maban ? "selected" : "")>@ban.TenBan</option>
+                }
             }
-        }
-    </select>
-    <input type="hidden" id="hdnMaBan" name="hdnMaBan" />
+        </select>
+        <input type="hidden" id="hdnMaBan" name="hdnMaBan" />
 
-    <input type="submit" id="btnSubmit" style="display: none;" />
-</div>
-<div>
-    <input type="submit" id="btnTaoBanh" value="TaoBanh" />
-</div>
-
+        <input type="submit" id="btnSubmit" style="display: none;" />
+    </div>
+    <div>
+        <input type="submit" id="btnTaoBanh" value="TaoBanh" />
+    </div>
+}
 <div class="container mt-3">
     @foreach (var monAn in Model)
     {

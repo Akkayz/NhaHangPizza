@@ -130,26 +130,37 @@
     var isDropdownEnabled = true;
 
     function checkPassword() {
-        if (!isDropdownEnabled) {
-            alert("Vui lòng nhập lại mật khẩu.");
-            return;
-        }
-
-        var selectedBan = document.getElementById("ddlBan").value;
-        var password = prompt("Nhập mật khẩu để chọn bàn:");
-
-        if (password === "1234") {
-            document.getElementById("hdnMaBan").value = selectedBan;
-        } else {
-            document.getElementById("ddlBan").selectedIndex = 0;
-            alert("Mật khẩu không đúng. Vui lòng thử lại.");
-        }
+    if (!isDropdownEnabled) {
+        alert("Vui lòng nhập lại mật khẩu.");
+        return;
     }
 
-    function confirmOrder() {
+    var selectedBan = document.getElementById("ddlBan").value;
+    var password = prompt("Nhập mật khẩu để chọn bàn:");
+
+    if (password === "1234") {
+        // Lưu mã bàn vào Session Storage
+        sessionStorage.setItem("selectedBan", selectedBan);
+
+        // Cập nhật hidden field
+        document.getElementById("hdnMaBan").value = selectedBan;
+    } else {
+        document.getElementById("ddlBan").selectedIndex = 0;
+        alert("Mật khẩu không đúng. Vui lòng thử lại.");
+    }
+}
+function confirmOrder() {
         var r = confirm("Bạn có chắc muốn đặt hàng?");
         if (r == true) {
             document.getElementById("btnSubmit").click();
         }
     }
+var savedBan = sessionStorage.getItem("selectedBan");
+if (savedBan) {
+    // Thiết lập giá trị cho dropdown
+    document.getElementById("ddlBan").value = savedBan;
+
+    // Thiết lập giá trị cho hidden field
+    document.getElementById("hdnMaBan").value = savedBan;
+}
 </script>

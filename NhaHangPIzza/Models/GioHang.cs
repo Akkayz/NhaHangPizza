@@ -46,7 +46,7 @@ namespace NhaHangPIzza.Models
             MonAn ma = db.MonAns.Single(n => n.MaMonAn == iMaMonAn);
             sTenMonAn = ma.TenMonAn;
             sHinhAnh = ma.HinhAnh;
-            sLoaiBanh = ma.LoaiBanh.TenLoaiBanh;
+            sLoaiBanh = ma?.LoaiBanh?.TenLoaiBanh ?? null;
 
             iVoBanh = idVoBanh;
             VOBANH vb = db.VOBANHs.Single(v => v.IdVoBanh == iVoBanh);

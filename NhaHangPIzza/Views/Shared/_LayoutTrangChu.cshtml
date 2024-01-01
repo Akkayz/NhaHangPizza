@@ -55,10 +55,17 @@
                 </div>
                 <div class="row h-20 m-0 border-bottom border-white custom-color d-flex align-items-center text-center">
                     <!-- Nội dung dòng 2 -->
-                    <a href="@Url.Action("Index","BanhPizzaKhachHangLam")" class="text-decoration-none">
+                    <a id="banhPizzaLink" href="#" class="text-decoration-none">
                         <i class="fa-regular fa-pizza-slice fa-2xl" style="color: #ffffff;"></i>
                         <p class="text-white mb-0">Bánh Pizza khách hàng làm</p>
                     </a>
+
+                    <script>
+        // Use JavaScript to construct the URL and set it to the href attribute
+        var selectedBan = sessionStorage.getItem("selectedBan");
+        var url = "@Url.Action("Index", "BanhPizzaKhachHangLam")?selectedBan=" + selectedBan;
+        document.getElementById("banhPizzaLink").href = url;
+                    </script>
                 </div>
                 <!-- Dòng 3 -->
                 <div class="row h-20 m-0 border-bottom border-white custom-color d-flex align-items-center text-center">

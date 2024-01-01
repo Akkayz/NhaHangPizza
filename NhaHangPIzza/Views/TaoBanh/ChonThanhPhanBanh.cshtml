@@ -46,6 +46,6 @@ else
 }
 
 <div>
-    @Html.ActionLink("Quay lại", "Index")
-    @Html.ActionLink("Thêm Thành Phần", "Create", "MonAn_ThanhPhanBanh", new { MaMonAn = ViewBag.MaMonAn }, new { TenMonAn = ViewBag.TenMonAn })
+    <a href="@Url.Action("Index", "BanhPizza")">Quay lại</a>
+    <a href="@Url.Action("Create", "MonAn_ThanhPhanBanh", new { MaMonAn = ViewBag.MaMonAn, TenMonAn = ViewBag.TenMonAn })">Thêm Thành Phần</a>
 </div>

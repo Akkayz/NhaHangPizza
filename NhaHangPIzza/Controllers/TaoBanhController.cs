@@ -95,7 +95,7 @@ namespace NhaHangPIzza.Controllers
                     db.SaveChanges();
                 }
 
-                return RedirectToAction("Index", new { maMonAn = monAn_ThanhPhanBanh.MaMonAn });
+                return RedirectToAction("Index", "BanhPizza");
             }
 
             ViewBag.ThanhPhanList = db.THANHPHANBANHs.Select(t => new SelectListItem
