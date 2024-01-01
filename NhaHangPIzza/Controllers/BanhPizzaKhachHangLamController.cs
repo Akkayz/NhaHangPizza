@@ -1,6 +1,7 @@
-﻿using System.Linq;
+﻿using NhaHangPIzza.Models;
+using System.Collections.Generic;
+using System.Linq;
 using System.Web.Mvc;
-using NhaHangPIzza.Models;
 
 namespace NhaHangPIzza.Controllers
 {
@@ -23,7 +24,10 @@ namespace NhaHangPIzza.Controllers
 
             // Loại bỏ bánh pizza có mã nằm trong ChiTietMonAn_HoaDon của hóa đơn đã thanh toán
             danhSachBanhPizza = danhSachBanhPizza.Where(m => !hoaDonDaThanhToan.Contains(m.MaMonAn)).ToList();
-
+            List<BAN> danhSachBan = db.BANs.ToList();
+            ViewBag.DanhSachBan = danhSachBan;
+            ViewBag.DanhSachKichThuoc = db.KichThuocBanhs.ToList();
+            ViewBag.DanhSachVoBanh = db.VOBANHs.ToList();
             return View(danhSachBanhPizza);
         }
     }
