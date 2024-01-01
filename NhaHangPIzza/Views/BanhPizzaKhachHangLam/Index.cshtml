@@ -24,7 +24,7 @@
             List<BAN> danhSachBan = ViewBag.DanhSachBan;
             foreach (var ban in danhSachBan)
             {
-                <option value="@ban.Maban">@ban.TenBan</option>
+                <option value="@ban.Maban" @(ViewBag.SelectedBan == ban.Maban ? "selected" : "")>@ban.TenBan</option>
             }
         }
     </select>
@@ -156,6 +156,9 @@
 
         if (password === "1234") {
             document.getElementById("hdnMaBan").value = selectedBan;
+
+            // Chuyển hướng trang với mã bàn đã chọn
+            window.location.href = '/BanhPizzaKhachHangLam/Index?selectedBan=' + selectedBan;
         } else {
             document.getElementById("ddlBan").selectedIndex = 0;
             alert("Mật khẩu không đúng. Vui lòng thử lại.");
