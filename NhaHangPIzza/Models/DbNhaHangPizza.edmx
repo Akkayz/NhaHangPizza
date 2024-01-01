@@ -105,8 +105,9 @@
           <Property Name="TenMonAn" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="GiaTien" Type="money" Nullable="false" />
           <Property Name="IDLoaiBanh" Type="int" />
-          <Property Name="X" Type="bit" />
+          <Property Name="TheLoai" Type="bit" />
           <Property Name="HinhAnh" Type="nvarchar" MaxLength="50" />
+          <Property Name="Maban" Type="int" />
         </EntityType>
         <EntityType Name="MonAn_ThanhPhanBanh">
           <Key>
@@ -294,6 +295,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_MonAn_BAN">
+          <End Role="BAN" Type="Self.BAN" Multiplicity="0..1" />
+          <End Role="MonAn" Type="Self.MonAn" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BAN">
+              <PropertyRef Name="Maban" />
+            </Principal>
+            <Dependent Role="MonAn">
+              <PropertyRef Name="Maban" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_MonAn_LoaiBanh">
           <End Role="LoaiBanh" Type="Self.LoaiBanh" Multiplicity="0..1" />
           <End Role="MonAn" Type="Self.MonAn" Multiplicity="*" />
@@ -468,6 +481,10 @@
             <End Role="NuocUong" EntitySet="NuocUong" />
             <End Role="ComBo_PhanUong" EntitySet="ComBo_PhanUong" />
           </AssociationSet>
+          <AssociationSet Name="FK_MonAn_BAN" Association="Self.FK_MonAn_BAN">
+            <End Role="BAN" EntitySet="BAN" />
+            <End Role="MonAn" EntitySet="MonAn" />
+          </AssociationSet>
           <AssociationSet Name="FK_MonAn_LoaiBanh" Association="Self.FK_MonAn_LoaiBanh">
             <End Role="LoaiBanh" EntitySet="LoaiBanh" />
             <End Role="MonAn" EntitySet="MonAn" />
@@ -550,6 +567,10 @@
           <EntitySet Name="TaiKhoans" EntityType="QLNHAHANG_PIZZAModel.TaiKhoan" />
           <EntitySet Name="THANHPHANBANHs" EntityType="QLNHAHANG_PIZZAModel.THANHPHANBANH" />
           <EntitySet Name="VOBANHs" EntityType="QLNHAHANG_PIZZAModel.VOBANH" />
+          <AssociationSet Name="FK_MonAn_BAN" Association="QLNHAHANG_PIZZAModel.FK_MonAn_BAN">
+            <End Role="BAN" EntitySet="BANs" />
+            <End Role="MonAn" EntitySet="MonAns" />
+          </AssociationSet>
           <AssociationSet Name="pk_BAN_HOADON" Association="QLNHAHANG_PIZZAModel.pk_BAN_HOADON">
             <End Role="BAN" EntitySet="BANs" />
             <End Role="HoaDon" EntitySet="HoaDons" />
@@ -636,6 +657,7 @@
           </Key>
           <Property Name="Maban" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="TenBan" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="MonAns" Relationship="QLNHAHANG_PIZZAModel.FK_MonAn_BAN" FromRole="BAN" ToRole="MonAn" />
           <NavigationProperty Name="HoaDons" Relationship="QLNHAHANG_PIZZAModel.pk_BAN_HOADON" FromRole="BAN" ToRole="HoaDon" />
         </EntityType>
         <EntityType Name="ChiTietCombo">
@@ -752,8 +774,10 @@
           <Property Name="TenMonAn" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="GiaTien" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
           <Property Name="IDLoaiBanh" Type="Int32" />
-          <Property Name="X" Type="Boolean" />
+          <Property Name="TheLoai" Type="Boolean" />
           <Property Name="HinhAnh" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Maban" Type="Int32" />
+          <NavigationProperty Name="BAN" Relationship="QLNHAHANG_PIZZAModel.FK_MonAn_BAN" FromRole="MonAn" ToRole="BAN" />
           <NavigationProperty Name="ChiTietMonAn_HoaDon" Relationship="QLNHAHANG_PIZZAModel.pk_CHITIETMONAN_MONAN" FromRole="MonAn" ToRole="ChiTietMonAn_HoaDon" />
           <NavigationProperty Name="ComBo_PhanAn" Relationship="QLNHAHANG_PIZZAModel.FK_ComBo_PhanAn_MonAn" FromRole="MonAn" ToRole="ComBo_PhanAn" />
           <NavigationProperty Name="LoaiBanh" Relationship="QLNHAHANG_PIZZAModel.FK_MonAn_LoaiBanh" FromRole="MonAn" ToRole="LoaiBanh" />
@@ -833,6 +857,18 @@
           <Property Name="GiaTien" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
           <NavigationProperty Name="ChiTietMonAn_HoaDon" Relationship="QLNHAHANG_PIZZAModel.FK_ChiTietMonAn_HoaDon_VOBANH" FromRole="VOBANH" ToRole="ChiTietMonAn_HoaDon" />
         </EntityType>
+        <Association Name="FK_MonAn_BAN">
+          <End Type="QLNHAHANG_PIZZAModel.BAN" Role="BAN" Multiplicity="0..1" />
+          <End Type="QLNHAHANG_PIZZAModel.MonAn" Role="MonAn" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BAN">
+              <PropertyRef Name="Maban" />
+            </Principal>
+            <Dependent Role="MonAn">
+              <PropertyRef Name="Maban" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="pk_BAN_HOADON">
           <End Type="QLNHAHANG_PIZZAModel.BAN" Role="BAN" Multiplicity="1" />
           <End Type="QLNHAHANG_PIZZAModel.HoaDon" Role="HoaDon" Multiplicity="*" />
@@ -1172,8 +1208,9 @@
           <EntitySetMapping Name="MonAns">
             <EntityTypeMapping TypeName="QLNHAHANG_PIZZAModel.MonAn">
               <MappingFragment StoreEntitySet="MonAn">
+                <ScalarProperty Name="Maban" ColumnName="Maban" />
                 <ScalarProperty Name="HinhAnh" ColumnName="HinhAnh" />
-                <ScalarProperty Name="X" ColumnName="X" />
+                <ScalarProperty Name="TheLoai" ColumnName="TheLoai" />
                 <ScalarProperty Name="IDLoaiBanh" ColumnName="IDLoaiBanh" />
                 <ScalarProperty Name="GiaTien" ColumnName="GiaTien" />
                 <ScalarProperty Name="TenMonAn" ColumnName="TenMonAn" />

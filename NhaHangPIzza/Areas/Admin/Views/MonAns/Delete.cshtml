@@ -29,11 +29,11 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.X)
+            @Html.DisplayNameFor(model => model.TheLoai)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.X)
+            @Html.DisplayFor(model => model.TheLoai)
         </dd>
 
         <dt>
@@ -51,10 +51,10 @@
         <dd>
             @Html.DisplayFor(model => model.LoaiBanh.TenLoaiBanh)
         </dd>
-
     </dl>
 
-    @using (Html.BeginForm()) {
+    @using (Html.BeginForm())
+    {
         @Html.AntiForgeryToken()
 
         <div class="form-actions no-color">

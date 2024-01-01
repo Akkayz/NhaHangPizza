@@ -1,0 +1,164 @@
+﻿@using NhaHangPIzza.Models
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutTrangChu.cshtml";
+}
+
+<style>
+    .mon-an-container {
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+
+    .mon-an-form {
+        height: 100%;
+    }
+</style>
+
+<div class="mb-4">
+    <label for="ddlBan" class="form-label">Tên bàn:</label>
+    <select id="ddlBan" name="ddlBan" class="form-select" onchange="checkPassword()">
+        @{
+            List<BAN> danhSachBan = ViewBag.DanhSachBan;
+            foreach (var ban in danhSachBan)
+            {
+                <option value="@ban.Maban">@ban.TenBan</option>
+            }
+        }
+    </select>
+    <input type="hidden" id="hdnMaBan" name="hdnMaBan" />
+
+    <input type="submit" id="btnSubmit" style="display: none;" />
+</div>
+<div>
+    <input type="submit" id="btnTaoBanh" value="TaoBanh" />
+</div>
+
+<div class="container mt-3">
+    @foreach (var monAn in Model)
+    {
+        <div class="col-md-4" style="width: 350px;">
+            <!-- Form Pizza -->
+            <form action="@Url.Action("ThemMonAn", "GioHang")" method="post" class="mon-an-form">
+                @Html.Hidden("idMonAn", (int)monAn.MaMonAn)
+
+                <div class="d-flex flex-column align-items-center border p-1 mon-an-container">
+                    <div class="mb-2">
+                        <img src="~/Images/BanhPizza/@monAn.HinhAnh" style="width:200px;" alt="Hình Pizza" class="img-fluid">
+                    </div>
+                    <div class="text-center mb-2">
+                        <label class="form-label">@monAn.TenMonAn</label>
+                    </div>
+                    <div class="mb-2">
+                        <div class="border p-2 d-flex flex-wrap" id="pizzaName">
+                            @{
+                                var thanhPhanBanhList = ((HashSet<MonAn_ThanhPhanBanh>)monAn.MonAn_ThanhPhanBanh).Select(tpb => tpb.THANHPHANBANH).ToList();
+                                for (int i = 0; i < thanhPhanBanhList.Count; i++)
+                                {
+                                    <div>@thanhPhanBanhList[i].TenThanhPhan</div>
+                                    if (i < thanhPhanBanhList.Count - 1)
+                                    {
+                                        <div>,</div>
+                                        <div>&nbsp;</div>
+                                    }
+                                }
+                            }
+                        </div>
+                    </div>
+                    <div class="row mb-2">
+                        <div class="col-md-12">
+                            <label class="form-label">Loại vỏ bánh</label>
+                            <!-- Use a dropdown list for VoBanh -->
+                            <select class="form-control" id="idVoBanh" name="idVoBanh">
+                                @foreach (var voBanh in ViewBag.DanhSachVoBanh)
+                                {
+                                    <option value="@voBanh.IdVoBanh">@voBanh.DoDay</option>
+                                }
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row mb-2">
+                        <div class="col-md-12">
+                            <label class="form-label">Kích thước</label>
+                            <!-- Use a dropdown list for KichThuocBanh -->
+                            <select class="form-control" id="iIDKichThuocBanh" name="iIDKichThuocBanh">
+                                @foreach (var kichThuocBanh in ViewBag.DanhSachKichThuoc)
+                                {
+                                    <option value="@kichThuocBanh.IDKichThuocBanh">@kichThuocBanh.KichThuoc</option>
+                                }
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row mb-2">
+                        <div class="col-md-12">
+                            <label class="form-label justify-content-start" style="white-space: nowrap;">Giá tiền:</label>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="d-flex justify-content-end">
+                                <div class="input-group ">
+                                    <input type="text" class="form-control" id="GiaTien" name="GiaTien" value="@TinhTongTien.TinhTongGiaTienFormatted(monAn)" readonly>
+                                    <div class="input-group-append">
+                                        <span class="input-group-text">VNĐ</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mb-2">
+                        <div class="col-md-7">
+                            <button type="submit" class="btn btn-primary justify-content-start">Chọn</button>
+                        </div>
+                        <div class="col-md-5">
+                            <div class="d-flex justify-content-end">
+                                <div class="input-group">
+                                    <input type="text" class="form-control quantityInput" value="1" name="soLuong">
+                                    <button class="btn btn-outline-secondary minusBtn" type="button">-</button>
+                                    <button class="btn btn-outline-secondary plusBtn" type="button">+</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    }
+</div>
+
+<script>
+    $(document).ready(function () {
+        $(".plusBtn").click(function () {
+            var quantityInput = $(this).siblings(".quantityInput");
+            quantityInput.val(function (index, value) {
+                return +value + 1;
+            });
+        });
+
+        $(".minusBtn").click(function () {
+            var quantityInput = $(this).siblings(".quantityInput");
+            quantityInput.val(function (index, value) {
+                return Math.max(+value - 1, 1);
+            });
+        });
+    });
+
+    var isDropdownEnabled = true;
+
+    function checkPassword() {
+        if (!isDropdownEnabled) {
+            alert("Vui lòng nhập lại mật khẩu.");
+            return;
+        }
+
+        var selectedBan = document.getElementById("ddlBan").value;
+        var password = prompt("Nhập mật khẩu để chọn bàn:");
+
+        if (password === "1234") {
+            document.getElementById("hdnMaBan").value = selectedBan;
+        } else {
+            document.getElementById("ddlBan").selectedIndex = 0;
+            alert("Mật khẩu không đúng. Vui lòng thử lại.");
+        }
+    }
+</script>

@@ -33,11 +33,9 @@ namespace NhaHangPIzza.Controllers
             {
                 gioHangCombo = new List<GioHangCombo>();
             }
-
-            ViewBag.GioHangCombo = gioHangCombo;
-
             List<BAN> danhSachBan = db.BANs.ToList();
             ViewBag.DanhSachBan = danhSachBan;
+            ViewBag.GioHangCombo = gioHangCombo;
             ViewBag.ThongBao = TempData["ThongBao"];
             return View();
         }

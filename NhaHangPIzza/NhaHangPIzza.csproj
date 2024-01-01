@@ -132,10 +132,12 @@
     <Compile Include="Areas\NhanVien\Controllers\UserController.cs" />
     <Compile Include="Areas\NhanVien\NhanVienAreaRegistration.cs" />
     <Compile Include="Controllers\BanhPizzaController.cs" />
+    <Compile Include="Controllers\BanhPizzaKhachHangLamController.cs" />
     <Compile Include="Controllers\ComboController.cs" />
     <Compile Include="Controllers\GioHangController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\NuocGiaiKhatController.cs" />
+    <Compile Include="Controllers\TaoBanhController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -211,6 +213,7 @@
     <Compile Include="Models\TaiKhoan.cs">
       <DependentUpon>DbNhaHangPizza.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\TaoBanhViewModel.cs" />
     <Compile Include="Models\THANHPHANBANH.cs">
       <DependentUpon>DbNhaHangPizza.tt</DependentUpon>
     </Compile>
@@ -382,6 +385,9 @@
     <Content Include="Views\Combo\Index.cshtml" />
     <Content Include="Views\GioHang\Index.cshtml" />
     <Content Include="Views\GioHang\ChiTietHoaDon.cshtml" />
+    <Content Include="Views\TaoBanh\ChonThanhPhanBanh.cshtml" />
+    <Content Include="Views\TaoBanh\Create.cshtml" />
+    <Content Include="Views\BanhPizzaKhachHangLam\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

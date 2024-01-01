@@ -26,9 +26,11 @@ namespace NhaHangPIzza.Models
         public string TenMonAn { get; set; }
         public decimal GiaTien { get; set; }
         public Nullable<int> IDLoaiBanh { get; set; }
-        public Nullable<bool> X { get; set; }
+        public Nullable<bool> TheLoai { get; set; }
         public string HinhAnh { get; set; }
+        public Nullable<int> Maban { get; set; }
     
+        public virtual BAN BAN { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ChiTietMonAn_HoaDon> ChiTietMonAn_HoaDon { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

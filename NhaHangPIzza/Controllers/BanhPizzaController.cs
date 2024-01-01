@@ -30,7 +30,8 @@ namespace NhaHangPIzza.Controllers
             ViewBag.DanhSachVoBanh = db.VOBANHs.ToList();
             ViewBag.DanhSachLoaiBanh = danhSachLoaiBanh;
             ViewBag.DanhSachMonAnTheoLoai = danhSachMonAnTheoLoai;
-
+            List<BAN> danhSachBan = db.BANs.ToList();
+            ViewBag.DanhSachBan = danhSachBan;
             return View(danhSachLoaiBanh);
         }
     }

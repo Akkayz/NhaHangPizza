@@ -1,4 +1,4 @@
-﻿@model List<NhaHangPIzza.Models.GioHangNuocUong>
+﻿﻿@model List<NhaHangPIzza.Models.GioHangNuocUong>
 @using NhaHangPIzza.Models
 
 @{
@@ -9,7 +9,7 @@
 {
     <div class="mb-4">
         <label for="ddlBan" class="form-label">Tên bàn:</label>
-        <select id="ddlBan" name="ddlBan" class="form-select">
+        <select id="ddlBan" name="ddlBan" class="form-select" onchange="checkPassword()">
             @{
                 List<BAN> danhSachBan = ViewBag.DanhSachBan;
                 foreach (var ban in danhSachBan)
@@ -18,7 +18,9 @@
                 }
             }
         </select>
-        <input type="hidden" id="hdnMaBan" name="ddlBan" />
+        <input type="hidden" id="hdnMaBan" name="hdnMaBan" />
+
+        <input type="submit" id="btnSubmit" style="display: none;" />
     </div>
 
     <div class="container mt-3">
@@ -133,15 +135,17 @@
             return;
         }
 
+        var selectedBan = document.getElementById("ddlBan").value;
         var password = prompt("Nhập mật khẩu để chọn bàn:");
 
         if (password === "1234") {
-            // Mật khẩu đúng, không cần làm gì cả
+            document.getElementById("hdnMaBan").value = selectedBan;
         } else {
             document.getElementById("ddlBan").selectedIndex = 0;
             alert("Mật khẩu không đúng. Vui lòng thử lại.");
         }
     }
+
     function confirmOrder() {
         var r = confirm("Bạn có chắc muốn đặt hàng?");
         if (r == true) {

@@ -17,6 +17,27 @@
         height: 100%;
     }
 </style>
+@using (Html.BeginForm("TaoBanh", "TaoBanh", FormMethod.Post))
+{
+    <div class="mb-4">
+        <label for="ddlBan" class="form-label">Tên bàn:</label>
+        <select id="ddlBan" name="ddlBan" class="form-select" onchange="checkPassword()">
+            @{
+                List<BAN> danhSachBan = ViewBag.DanhSachBan;
+                foreach (var ban in danhSachBan)
+                {
+                    <option value="@ban.Maban">@ban.TenBan</option>
+                }
+            }
+        </select>
+        <input type="hidden" id="hdnMaBan" name="hdnMaBan" />
+
+        <input type="submit" id="btnSubmit" style="display: none;" />
+    </div>
+    <div>
+        <input type="submit" id="btnTaoBanh" value="TaoBanh" />
+    </div>
+}
 
 <!-- Loại bánh -->
 <ul class="nav nav-tabs">
@@ -144,4 +165,39 @@
             });
         });
     });
+    var isDropdownEnabled = true;
+
+    function checkPassword() {
+        if (!isDropdownEnabled) {
+            alert("Vui lòng nhập lại mật khẩu.");
+            return;
+        }
+
+        var password = prompt("Nhập mật khẩu để chọn bàn:");
+
+        if (password === "1234") {
+            // Mật khẩu đúng, không cần làm gì cả
+        } else {
+            document.getElementById("ddlBan").selectedIndex = 0;
+            alert("Mật khẩu không đúng. Vui lòng thử lại.");
+        }
+    }
+    var isDropdownEnabled = true;
+
+    function checkPassword() {
+        if (!isDropdownEnabled) {
+            alert("Vui lòng nhập lại mật khẩu.");
+            return;
+        }
+
+        var selectedBan = document.getElementById("ddlBan").value;
+        var password = prompt("Nhập mật khẩu để chọn bàn:");
+
+        if (password === "1234") {
+            document.getElementById("hdnMaBan").value = selectedBan;
+        } else {
+            document.getElementById("ddlBan").selectedIndex = 0;
+            alert("Mật khẩu không đúng. Vui lòng thử lại.");
+        }
+    }
 </script>
