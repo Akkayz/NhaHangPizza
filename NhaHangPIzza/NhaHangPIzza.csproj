@@ -129,6 +129,7 @@
     <Compile Include="Areas\Admin\Controllers\MonAn_ThanhPhanBanhController.cs" />
     <Compile Include="Areas\Admin\Controllers\NuocUongsController.cs" />
     <Compile Include="Areas\Admin\Controllers\THANHPHANBANHsController.cs" />
+    <Compile Include="Areas\NhanVien\Controllers\DauBepController.cs" />
     <Compile Include="Areas\NhanVien\Controllers\UserController.cs" />
     <Compile Include="Areas\NhanVien\NhanVienAreaRegistration.cs" />
     <Compile Include="Controllers\BanhPizzaController.cs" />
@@ -358,6 +359,9 @@
     </Content>
     <Content Include="Areas\Admin\Views\_ViewStart.cshtml" />
     <Content Include="Areas\Admin\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\NhanVien\Views\Shared\_LayoutAdmin.cshtml" />
+    <Content Include="Areas\NhanVien\Views\DauBep\Index.cshtml" />
+    <Content Include="Areas\NhanVien\Views\DauBep\ChiTietHoaDon.cshtml" />
     <None Include="Scripts\jquery-3.7.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.7.1.js" />
     <Content Include="Scripts\jquery-3.7.1.min.js" />
@@ -394,7 +398,6 @@
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Data\" />
     <Folder Include="Areas\NhanVien\Data\" />
-    <Folder Include="Areas\NhanVien\Views\Shared\" />
     <Folder Include="Areas\NhanVien\Views\User\" />
   </ItemGroup>
   <ItemGroup>

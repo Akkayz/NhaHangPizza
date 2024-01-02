@@ -1,0 +1,32 @@
+﻿@model List<NhaHangPIzza.Models.HoaDon>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/NhanVien/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Danh sách hóa đơn</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Mã hóa đơn</th>
+            <th>Tổng tiền</th>
+            <th>Trạng thái</th>
+            <!-- Thêm các cột khác nếu cần -->
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var hoaDon in Model)
+        {
+            <tr>
+                <td>@hoaDon.MaHD</td>
+                <td>@hoaDon.TongTien</td>
+                <td>@hoaDon.TrangThai</td>
+                <td>
+                    <a href="@Url.Action("ChiTietHoaDon", "DauBep", new { maHoaDon = hoaDon.MaHD })" class="btn btn-info">Xem chi tiết</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
