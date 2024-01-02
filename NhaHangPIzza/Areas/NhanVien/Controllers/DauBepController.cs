@@ -15,16 +15,19 @@ namespace NhaHangPIzza.Areas.NhanVien.Controllers
         public ActionResult Index()
         {
             // Truy vấn danh sách hóa đơn
-            var danhSachHoaDon = db.HoaDons.ToList();
+            var danhSachHoaDon = db.HoaDons.Where(hd => hd.TrangThai != "Đã làm xong" && hd.TrangThai != "Đã thanh toán").ToList();
 
             return View(danhSachHoaDon);
         }
 
         public ActionResult ChiTietHoaDon(int maHoaDon)
         {
-            // Lấy thông tin hóa đơn từ cơ sở dữ liệu
             var hoaDon = db.HoaDons.Find(maHoaDon);
-            // Lấy thông tin chi tiết hóa đơn từ cơ sở dữ liệu
+            if (hoaDon == null)
+            {
+                return HttpNotFound();
+            }
+
             var chiTietMonAnList = db.ChiTietMonAn_HoaDon.Where(ct => ct.MaHD == maHoaDon).ToList();
             var chiTietNuocUongList = db.ChiTietNuocUong_HoaDon.Where(ct => ct.MaHD == maHoaDon).ToList();
             var chiTietComboList = db.ChiTietComboes.Where(ct => ct.MaHD == maHoaDon).ToList();
@@ -34,7 +37,23 @@ namespace NhaHangPIzza.Areas.NhanVien.Controllers
             ViewBag.ChiTietNuocUongList = chiTietNuocUongList;
             ViewBag.ChiTietComboList = chiTietComboList;
 
-            return View();
+            return View(hoaDon);
+        }
+
+        [HttpPost]
+        public ActionResult CapNhatTrangThai(int maHoaDon, string trangThaiDauBep)
+        {
+            var hoaDon = db.HoaDons.Find(maHoaDon);
+            if (hoaDon == null)
+            {
+                return HttpNotFound();
+            }
+
+            hoaDon.TrangThai = trangThaiDauBep;
+            db.SaveChanges();
+
+            // Chuyển hướng hoặc trả về một ActionResult khác nếu cần
+            return RedirectToAction("Index", "DauBep");
         }
     }
 }

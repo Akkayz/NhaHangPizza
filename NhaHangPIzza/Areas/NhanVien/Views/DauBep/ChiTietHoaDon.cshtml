@@ -17,88 +17,96 @@
         font-weight: bold;
     }
 </style>
-<div class="container mt-3" id="print-section">
-    <!-- Thêm id cho div này -->
-    <h2>Thông Tin Hoá Đơn</h2>
+@using (Html.BeginForm("CapNhatTrangThai", "DauBep", FormMethod.Post))
+{
+    <div class="container mt-3" id="print-section">
+        <!-- Thêm id cho div này -->
+        <h2>Thông Tin Hoá Đơn</h2>
+        <input type="hidden" name="maHoaDon" value="@ViewBag.HoaDon.MaHD" />
+        <p><strong>Mã Hoá Đơn:</strong> @ViewBag.HoaDon.MaHD</p>
+        <p><strong>Trạng Thái:</strong> @ViewBag.HoaDon.TrangThai</p>
+        <p><strong>Tổng Tiền:</strong> @string.Format("{0:N0}", ViewBag.HoaDon.TongTien) VNĐ</p>
+        <!-- Các thông tin khác của hoá đơn -->
+        <h3>Chi Tiết Đặt Hàng</h3>
 
-    <p><strong>Mã Hoá Đơn:</strong> @ViewBag.HoaDon.MaHD</p>
-    <p><strong>Trạng Thái:</strong> @ViewBag.HoaDon.TrangThai</p>
-    <p><strong>Tổng Tiền:</strong> @string.Format("{0:N0}", ViewBag.HoaDon.TongTien) VNĐ</p>
-    <!-- Các thông tin khác của hoá đơn -->
-    <h3>Chi Tiết Đặt Hàng</h3>
-
-    <h4>Món Ăn</h4>
-    <table class="table table-bordered table-hover">
-        <thead class="table-light">
-            <tr>
-                <th scope="col">Hình Ảnh</th>
-                <th scope="col">Tên Món Ăn</th>
-                <th scope="col">Số Lượng</th>
-                <th scope="col">Đơn Giá</th>
-                <th scope="col">Thành Tiền</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var chiTietMonAn in ViewBag.ChiTietMonAnList as List<ChiTietMonAn_HoaDon>)
-            {
+        <h4>Món Ăn</h4>
+        <table class="table table-bordered table-hover">
+            <thead class="table-light">
                 <tr>
-                    <td><img src="~/Images/BanhPizza/@chiTietMonAn.MonAn.HinhAnh" style="width:50px;" alt="@chiTietMonAn.MonAn.TenMonAn"></td>
-                    <td>@chiTietMonAn.MonAn.TenMonAn</td>
-                    <td>@chiTietMonAn.SoLuong</td>
-                    <td>@string.Format("{0:N0}", chiTietMonAn.GiaTien)</td>
-                    <td>@string.Format("{0:N0}", chiTietMonAn.SoLuong * chiTietMonAn.GiaTien)</td>
+                    <th scope="col">Hình Ảnh</th>
+                    <th scope="col">Tên Món Ăn</th>
+                    <th scope="col">Số Lượng</th>
+                    <th scope="col">Đơn Giá</th>
+                    <th scope="col">Thành Tiền</th>
                 </tr>
-            }
-        </tbody>
-    </table>
+            </thead>
+            <tbody>
+                @foreach (var chiTietMonAn in ViewBag.ChiTietMonAnList as List<ChiTietMonAn_HoaDon>)
+                {
+                    <tr>
+                        <td><img src="~/Images/BanhPizza/@chiTietMonAn.MonAn.HinhAnh" style="width:50px;" alt="@chiTietMonAn.MonAn.TenMonAn"></td>
+                        <td>@chiTietMonAn.MonAn.TenMonAn</td>
+                        <td>@chiTietMonAn.SoLuong</td>
+                        <td>@string.Format("{0:N0}", chiTietMonAn.GiaTien)</td>
+                        <td>@string.Format("{0:N0}", chiTietMonAn.SoLuong * chiTietMonAn.GiaTien)</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
 
-    <h4>Nước Uống</h4>
-    <table class="table table-bordered table-hover">
-        <thead class="table-light">
-            <tr>
-                <th scope="col">Hình Ảnh</th>
-                <th scope="col">Tên Nước Uống</th>
-                <th scope="col">Số Lượng</th>
-                <th scope="col">Đơn Giá</th>
-                <th scope="col">Thành Tiền</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var chiTietNuocUong in ViewBag.ChiTietNuocUongList as List<ChiTietNuocUong_HoaDon>)
-            {
+        <h4>Nước Uống</h4>
+        <table class="table table-bordered table-hover">
+            <thead class="table-light">
                 <tr>
-                    <td><img src="~/Images/NuocGiaiKhat/@chiTietNuocUong.NuocUong.HinhAnh" style="width:50px;" alt="@chiTietNuocUong.NuocUong.TenNuocUong"></td>
-                    <td>@chiTietNuocUong.NuocUong.TenNuocUong</td>
-                    <td>@chiTietNuocUong.SoLuong</td>
-                    <td>@string.Format("{0:N0}", chiTietNuocUong.GiaTien)</td>
-                    <td>@string.Format("{0:N0}", chiTietNuocUong.SoLuong * chiTietNuocUong.GiaTien)</td>
+                    <th scope="col">Hình Ảnh</th>
+                    <th scope="col">Tên Nước Uống</th>
+                    <th scope="col">Số Lượng</th>
+                    <th scope="col">Đơn Giá</th>
+                    <th scope="col">Thành Tiền</th>
                 </tr>
-            }
-        </tbody>
-    </table>
+            </thead>
+            <tbody>
+                @foreach (var chiTietNuocUong in ViewBag.ChiTietNuocUongList as List<ChiTietNuocUong_HoaDon>)
+                {
+                    <tr>
+                        <td><img src="~/Images/NuocGiaiKhat/@chiTietNuocUong.NuocUong.HinhAnh" style="width:50px;" alt="@chiTietNuocUong.NuocUong.TenNuocUong"></td>
+                        <td>@chiTietNuocUong.NuocUong.TenNuocUong</td>
+                        <td>@chiTietNuocUong.SoLuong</td>
+                        <td>@string.Format("{0:N0}", chiTietNuocUong.GiaTien)</td>
+                        <td>@string.Format("{0:N0}", chiTietNuocUong.SoLuong * chiTietNuocUong.GiaTien)</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
 
-    <h4>Combo</h4>
-    <table class="table table-bordered table-hover">
-        <thead class="table-light">
-            <tr>
-                <th scope="col">Hình Ảnh</th>
-                <th scope="col">Tên Combo</th>
-                <th scope="col">Số Lượng</th>
-                <th scope="col">Đơn Giá</th>
-                <th scope="col">Thành Tiền</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var chiTietCombo in ViewBag.ChiTietComboList as List<ChiTietCombo>)
-            {
+        <h4>Combo</h4>
+        <table class="table table-bordered table-hover">
+            <thead class="table-light">
                 <tr>
-                    <td><img src="~/Images/ComBo/@chiTietCombo.Combo.HinhAnh" style="width:50px;" alt="@chiTietCombo.Combo.TenCombo"></td>
-                    <td>@chiTietCombo.Combo.TenCombo</td>
-                    <td>@chiTietCombo.SoLuong</td>
-                    <td>@string.Format("{0:N0}", chiTietCombo.GiaTien)</td>
-                    <td>@string.Format("{0:N0}", chiTietCombo.SoLuong * chiTietCombo.GiaTien)</td>
+                    <th scope="col">Hình Ảnh</th>
+                    <th scope="col">Tên Combo</th>
+                    <th scope="col">Số Lượng</th>
+                    <th scope="col">Đơn Giá</th>
+                    <th scope="col">Thành Tiền</th>
                 </tr>
-            }
-        </tbody>
-    </table>
-</div>
+            </thead>
+            <tbody>
+                @foreach (var chiTietCombo in ViewBag.ChiTietComboList as List<ChiTietCombo>)
+                {
+                    <tr>
+                        <td><img src="~/Images/ComBo/@chiTietCombo.Combo.HinhAnh" style="width:50px;" alt="@chiTietCombo.Combo.TenCombo"></td>
+                        <td>@chiTietCombo.Combo.TenCombo</td>
+                        <td>@chiTietCombo.SoLuong</td>
+                        <td>@string.Format("{0:N0}", chiTietCombo.GiaTien)</td>
+                        <td>@string.Format("{0:N0}", chiTietCombo.SoLuong * chiTietCombo.GiaTien)</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+        <p>
+            <strong>Trạng Thái Đầu Bếp:</strong>
+            @Html.DropDownList("TrangThaiDauBep", new SelectList(new List<string> { "Đã nhận", "Đang làm", "Đã làm xong" }), new { @class = "form-control", @name = "trangThaiDauBep" })
+        </p>
+        <input type="submit" value="Lưu Trạng Thái Đầu Bếp" class="btn btn-primary" />
+    </div>
+}
