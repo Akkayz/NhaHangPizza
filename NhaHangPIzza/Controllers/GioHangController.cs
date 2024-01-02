@@ -71,6 +71,7 @@ namespace NhaHangPIzza.Controllers
                 Session["GioHang"] = gioHang;
 
                 // Chuyển hướng về trang Index
+                // Chuyển hướng về trang Index
                 return RedirectToAction("Index");
             }
             else

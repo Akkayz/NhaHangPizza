@@ -17,27 +17,20 @@
         height: 100%;
     }
 </style>
-@using (Html.BeginForm("TaoBanh", "TaoBanh", FormMethod.Post))
-{
-    <div class="mb-4">
-        <label for="ddlBan" class="form-label">Tên bàn:</label>
-        <select id="ddlBan" name="ddlBan" class="form-select" onchange="checkPassword()">
-            @{
-                List<BAN> danhSachBan = ViewBag.DanhSachBan;
-                foreach (var ban in danhSachBan)
-                {
-                    <option value="@ban.Maban">@ban.TenBan</option>
-                }
-            }
-        </select>
-        <input type="hidden" id="hdnMaBan" name="hdnMaBan" />
 
-        <input type="submit" id="btnSubmit" style="display: none;" />
-    </div>
-    <div>
-        <input type="submit" id="btnTaoBanh" value="TaoBanh" />
-    </div>
-}
+<div class="mb-4">
+    <label for="ddlBan" class="form-label">Tên bàn:</label>
+    <select id="ddlBan" name="ddlBan" class="form-select" onchange="checkPassword()">
+        @{
+            List<BAN> danhSachBan = ViewBag.DanhSachBan;
+            foreach (var ban in danhSachBan)
+            {
+                <option value="@ban.Maban">@ban.TenBan</option>
+            }
+        }
+    </select>
+    <input type="hidden" id="hdnMaBan" name="hdnMaBan" />
+</div>
 
 <!-- Loại bánh -->
 <ul class="nav nav-tabs">
@@ -127,7 +120,7 @@
                                 </div>
                                 <div class="row mb-2">
                                     <div class="col-md-7">
-                                        <button type="submit" class="btn btn-primary justify-content-start">Chọn</button>
+                                        <button type="submit" class="btn btn-primary justify-content-start">Thêm vào giỏ hàng</button>
                                     </div>
                                     <div class="col-md-5">
                                         <div class="d-flex justify-content-end">

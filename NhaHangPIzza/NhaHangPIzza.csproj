@@ -387,7 +387,6 @@
     <Content Include="Views\Combo\Index.cshtml" />
     <Content Include="Views\GioHang\Index.cshtml" />
     <Content Include="Views\GioHang\ChiTietHoaDon.cshtml" />
-    <Content Include="Views\TaoBanh\ChonThanhPhanBanh.cshtml" />
     <Content Include="Views\TaoBanh\Create.cshtml" />
     <Content Include="Views\BanhPizzaKhachHangLam\Index.cshtml" />
   </ItemGroup>

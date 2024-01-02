@@ -106,26 +106,5 @@ namespace NhaHangPIzza.Controllers
 
             return RedirectToAction("Index", "BanhPizza");
         }
-
-        public ActionResult ChonThanhPhanBanh(int maMonAn)
-        {
-            if (maMonAn == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-
-            var monAn_ThanhPhanBanh = db.MonAn_ThanhPhanBanh
-                .Include("MonAn")
-                .Include("THANHPHANBANH")
-                .Where(m => m.MaMonAn == maMonAn)
-                .ToList();
-
-            ViewBag.TenMonAn = db.MonAns.Where(m => m.MaMonAn == maMonAn).Select(m => m.TenMonAn).FirstOrDefault();
-            ViewBag.MaMonAn = maMonAn;
-
-            return View(monAn_ThanhPhanBanh);
-        }
-
-        // ... (các action và logic khác)
     }
 }
